@@ -1,7 +1,11 @@
-var number = 12345;
+do{
+	var number = Number(prompt("Enter number:"));
+}while (isNaN(number))
+
+var digits=[];
 
 while (number != 0){
-	var remainder = number % 10;
-	//need to same the reminder somewhere;
+	digits.push(number % 10);
 	number = parseInt(number / 10)
 }
+
