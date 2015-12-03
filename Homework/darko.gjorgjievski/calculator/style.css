@@ -1,0 +1,27 @@
+table {
+        border-spacing: 3px;
+}
+
+td {
+    border: 1px solid black;
+    width: 59px;
+    height: 59px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 33px;
+    background-color: cornsilk;
+}
+
+td:hover {
+    background-color: darkseagreen;
+}
+
+#result, #operation {
+    width: 300px;
+    text-align: left;
+    font-size: 20px;
+}
+
+.invisible {
+    border-width: 0px;
+}
