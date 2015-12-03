@@ -9,7 +9,7 @@ var number = prompt("Enter number (can be positive or negative)");
 	number = parseInt(number);
 
 	document.writeln(number + "<br/>");
-
+	
 
 if (number < 0) {                    //If number is negative, it turns it into positive
 	var posNumber = number * (-1);
