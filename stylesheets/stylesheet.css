@@ -245,6 +245,12 @@ a {
     font-size: 0.9rem; } }
 
 
+/*Custom styles*/
+.great {
+  background-color: lime;
+}
+
+
 .ok {
   background-color: green;
 }
