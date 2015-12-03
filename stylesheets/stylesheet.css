@@ -248,17 +248,29 @@ a {
 /*Custom styles*/
 .great {
   background-color: lime;
+  color: whitesmoke;
+  font-weight: bold;
+  text-align: center;
 }
 
 
 .ok {
   background-color: green;
+  color: whitesmoke;
+  font-weight: bold;
+  text-align: center;
 }
 
 .need-more {
   background-color: yellow;
+  color: black;
+  font-weight: bold;
+  text-align: center;
 }
 
 .not-ok {
   background-color: red;
+  color: whitesmoke;
+  font-weight: bold;
+  text-align: center;
 }
