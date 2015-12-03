@@ -23,18 +23,21 @@
 <a id="homework-1" class="anchor" href="#homework-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Homework 1</h1>
 
 <h2>
-<a id="create-a-functional-html--javascript-calculator" class="anchor" href="#create-a-functional-html--javascript-calculator" aria-hidden="true"><span class="octicon octicon-link"></span></a>Create a functional HTML / JavaScript calculator</h2>
+<a id="javascript-calculator" class="anchor" href="#javascript-calculator" aria-hidden="true"><span class="octicon octicon-link"></span></a>JavaScript calculator</h2>
 
-<p>It must have:</p>
+<p>You must create a functional HTML / JavaScript calculator (CSS is allowed, but not mandatory).
+It must have:</p>
 
 <ul>
 <li>a output display where the result is displayed</li>
 <li>buttons for the digits (0-9)</li>
 <li>buttons for the operations (+, -, *, /)</li>
 <li>button for operation execution (=)</li>
+<li>
+<em>optional</em> button for clearance (C)</li>
 </ul>
 
-<p>The design of the buttons and the display is not subject to evaluation - but make it look pretty if you know how :)</p>
+<p>The design of the buttons and the display is not subject to evaluation - but make it look pretty if you know how :)  </p>
 
 <p>The calculator must support doing operations on (at least) single digit numbers.</p>
 
@@ -46,11 +49,61 @@
 
 <p>Note that the referent implementation is just for design overview, as the code is intentionally more complicated than neccessary.</p>
 
+<p><strong>Bonus:</strong> - Make the calculator work from the keyboard (number keys enter numbers, enter calculates, escape clears)</p>
+
 <h1>
 <a id="homework-2" class="anchor" href="#homework-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Homework 2</h1>
 
 <h2>
-<a id="implement-a-javascript-function-that-will-convert-a-given-number-to-its-word-representation" class="anchor" href="#implement-a-javascript-function-that-will-convert-a-given-number-to-its-word-representation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Implement a JavaScript function that will convert a given number to its word representation</h2>
+<a id="number-to-words" class="anchor" href="#number-to-words" aria-hidden="true"><span class="octicon octicon-link"></span></a>Number to words</h2>
+
+<h3>
+<a id="description" class="anchor" href="#description" aria-hidden="true"><span class="octicon octicon-link"></span></a>Description:</h3>
+
+<p>Our user needs to print invoices for some trinkets she will be selling. She is not good at reading numbers, so we must help her. She wants to enter a number that should be invoiced, and to receive the text that should be put in the "with words" part of the invoice. You must help her print the invoices.</p>
+
+<p>Implement a JavaScript function that will convert a given number to its word representation. The number can be assumed to be an JavaScript integer, in the range [1 - 999,999,999,999], but it would be nice if the function gave/threw out an error message that the input is invalid. Note that there's no need to handle negative numbers - but they should be detected as invalid input.
+The textual representation should be done in English - and you can test with these valid examples:</p>
+
+<h1>
+<a id="-english" class="anchor" href="#-english" aria-hidden="true"><span class="octicon octicon-link"></span></a>| English</h1>
+
+<p>--|----------
+1 |         "One"
+2 |         "Two"
+11 |            "Eleven"
+21 |            "Twenty one"
+192 |           "One hundred ninety two"
+1187 |      "One thousand one hundred eighty seven"
+2000 |      "Two thousand"
+21011 |     "Twenty one thousand eleven"
+12341678 |  "Twelve million three hundred forty one thousand six hundred seventy eight"
+128341679901 | "One hundred twenty eight billion three hundred forty one million six hundred seventy nine thousand nine hundred one".</p>
+
+<p>The result should be returned from the function as a result - not displayed directly to the user, alerted or logged to the console. You must use the following signature of the method:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">function</span> <span class="pl-en">toWords</span>(<span class="pl-smi">number</span>) {
+   <span class="pl-c">// your code here</span>
+   <span class="pl-k">return</span> result;
+}</pre></div>
+
+<p><strong>Bonus:</strong> - Да се направи истото за македонски јазик</p>
+
+<h1>
+<a id="-------Македонски" class="anchor" href="#-------%D0%9C%D0%B0%D0%BA%D0%B5%D0%B4%D0%BE%D0%BD%D1%81%D0%BA%D0%B8" aria-hidden="true"><span class="octicon octicon-link"></span></a>|       Македонски</h1>
+
+<hr>
+
+<p>1   |       "Еден"
+2   |       "Два"
+11  |       "Единаесет"
+21  |       "Дваесет и еден"
+192 |       "Сто девеесет и два"
+1187    |   "Илјада сто осумдесет и седум"
+2000    |   "Две илјади"
+21011   |   "Дваесет и една илјада единаесет"
+12341678|   "Дванаесет милиони триста четериесет и една илјада шестотини седумдесет и осум"
+128341679901| "Сто дваесет и осум милијарди триста четериесет и еден милион шестотини седумдесет и девет илјади девестотини и еден"</p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/sweko/sedc4-javaScript">Sedc4-javascript</a> is maintained by <a href="https://github.com/sweko">sweko</a>.</span>
