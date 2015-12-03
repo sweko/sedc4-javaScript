@@ -68,10 +68,8 @@ $('#reset').click(function() {
 });
 
 // map keypad buttons to appropriate events
-$(document).keyup(function(evt) {
+$(document).keypress(function(evt) {
     keyPressed = String.fromCharCode(evt.which);
-    alert(keyPressed);
-    alert(evt.which);
 
     switch (keyPressed) {
         case '1':
