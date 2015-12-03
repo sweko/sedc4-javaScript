@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<title>Counting Money - Referent Implementation</title>
-		<script type="text/javascript" src="referent.js"></script>
+		<script type="text/javascript" src="toWords.js"></script>
 	</head>
 	<body>
 		<input type="text" placeholder="Enter number" id="txtNumber" />
@@ -20,7 +20,7 @@
 					result.innerHTML = "<b style='color:red'>Invalid number</b>"
 					return;
 				}
-				var words = numberToWords(number);
+				var words = toWords(number);
 				result.innerHTML = words;
 			}
 		</script>
