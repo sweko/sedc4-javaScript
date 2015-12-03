@@ -14,5 +14,5 @@ QUnit.test("numberToWords", function(assert) {
 	assert.equal(toWords(128341679000), "One hundred twenty eight billion three hundred forty one million six hundred seventy nine thousand",128341679000);
 	assert.equal(toWords(128341679901), "One hundred twenty eight billion three hundred forty one million six hundred seventy nine thousand nine hundred one",128341679901);
 	assert.equal(toWords(0), "Zero", "Zero");
-	assert.equal(toWords(1001001001001), "One billion one million one thousand one", 1001001001001);
+	assert.equal(toWords(1001001001), "One billion one million one thousand one", 1001001001);
 });
