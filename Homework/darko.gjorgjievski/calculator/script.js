@@ -68,61 +68,85 @@ $('#reset').click(function() {
 });
 
 // map keypad buttons to appropriate events
-$(document).keypress(function(evt) {
-    keyPressed = String.fromCharCode(evt.which);
+$(document).keyup(function(evt) {
+    keyPressed = evt.keyCode ? evt.keyCode : evt.charCode;
 
     switch (keyPressed) {
-        case '1':
+        case 49:
+        case 97:
             $('#one').click();
             break;
-        case '2':
+        case 50:
+        case 98:
             $('#two').click();
             break;
-        case '3':
+        case 51:
+        case 99:
             $('#three').click();
             break;
-        case '4':
+        case 52:
+        case 100:
             $('#four').click();
             break;
-        case '5':
+        case 53:
+        case 101:
             $('#five').click();
             break;
-        case '6':
+        case 54:
+        case 102:
             $('#six').click();
             break;
-        case '7':
+        case 55:
+        case 103:
             $('#seven').click();
             break;
-        case '8':
+        case 104:
             $('#eight').click();
             break;
-        case '9':
+        case 57:
+        case 105:
             $('#nine').click();
             break;
-        case '0':
+        case 48:
+        case 96:
             $('#zero').click();
             break;
-        case '+':
+        case 107: // captures numeric plus, below is the character plus
             $('#plus').click();
             break;
-        case '-':
+        case 189:
+        case 109:
             $('#minus').click();
             break;
-        case '*':
+        case 106: // captures numeric multiply, below is the character plus
             $('#multiply').click();
             break;
-        case '/':
+        case 191:
+        case 111:
             $('#divide').click();
             break;
-        case '=':
+        case 13:
             $('#equal').click();
             break;
-        case '\r':
-            $('#equal').click();
-            break;
-    }
-
-}); // end keypress
+		case 187:
+			if (evt.shiftKey) {
+				$('#plus').click();
+			} else {
+				$('#equal').click();
+			}
+			break;
+		case 56:
+			if (evt.shiftKey) {
+				$('#multiply').click();
+			} else {
+				$('#eight').click();
+			}
+			break;
+		case 27:
+			$('#reset').click();
+			break;
+	}
+}); // end keyup
 
 function resetStateAndDisplay() {
     currentOverallNumber = 0;
