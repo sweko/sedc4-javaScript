@@ -68,7 +68,7 @@ $('#reset').click(function() {
 });
 
 // map keypad buttons to appropriate events
-$(document).keyup(function(evt) {
+$(document).keydown(function(evt) {
     keyPressed = evt.keyCode ? evt.keyCode : evt.charCode;
 
     switch (keyPressed) {
@@ -173,7 +173,24 @@ function addToOverallNumber(digit) {
 }
 
 function applyPreviousOperator() {
-    return Math.floor(eval(previousResult + previousOperator + currentOverallNumber));
+    var result;
+    switch(previousOperator) {
+        case '+':       
+            result = previousResult + currentOverallNumber;
+            break;
+        case '-':
+            result = previousResult - currentOverallNumber;
+            break;
+        case '*':
+            result = previousResult * currentOverallNumber;
+            break;
+        case '/':
+            result = previousResult / currentOverallNumber
+            break;
+    }
+    
+    whole_result = Math.floor(result);
+    return whole_result;
 }
 
 function updatePreviousState(operator, result) {
