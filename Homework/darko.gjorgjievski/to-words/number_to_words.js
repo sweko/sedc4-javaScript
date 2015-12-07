@@ -117,7 +117,7 @@ function convertTensUnitsToWords(tensUnits) {
         unitWords.push(word);
     }
     
-    return unitWords.join(' ');
+    return unitWords.join(' ').trim(); // adding trim coz [20,0] produces ['twenty ']
 } // end function
 
 
