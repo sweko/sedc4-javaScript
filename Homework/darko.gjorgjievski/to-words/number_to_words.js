@@ -20,13 +20,18 @@ function toWords(number) { // let's suppose number is 12315
 
 // f(1234) => [1, 234]
 function separateNumberIntoGroupsOfThree(number) {
-    groupsOfThree = [];
+    numberText = String(number);
+    groupsOfThreeWords = [];
      
-    while (number !== 0) {
-        threeSlice = number % 1000;
-        groupsOfThree.unshift(threeSlice);
-        number = Math.floor(number / 1000, 10);
+    while (numberText.length !== 0) {
+        lastThree = numberText.slice(-3);
+        groupsOfThreeWords.unshift(lastThree);
+        numberText = numberText.slice(0, -3);
     }
+    
+    var groupsOfThree = groupsOfThreeWords.map(function(numberWord) {
+        return Number(numberWord);
+    });
     
     return groupsOfThree;
 }
@@ -35,6 +40,7 @@ function separateNumberIntoGroupsOfThree(number) {
 // Got some help for this from SO
 // f(123) => [100, 20, 3] 
 function separateNumberIntoTensUnits(n) {
+  if (n === 0) return [0];
   var arr = [];
   var i = 1;
 
@@ -59,7 +65,7 @@ function convertIrregularTensUnits(tensUnits) {
     restOfElements = tensUnits.diff(lastTwoElements);
     lastTwoElementsSum = lastTwoElements[0] + lastTwoElements[1];
     
-    if (lastTwoElementsSum < 20) {
+    if (lastTwoElementsSum < 20 && lastTwoElementsSum > 9) {
         return restOfElements.concat(lastTwoElementsSum);
     } else {
         return tensUnits;
@@ -135,8 +141,11 @@ function addSuffixes(threeDigitWords) {
     reversedThreeDigitWords = Array.prototype.slice.call(threeDigitWords).reverse(); // reverse modifies in place, we need to clone the array first to avoid this
 
     for (var i = 0; i < reversedThreeDigitWords.length; i++) {
-        wordWithSuffix = reversedThreeDigitWords[i] + ' ' + suffixes[i];
-        wordsWithSuffixes.unshift(wordWithSuffix);
+        if (reversedThreeDigitWords[i]) {
+            wordWithSuffix = reversedThreeDigitWords[i] + ' ' + suffixes[i];
+            wordsWithSuffixes.unshift(wordWithSuffix);
+        }
+        
     }
     
     return wordsWithSuffixes.join(' ').trim();
@@ -162,3 +171,5 @@ Array.prototype.diff = function(a) {
 String.prototype.capitalizeFirstLetter = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
 };
+
+console.log(separateNumberIntoGroupsOfThree(20001));
