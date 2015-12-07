@@ -1,23 +1,20 @@
 function toWords(number) {
     if (!checkIfPositiveInteger(number)) throw new Error('Input not a positive integer');
-    
-    if (number === 0) return 0;
+    if (number === 0) return 'Zero';
     var groupsOfThreeWords = [];
     
     var groupsOfThreeNumbers = separateNumberIntoGroupsOfThree(number);
-    
     for (var i = 0; i < groupsOfThreeNumbers.length; i++) {
         var irregularTensUnits = separateNumberIntoTensUnits(groupsOfThreeNumbers[i]);
         var tensUnits = convertIrregularTensUnits(irregularTensUnits);
         var tensUnitsWords = convertTensUnitsToWords(tensUnits);
         groupsOfThreeWords.push(tensUnitsWords);
-        
     }
     
-    result = addSuffixes(groupsOfThreeWords);
-    
-    return result.capitalizeFirstLetter();
+    result = addSuffixes(groupsOfThreeWords).capitalizeFirstLetter();
+    return result;
 }
+
 
 // f(1234) => [1, 234]
 function separateNumberIntoGroupsOfThree(number) {
@@ -27,11 +24,11 @@ function separateNumberIntoGroupsOfThree(number) {
         threeSlice = number % 1000;
         groupsOfThree.unshift(threeSlice);
         number = Math.floor(number / 1000, 10);
-        
     }
     
     return groupsOfThree;
 }
+
 
 // Got some help for this from SO
 // f(123) => [100, 20, 3] 
@@ -64,9 +61,9 @@ function convertIrregularTensUnits(tensUnits) {
         return restOfElements.concat(lastTwoElementsSum);
     } else {
         return tensUnits;
-    }
-    
+    }   
 }
+
 
 // f(100,20,3) => 'one hundred twenty three'
 function convertTensUnitsToWords(tensUnits) {
@@ -121,6 +118,7 @@ function convertTensUnitsToWords(tensUnits) {
     return unitWords.join(' ');
 } // end function
 
+
 // f(['three', 'one hundred twelve']) => 'three thousand one hundred twelve'
 function addSuffixes(threeDigitWords) {
     var wordsWithSuffixes = [];
@@ -143,7 +141,6 @@ function addSuffixes(threeDigitWords) {
 }
 
 
-
 function checkIfPositiveInteger(input) {
     if (typeof input === 'number' && parseInt(input, 10) === input && input >= 0) {
         return true;
@@ -152,10 +149,12 @@ function checkIfPositiveInteger(input) {
     }
 }
 
+
 // needed this in convertIrregularTensUnits() definition
 Array.prototype.diff = function(a) {
     return this.filter(function(i) {return a.indexOf(i) < 0;});
 };
+
 
 // At the end, we need to make sure the string is capitalized in order to pass the tests
 String.prototype.capitalizeFirstLetter = function() {
