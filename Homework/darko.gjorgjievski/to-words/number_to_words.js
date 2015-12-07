@@ -1,17 +1,19 @@
-function toWords(number) {
+function toWords(number) { // let's suppose number is 12315
     if (!checkIfPositiveInteger(number)) throw new Error('Input not a positive integer');
     if (number === 0) return 'Zero';
     var groupsOfThreeWords = [];
     
-    var groupsOfThreeNumbers = separateNumberIntoGroupsOfThree(number);
-    for (var i = 0; i < groupsOfThreeNumbers.length; i++) {
-        var irregularTensUnits = separateNumberIntoTensUnits(groupsOfThreeNumbers[i]);
-        var tensUnits = convertIrregularTensUnits(irregularTensUnits);
-        var tensUnitsWords = convertTensUnitsToWords(tensUnits);
+    var groupsOfThreeNumbers = separateNumberIntoGroupsOfThree(number); // groupsOfThreeNumbers = [12, 315]
+    for (var i = 0; i < groupsOfThreeNumbers.length; i++) { // suppose we're looping for 315
+        var irregularTensUnits = separateNumberIntoTensUnits(groupsOfThreeNumbers[i]); // [300, 10, 5]
+        var tensUnits = convertIrregularTensUnits(irregularTensUnits); // [300, 15]
+        var tensUnitsWords = convertTensUnitsToWords(tensUnits); // 'three hundred fifteen'
         groupsOfThreeWords.push(tensUnitsWords);
     }
     
-    result = addSuffixes(groupsOfThreeWords).capitalizeFirstLetter();
+    // by now, groupsOfThree contains ['twelve', 'three hundred fifteen']
+    uncapitalizedResult = addSuffixes(groupsOfThreeWords); // 'twelve thousand three hundred fifteen'
+    result = uncapitalizedResult.capitalizeFirstLetter();
     return result;
 }
 
