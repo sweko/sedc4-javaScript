@@ -171,5 +171,3 @@ Array.prototype.diff = function(a) {
 String.prototype.capitalizeFirstLetter = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
 };
-
-console.log(separateNumberIntoGroupsOfThree(20001));
