@@ -4,10 +4,11 @@
 	var display = document.getElementById("display");
 	for (var index = 0; index < keys.length; index++) {		
 		var element = keys[index];
-		element.onclick = function() {			
+		element.onclick = function() {
 			display.textContent = processInput(this.textContent, display.textContent, OPERATORS);
 		};
 	}
+	
 	document.addEventListener("keydown", function(event) {
 		var keyCode = event.keyCode;
 		var keyValue = fromKeyCode(keyCode);
@@ -116,7 +117,7 @@ function processInput(input, output, OPERATORS) {
 			}
 			return output;		
 		}
-	}
+}
 
 
 	function fromKeyCode(keyCode) {
@@ -153,5 +154,4 @@ function processInput(input, output, OPERATORS) {
 		}
 		return result;
 	}
-
 })();
