@@ -1,4 +1,4 @@
-var number = 0;
+var number = 1000000;
 
 
 	function count3DigitBlocks(number) {   //It counts the number of three digit blocks in a number (the final block may be less than 3 digits).
@@ -205,7 +205,7 @@ function toWords(number){//Main function that transforms numbers into words
 				break;
 			} else {
 				if (wordArray[i] === "") {  //This prevents the qualifiers to be added if the three digit block is 000
-				numberInWords.push(""); 
+				   continue;
 				} else {
 					switch(i) {
 							case 3:
