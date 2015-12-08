@@ -67,7 +67,6 @@ $('#reset').click(function() {
     resetStateAndDisplay();
 });
 
-// map keypad buttons to appropriate events
 $(document).keypress(function(evt) {
     keyPressed = String.fromCharCode(evt.which);
 
@@ -117,12 +116,22 @@ $(document).keypress(function(evt) {
         case '=':
             $('#equal').click();
             break;
-        case '\r':
-            $('#equal').click();
-            break;
     }
 
 }); // end keypress
+
+// map keypad buttons to appropriate events
+$(document).keydown(function(evt) {
+    keyPressed = evt.keyCode ? evt.keyCode : evt.charCode;
+    switch (keyPressed) {
+		case 27: // esc
+			$('#reset').click();
+			break;
+        case 13: // enter
+			$('#equal').click();
+			break;
+	}
+}); // end keyup
 
 function resetStateAndDisplay() {
     currentOverallNumber = 0;
@@ -149,7 +158,24 @@ function addToOverallNumber(digit) {
 }
 
 function applyPreviousOperator() {
-    return Math.floor(eval(previousResult + previousOperator + currentOverallNumber));
+    var result;
+    switch(previousOperator) {
+        case '+':       
+            result = previousResult + currentOverallNumber;
+            break;
+        case '-':
+            result = previousResult - currentOverallNumber;
+            break;
+        case '*':
+            result = previousResult * currentOverallNumber;
+            break;
+        case '/':
+            result = previousResult / currentOverallNumber;
+            break;
+    }
+    
+    whole_result = Math.floor(result);
+    return whole_result;
 }
 
 function updatePreviousState(operator, result) {
