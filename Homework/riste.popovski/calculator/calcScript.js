@@ -70,9 +70,10 @@
 
 
 
-		window.addEventListener("keydown", keyPressed, false);
+		window.addEventListener("keydown", keyDown, false);
+		window.addEventListener("keypress", keyPressed, false);
  
-		function keyPressed(event) 
+		function keyDown(event) 
 		{
 			var code = event.which;  
 		  	console.log(code);
@@ -86,21 +87,23 @@
 			 	document.getElementById("=").click();
 			  	return;
 		    }
-		     if(code==111)
+		}
+		function keyPressed(event)
+		{
+			var character = String.fromCharCode(event.charCode);
+		
+			var arrayNumbers="0123456789";
+			var arrayOperators="+-*/=";
+			
+			if (arrayNumbers.indexOf(character) !== -1)
 			{
-			 	document.getElementById("/").click();
-			  	return;
-		    }
-		     
-		    if(code==109)
+				document.getElementById(character).click();
+			}
+			if (arrayOperators.indexOf(character) !== -1)
 			{
-			 	document.getElementById("-").click();
-			  	return;
-		    }
-		    if(code >=96 && code<=108)
-		   	{
-		   		code=code-97+1;
-		   		document.getElementById(code).click();
-		   	}
+				document.getElementById(character).click();
+			}
+			
+		    
 		   
 		}
