@@ -67,83 +67,68 @@ $('#reset').click(function() {
     resetStateAndDisplay();
 });
 
+$(document).keypress(function(evt) {
+    keyPressed = String.fromCharCode(evt.which);
+
+    switch (keyPressed) {
+        case '1':
+            $('#one').click();
+            break;
+        case '2':
+            $('#two').click();
+            break;
+        case '3':
+            $('#three').click();
+            break;
+        case '4':
+            $('#four').click();
+            break;
+        case '5':
+            $('#five').click();
+            break;
+        case '6':
+            $('#six').click();
+            break;
+        case '7':
+            $('#seven').click();
+            break;
+        case '8':
+            $('#eight').click();
+            break;
+        case '9':
+            $('#nine').click();
+            break;
+        case '0':
+            $('#zero').click();
+            break;
+        case '+':
+            $('#plus').click();
+            break;
+        case '-':
+            $('#minus').click();
+            break;
+        case '*':
+            $('#multiply').click();
+            break;
+        case '/':
+            $('#divide').click();
+            break;
+        case '=':
+            $('#equal').click();
+            break;
+    }
+
+}); // end keypress
+
 // map keypad buttons to appropriate events
 $(document).keydown(function(evt) {
     keyPressed = evt.keyCode ? evt.keyCode : evt.charCode;
-
     switch (keyPressed) {
-        case 49:
-        case 97:
-            $('#one').click();
-            break;
-        case 50:
-        case 98:
-            $('#two').click();
-            break;
-        case 51:
-        case 99:
-            $('#three').click();
-            break;
-        case 52:
-        case 100:
-            $('#four').click();
-            break;
-        case 53:
-        case 101:
-            $('#five').click();
-            break;
-        case 54:
-        case 102:
-            $('#six').click();
-            break;
-        case 55:
-        case 103:
-            $('#seven').click();
-            break;
-        case 104:
-            $('#eight').click();
-            break;
-        case 57:
-        case 105:
-            $('#nine').click();
-            break;
-        case 48:
-        case 96:
-            $('#zero').click();
-            break;
-        case 107: // captures numeric plus, below is the character plus
-            $('#plus').click();
-            break;
-        case 189:
-        case 109:
-            $('#minus').click();
-            break;
-        case 106: // captures numeric multiply, below is the character plus
-            $('#multiply').click();
-            break;
-        case 191:
-        case 111:
-            $('#divide').click();
-            break;
-        case 13:
-            $('#equal').click();
-            break;
-		case 187:
-			if (evt.shiftKey) {
-				$('#plus').click();
-			} else {
-				$('#equal').click();
-			}
-			break;
-		case 56:
-			if (evt.shiftKey) {
-				$('#multiply').click();
-			} else {
-				$('#eight').click();
-			}
-			break;
-		case 27:
+		case 27: // esc
 			$('#reset').click();
+			break;
+        case 13: // enter
+			$('#equal').click();
 			break;
 	}
 }); // end keyup
@@ -185,7 +170,7 @@ function applyPreviousOperator() {
             result = previousResult * currentOverallNumber;
             break;
         case '/':
-            result = previousResult / currentOverallNumber
+            result = previousResult / currentOverallNumber;
             break;
     }
     
