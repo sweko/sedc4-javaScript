@@ -8,6 +8,7 @@ function toWords(number) { // let's suppose number is 12315
         var irregularTensUnits = separateNumberIntoTensUnits(groupsOfThreeNumbers[i]); // [300, 10, 5]
         var tensUnits = convertIrregularTensUnits(irregularTensUnits); // [300, 15]
         var tensUnitsWords = convertTensUnitsToWords(tensUnits); // 'three hundred fifteen'
+        
         groupsOfThreeWords.push(tensUnitsWords);
     }
     
@@ -115,7 +116,7 @@ function convertTensUnitsToWords(tensUnits) {
     
     for(var i = 0; i < tensUnits.length; i++) {
         var word = wordsByNumber[tensUnits[i]];
-        unitWords.push(word);
+        if (word) unitWords.push(word);
     }
     
     return unitWords.join(' ').trim(); // adding trim coz [20,0] produces ['twenty ']
@@ -166,3 +167,5 @@ Array.prototype.diff = function(a) {
 String.prototype.capitalizeFirstLetter = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
 };
+
+console.log(toWords(128341679901));
