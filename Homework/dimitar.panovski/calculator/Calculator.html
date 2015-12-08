@@ -4,51 +4,135 @@
   
     <title>calculator</title>
   </head>
-  <body> 
-  <form name="calculator">
-     <input type="text" name="answer" size="37"/>
-	</form> 
+  <body onUnload="alert('goud bye ');"> 
+ 
     <table border="1" cellpadding="20">
       <tbody>
+	  <tr><td colspan="4"><label id="display"></label></td></tr>
         <tr>
-           <td><input type="button" value="7" onclick="calculator.answer.value += 7" /></td>
-           <td><input type="button"  value="8" onclick="calculator.answer.value += 8" /></td>
-           <td><input type="button"  value="9" onclick="calculator.answer.value += 9" /></td>
-           <td><input type="button"  value="+" onclick="calculator.answer.value += '+'" /></td>            
+           <td><input type="button" value="7" id="sedum" onclick="runseven(value)" /></td>
+           <td><input type="button"  value="8" id="osum" onclick="runseven(value)"  /></td>
+           <td><input type="button"  value="9" id="devet" onclick="runseven(value)"/></td>
+           <td><input type="button"  value="+" id="plus" onclick="runseven(value)"		   /></td>            
         </tr>
         <tr>
-          <td><input type="button"  value="4" onclick="calculator.answer.value += 4" /></td>
-          <td><input type="button"  value="5" onclick="calculator.answer.value += 5" /></td>
-          <td><input type="button"  value="6" onclick="calculator.answer.value += 6" /></td>
-          <td><input type="button"  value="-"onclick="calculator.answer.value += '-'" /></td>          
+          <td><input type="button"  value="4" id="cetiri" onclick="runseven(value)" /></td>
+          <td><input type="button"  value="5" id="pet"  onclick="runseven(value)"/></td>
+          <td><input type="button"  value="6" id="sest" onclick="runseven(value)"/></td>
+          <td><input type="button"  value="-" id="minus" onclick="runseven(value)"/></td>          
         </tr>
         <tr>
-          <td><input type="button"  value="1" onclick="calculator.answer.value += 1" /></td>
-            <td><input type="button"  value="2"onclick="calculator.answer.value += 2" /></td>
-              <td><input type="button" value="3"onclick="calculator.answer.value += 3" /></td>
-              <td><input type="button"  value="*"onclick="calculator.answer.value += '*'" /></td>
+          <td><input type="button"  value="1" id="eden" onclick="runseven(value)"/></td>
+            <td><input type="button"  value="2"id="dva" onclick="runseven(value)"/></td>
+              <td><input type="button" value="3"id="tri"  onclick="runseven(value)"/></td>
+              <td><input type="button" value="*" id="mnozi" onclick="runseven(value)"/></td>
         </tr>
         <tr>
              <td></td>
-            <td><input type="button"  value="0"onclick="calculator.answer.value += 0" /></td>
-            <td><input type="button"  value="/"onclick="calculator.answer.value += '/'" /></td>
-			<td><input type="button"  value="="onclick="calculating()" /></td>
+            <td><input type="button"  value="0"id="nula" onclick="runseven(value)" /></td>
+            <td><input type="button"  value="/" id="deli"	onclick="runseven(value)"		/></td>
+			<td><input type="button"  value="=" id="equal" onclick="runseven(value)" /></td>
         </tr>
       </tbody>
       
      </table>
 	<script>
-           function calculating(){                                               
-		   
-		   calculator.answer.value = eval(calculator.answer.value)
+
+	
+	var array = "";
+var operation = "";
+var operator = "";
+
+function presmetka(frist,presmetka,second)
+{console.log(frist,presmetka,second);
+	var rezultatot = 0;		
+	switch (presmetka) {
+		case "+":
+		rezultatot = parseInt(frist) + parseInt(second);
+		break;
+		
+		case "-":
+		rezultatot = parseInt(frist) - parseInt(second);
+		break;
+		
+		case "/":
+		rezultatot = parseInt(frist) / parseInt(second);
+		break;
+		
+		case "*":
+		rezultatot = parseInt(frist) * parseInt(second);		
+		break;
+		
+	}
+	
+	return rezultatot;
+			
+		
+}
+function runseven(val) {
+	console.log(val);
+	
+	switch (val) {
+		
+		case "+":
+		operator = val;
+		display.innerHTML = array + " + ";
+		operation = array;
+		array = "";
+		
+		break;
+		
+		case "-":
+		operator = val;
+		display.innerHTML = array + " - ";
+		operation = array;
+		array = "";
+		break;
+		
+		case "/":
+		operator = val;
+		display.innerHTML = array + " / ";
+		operation = array;
+		array = "";
+		break;
+		
+		case "*":
+		operator = val;
+		display.innerHTML = array + " * ";
+		operation = array;
+		array = "";
+		break;
+		
+		case "=":
+		var vratena = presmetka(operation,operator,array);
+		display.innerHTML = operation +" "+ operator + " " +array + " = " + vratena;
+		array = "";
+		operation = "";
+		break;
+		
+	
+		default:
+		display.innerHTML += val; 
+		
+		array += val;
+		
+		console.log(array);
+	}
+	
 }
 
 
+elements = document.getElementsByTagName("button");
+for (var index = 0; index< 16; index++) {
 
+	elements[index].onclick = function(){
+		printingInLabelVal(this.value);
+	};
+}
 	
 	
-	
-	
+  
+  
 	</script>
 	 
 	    
