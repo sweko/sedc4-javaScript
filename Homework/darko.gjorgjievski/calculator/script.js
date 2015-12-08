@@ -35,7 +35,7 @@ var digitsByHTMLid = {
 // define event handlers for the digits
 $.each(digitsByHTMLid, function(htmlID, digit) {
     $(htmlID).click(function() {
-        result = addToOverallNumber(digit);
+        var result = addToOverallNumber(digit);
         updateOperationAndResultDisplays(digit, result);
     }); // end click
 });
@@ -52,7 +52,7 @@ var operatorsByHtmlid = {
 // define event handlers for the operators
 $.each(operatorsByHtmlid, function(htmlID, operation) {
     $(htmlID).click(function() {
-        result = processOperator(operation);
+        var result = processOperator(operation);
         updateOperationAndResultDisplays(operation,result);
     }); // end click
 });
@@ -68,7 +68,7 @@ $('#reset').click(function() {
 });
 
 $(document).keypress(function(evt) {
-    keyPressed = String.fromCharCode(evt.which);
+    var keyPressed = String.fromCharCode(evt.which);
 
     switch (keyPressed) {
         case '1':
@@ -122,7 +122,7 @@ $(document).keypress(function(evt) {
 
 // map keypad buttons to appropriate events
 $(document).keydown(function(evt) {
-    keyPressed = evt.keyCode ? evt.keyCode : evt.charCode;
+    var keyPressed = evt.keyCode ? evt.keyCode : evt.charCode;
     switch (keyPressed) {
 		case 27: // esc
 			$('#reset').click();
@@ -147,7 +147,7 @@ function updateOperationAndResultDisplays(currentDigit, overallNumber) {
 }
 
 function copyDataFromResultsToOperationDisplay() {
-    currentResult = $('#result').text();
+    var currentResult = $('#result').text();
     $('#operation').text(currentResult);
 }
 
@@ -174,7 +174,7 @@ function applyPreviousOperator() {
             break;
     }
     
-    whole_result = Math.floor(result);
+    var whole_result = Math.floor(result);
     return whole_result;
 }
 
@@ -193,7 +193,7 @@ function updatePreviousState(operator, result) {
 
 // integration unit
 function processOperator(operator) {
-    result = applyPreviousOperator();
+    var result = applyPreviousOperator();
     updatePreviousState(operator, result);
     return result;
 }
