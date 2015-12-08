@@ -1,0 +1,210 @@
+<html>
+
+<head>
+	<style type="text/css">
+		.number
+		{
+			width:100%;
+			height:100%;
+			font-size: 2em;
+
+			
+		}
+		button:hover 
+		{ 
+   	 		background-color: #99ccff;
+   		}
+		.operation
+		{
+			width:100%;
+			height:100%;
+			font-size: 2em;
+		}
+		td
+		{
+			width:60px;
+			height:60px;
+
+		}
+		#result
+		{
+			border: 1px solid black;
+			width:250px;
+			height:40px;
+			margin-left: 2px;
+			text-align: right;
+			font-size: 2em;
+		}
+		#del
+		{
+			width:100%;
+			height:100%;
+			font-size: 2em;
+		}
+
+	</style>
+
+</head>
+
+
+<body>
+
+	<div id="main">
+		<div id="result">0</div>
+		<table >
+			<tr>
+				<td>
+					<button id="7" class="number">7</button></td> 
+					<td><button id="8" class="number">8</button></td> 
+					<td><button id="9" class="number">9</button></td> 
+					<td ><button id="/" class="operation">/</button></td>
+			</tr>
+
+			<tr>
+				<td>
+					<button  id="4" class="number">4</button></td> 
+					<td><button id="5" class="number">5</button></td> 
+					<td><button id="6" class="number">6</button></td> 
+					<td ><button id="10" class="operation">*</button></td>
+			</tr>
+			<tr>
+				<td>
+					<button id="1" class="number">1</button></td> 
+					<td><button id="2" class="number">2</button></td> 
+					<td><button id="3" class="number">3</button></td> 
+					<td ><button id="-" class="operation">-</button></td>
+			</tr>
+			<tr>
+					<td><button id="del">C</button></td>
+					<td><button id="0" class="number">0</button></td>
+					<td><button id="=" class="operation">=</button></td> 
+					<td ><button id="11" class="operation">+</button></td>
+					
+			</tr>
+
+
+
+
+		</table>
+
+		<h2>Simple Calculator. You can use your keyboard too.</h2>
+
+	</div>
+</body>
+
+	<script type="text/javascript">
+
+		var operand="";
+		var opMain="";
+		var currentNum="0";
+		var resultDiv=document.getElementById("result");
+
+	     function numClick() 
+	     {
+	        var number = this.textContent || this.innerText;
+	        console.log(number);
+
+	        operand+=number;
+	        resultDiv.innerHTML=operand;
+	     };
+
+	     function opClick() 
+	     {
+	        var operation = this.textContent || this.innerText;
+	        console.log(operation);
+
+	        if(operation=="=")
+	 		{
+	 			if(opMain!="")
+		 			currentNum=eval(currentNum + opMain + resultDiv.textContent);
+		 		resultDiv.innerHTML=parseInt(currentNum);
+				operand="";
+		 		opMain="";
+	 			return;
+	 		}
+
+	        if(opMain=="")
+	 		{
+	 			opMain=operation;
+	 			currentNum=resultDiv.textContent;
+	 			operand="";
+	 			return;
+	 		}
+
+	 		if(opMain!="" && operand!="")
+	 		{
+	 			currentNum=eval(currentNum+opMain+resultDiv.textContent);
+	 			resultDiv.innerHTML=parseInt(currentNum);
+	 			operand="";
+	 			opMain=operation;
+	 			return;
+	 		}
+
+	     };
+
+	     function delClick() 
+	     {
+	        operand="";
+			opMain="";
+			currentNum="0";
+			resultDiv=document.getElementById("result");
+			resultDiv.innerHTML="0";
+	     };
+
+	    var arrayNumButtons = document.getElementsByClassName("number");
+	    for(var i=0; i<arrayNumButtons.length; i++){
+	        arrayNumButtons[i].addEventListener('click', numClick, false);
+	    }
+
+	    var arrayOpButtons = document.getElementsByClassName("operation");
+	    for(var i=0; i<arrayOpButtons.length; i++){
+	        arrayOpButtons[i].addEventListener('click', opClick, false);
+	    }
+		var btnC = document.getElementById("del");
+		btnC.addEventListener('click', delClick, false);
+
+
+
+
+		window.addEventListener("keydown", keyPressed, false);
+ 
+		function keyPressed(event) 
+		{
+			var code = event.which;  
+		  	console.log(code);
+		    if(code==27)
+			{
+			 	document.getElementById("del").click();
+			  	return;
+		    }
+		    if(code==13)
+			{
+			 	document.getElementById("=").click();
+			  	return;
+		    }
+		     if(code==111)
+			{
+			 	document.getElementById("/").click();
+			  	return;
+		    }
+		     
+		    if(code==109)
+			{
+			 	document.getElementById("-").click();
+			  	return;
+		    }
+		    if(code >=96 && code<=108)
+		   	{
+		   		code=code-97+1;
+		   		document.getElementById(code).click();
+		   	}
+		   
+		}
+
+
+
+	</script>
+
+
+
+</html>
