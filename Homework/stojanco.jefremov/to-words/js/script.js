@@ -14,8 +14,11 @@
 function toWords(number) {
 	var result;
 	number = Number(number);
-	if ((isNaN(number)) || (number < 1) || (number > 999999999999)) {
+	if ((isNaN(number)) || (number < 0) || (number > 999999999999)) {
 		result = 'Invalid input!';
+	}
+	else if (number === 0) {
+		result = 'zero';
 	}
 	else {		
 		result = chunk(number)
@@ -25,7 +28,7 @@ function toWords(number) {
 			.reverse()
 			.join(" ");
 	}
-	return result;
+	return result.capitalizeFirstLetter();
 	
 	//inEnglish will return a false'y for the number zero. 
 	//That's why I'm using Array.filter to remove false'y values before I join the array. 
@@ -50,7 +53,7 @@ function toWords(number) {
 			tens = Math.floor(number / 10);
 			words.push(TENS[tens - 1]);
 			words.push(ONE_TO_NINETEEN[ones - 1]);
-			result = words.filter(isTruthy).join("-");
+			result = words.filter(isTruthy).join(" ");
 		}
 		else {
 			hundreds = Math.floor(number / 100);
@@ -92,8 +95,11 @@ function chunk(number) {
 function toMacedonianWords(number) {
 	var result;
 	number = Number(number);
-	if ((isNaN(number)) || (number < 1) || (number > 999999999999)) {
+	if ((isNaN(number)) || (number < 0) || (number > 999999999999)) {
 		result = 'Invalid input!';
+	}
+	else if (number === 0) {
+		result = 'нула';
 	}
 	else {		
 		result = chunk(number)
@@ -103,7 +109,7 @@ function toMacedonianWords(number) {
 			.reverse()
 			.join(" ");
 	}
-	return result;
+	return result.capitalizeFirstLetter();
 	
 	function appendMacedonianScale(chunk, exp) {
 		var result = '';
@@ -182,5 +188,6 @@ function toMacedonianWords(number) {
 	
 }
 
-
-
+String.prototype.capitalizeFirstLetter = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
