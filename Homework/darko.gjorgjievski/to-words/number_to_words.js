@@ -20,18 +20,13 @@ function toWords(number) { // let's suppose number is 12315
 
 // f(1234) => [1, 234]
 function separateNumberIntoGroupsOfThree(number) {
-    numberText = String(number);
-    groupsOfThreeWords = [];
+    groupsOfThree = [];
      
-    while (numberText.length !== 0) {
-        lastThree = numberText.slice(-3);
-        groupsOfThreeWords.unshift(lastThree);
-        numberText = numberText.slice(0, -3);
+    while (number !== 0) {
+        threeSlice = number % 1000;
+        groupsOfThree.unshift(threeSlice);
+        number = Math.floor(number / 1000, 10);
     }
-    
-    var groupsOfThree = groupsOfThreeWords.map(function(numberWord) {
-        return Number(numberWord);
-    });
     
     return groupsOfThree;
 }
