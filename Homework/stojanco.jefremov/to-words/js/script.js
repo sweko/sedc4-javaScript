@@ -181,6 +181,3 @@ function toMacedonianWords(number) {
 	}
 	
 }
-
-
-
