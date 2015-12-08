@@ -112,10 +112,9 @@ function convertTensUnitsToWords(tensUnits) {
         900: 'nine hundred'
 };
 
-    
     for(var i = 0; i < tensUnits.length; i++) {
         var word = wordsByNumber[tensUnits[i]];
-        unitWords.push(word);
+        if (word) unitWords.push(word);
     }
     
     return unitWords.join(' ').trim(); // adding trim coz [20,0] produces ['twenty ']
@@ -166,3 +165,4 @@ Array.prototype.diff = function(a) {
 String.prototype.capitalizeFirstLetter = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
 };
+
