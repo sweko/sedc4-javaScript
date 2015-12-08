@@ -1,0 +1,28 @@
+ <!DOCTYPE html>
+<html>
+	<head>
+		<title>Counting Money - Referent Implementation</title>
+		<script type="text/javascript" src="toWords.js"></script>
+	</head>
+	<body>
+		<input type="text" placeholder="Enter number" id="txtNumber" />
+		<button onclick="run()">To Words</button>
+		<hr />
+		<div id="result"></div>
+		
+		<script type="text/javascript">
+			function run(){
+				var entry = document.getElementById("txtNumber");
+				var number = parseInt(entry.value);
+				var result = document.getElementById("result");
+				if (isNaN(number))
+				{
+					result.innerHTML = "<b style='color:red'>Invalid number</b>"
+					return;
+				}
+				var words = toWords(number);
+				result.innerHTML = words;
+			}
+		</script>
+	</body>
+</html> 

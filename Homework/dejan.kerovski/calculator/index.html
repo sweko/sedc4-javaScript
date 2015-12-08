@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calculator_Demo</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+ <body>
+
+ <div id="mainDiv">
+      	
+      <form>
+      	
+      		<table>
+      			<tr>
+      				<td colspan="4"><input type="text" id="display"></td>       <!-- Display !-->
+      			</tr>
+      			<tr>
+
+                   <td><input type="reset" value="C" id="resetButton" ></td>     <!-- Button for Clear screen on display ,  use simple 
+                                                                                       function to reset all values on display !-->
+      			</tr>
+                 </tr>
+      			<tr>
+      				<td><input type="button" value="7" onclick="addDigit(7)" id="digit"></td>          <!-- Start pannel with buttons !-->
+      				<td><input type="button" value="8" onclick="addDigit(8)"  id="digit"></td>
+      				<td><input type="button" value="9" onclick="addDigit(9)"  id="digit"></td>
+      				<td><input type="button" value="/" onclick="addDigit('/')"  id="digit"></td>
+      			</tr>
+
+                <tr>
+      				<td><input type="button" value="4" onclick="addDigit(4)"  id="digit"></td>
+      				<td><input type="button" value="5" onclick="addDigit(5)"  id="digit"></td>
+      				<td><input type="button" value="6" onclick="addDigit(6)"  id="digit"></td>
+      				<td><input type="button" value="*" onclick="addDigit('*')"  id="digit"></td>
+      			</tr>
+
+      			 <tr>
+      				<td><input type="button" value="1" onclick="addDigit(1)"  id="digit"></td>
+      				<td><input type="button" value="2" onclick="addDigit(2)"  id="digit"></td>
+      				<td><input type="button" value="3" onclick="addDigit(3)"  id="digit"></td>
+      				<td><input type="button" value="-" onclick="addDigit('-')"  id="digit"></td>
+      			</tr>
+
+      			
+
+      			<tr>
+      				<td><input type="button" value="0" onclick="addDigit(0)"  id="digit"></td>
+      				<td><input type="button" value="." onclick="addDigit('.')"  id="digit"></td>
+      				<td><input type="button" id="submitButton" value="=" onclick="displayValue()"/></td> 
+      				<td><input type="button" value="+" onclick="addDigit('+')"  id="digit"></td>            
+      			</tr>                                                                                    <!-- End pannel with buttons !-->
+      				
+      		</table>
+
+      </form>
+
+ </div>
+
+
+
+
+
+
+     <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<html>
+
+<head>
+	<style type="text/css">
+		.number
+		{
+			width:100%;
+			height:100%;
+			font-size: 2em;
+
+			
+		}
+		button:hover 
+		{ 
+   	 		background-color: #99ccff;
+   		}
+		.operation
+		{
+			width:100%;
+			height:100%;
+			font-size: 2em;
+		}
+		td
+		{
+			width:60px;
+			height:60px;
+
+		}
+		#result
+		{
+			border: 1px solid black;
+			width:250px;
+			height:40px;
+			margin-left: 2px;
+			text-align: right;
+			font-size: 2em;
+		}
+		#del
+		{
+			width:100%;
+			height:100%;
+			font-size: 2em;
+		}
+
+	</style>
+
+</head>
+
+
+<body>
+
+	<div id="main">
+		<div id="result">0</div>
+		<table >
+			<tr>
+				<td>
+					<button id="7" class="number">7</button></td> 
+					<td><button id="8" class="number">8</button></td> 
+					<td><button id="9" class="number">9</button></td> 
+					<td ><button id="/" class="operation">/</button></td>
+			</tr>
+
+			<tr>
+				<td>
+					<button  id="4" class="number">4</button></td> 
+					<td><button id="5" class="number">5</button></td> 
+					<td><button id="6" class="number">6</button></td> 
+					<td ><button id="10" class="operation">*</button></td>
+			</tr>
+			<tr>
+				<td>
+					<button id="1" class="number">1</button></td> 
+					<td><button id="2" class="number">2</button></td> 
+					<td><button id="3" class="number">3</button></td> 
+					<td ><button id="-" class="operation">-</button></td>
+			</tr>
+			<tr>
+					<td><button id="del">C</button></td>
+					<td><button id="0" class="number">0</button></td>
+					<td><button id="=" class="operation">=</button></td> 
+					<td ><button id="11" class="operation">+</button></td>
+					
+			</tr>
+
+
+
+
+		</table>
+
+		<h2>Simple Calculator. You can use your keyboard too.</h2>
+
+	</div>
+</body>
+
+	<script type="text/javascript" src="calcScript.js">
+
+	</script>
+
+
+
+</html>
