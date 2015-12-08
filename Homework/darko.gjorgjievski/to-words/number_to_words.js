@@ -8,7 +8,6 @@ function toWords(number) { // let's suppose number is 12315
         var irregularTensUnits = separateNumberIntoTensUnits(groupsOfThreeNumbers[i]); // [300, 10, 5]
         var tensUnits = convertIrregularTensUnits(irregularTensUnits); // [300, 15]
         var tensUnitsWords = convertTensUnitsToWords(tensUnits); // 'three hundred fifteen'
-        
         groupsOfThreeWords.push(tensUnitsWords);
     }
     
@@ -113,7 +112,6 @@ function convertTensUnitsToWords(tensUnits) {
         900: 'nine hundred'
 };
 
-    
     for(var i = 0; i < tensUnits.length; i++) {
         var word = wordsByNumber[tensUnits[i]];
         if (word) unitWords.push(word);
