@@ -16,6 +16,15 @@
 		}
 	});
 	
+	document.addEventListener("keypress", function(event) {
+		if (event.shiftKey && event.keyCode == 43) {
+			var keyValue = '+';
+		}
+		if (keyValue) {
+			display.textContent = processInput(keyValue, display.textContent, OPERATORS);	
+		}
+	});
+	
 	function isContained(inputChar, inputArray) {
 		return inputArray.indexOf(inputChar) > -1;
 	}
@@ -36,7 +45,6 @@
 			var funcs = [multiply, divide, add, subtract];                 // the functions associated with the OPERATORS
 			var tokens = expression.split(/\b/);      // split the string into "tokens" (numbers or OPERATORS)
 			for (var operatorsIndex = 0; operatorsIndex < OPERATORS.length - 1; operatorsIndex += 2) {          // do this for every sign
-				console.log("tokens at this point: " + tokens.join(" "));
 				for (var tokensIndex = 0; tokensIndex < tokens.length; tokensIndex++) {    // do this for every token
 					var leftOperand = parseInt(tokens[tokensIndex - 1]);    // convert previous token to number
 					var rightOperand = parseInt(tokens[tokensIndex + 1]);	//convert next token to number
