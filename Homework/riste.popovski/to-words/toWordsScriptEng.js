@@ -115,10 +115,18 @@
 			var num=parseInt(document.getElementById("input").value)
 			
 			if(isNaN(num) || num<0 || num>999999999999)
-				document.getElementById("answer").innerHTML="Gresen INPUT";
+			{
+				document.getElementById("answer").innerHTML="WRONG INPUT";
+				document.getElementById("answerMac").innerHTML="Gresen INPUT";
+			}
 			else
+			{
 				document.getElementById("answer").innerHTML=toWords(num);
+				document.getElementById("answerMac").innerHTML=toWordsMac(num);
 			//console.log(br);
+				
+			}
+				
 		
 		}
 
