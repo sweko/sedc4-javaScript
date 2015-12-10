@@ -1,6 +1,4 @@
-    //----------------------B---U---G---S-----------------------------------------------
-    //1. For some reason, the 8/* button has stopped working and only the = function works for +=.
-
+    
     //-----------------------KEYBOARD---INPUT------------------------------------------- 
     //Numbers and +-/*=C where expected.
     //< at HOME, ± at END, √ at PGUP, sq at PGDN
@@ -12,7 +10,6 @@
     var result = 0;
     var lastOper = "";                         //The operator that was used last
     var keyboardInput = [];
-
 
 
     function typeOfPrevKey (keyArr) {                                              //Checks the type of the previous key 
@@ -28,7 +25,7 @@
         }
     }
 
-    function prevOper (lastOper, x, y) {                          //Serves to finish the previous operation (+-/*) before applying square or square root
+    function prevOper (lastOper, x, y) {                          //Serves to finish the previous operation before applying square or square root
         if (lastOper == "-") {                                                    //e.g. 2 - 6 sq gives the result 16 instead of 4
             return y - x;
         } else if (lastOper == "+") {
@@ -74,7 +71,7 @@
                 value = "=";
             }
         } else if (e==56) {
-            if (keyboardInSput[keyboardInput.length-1] == "shift") {
+            if (keyboardInput[keyboardInput.length-1] == "shift") {
                 value = "X";
             } else {
                 value = "8";
@@ -100,9 +97,9 @@
         } else if (e==27){
             value="C";
         }
-
-        document.getElementById(value).style.background='#7E9AA3';
+        
         keyboardInput.push(value);
+        document.getElementById(value).style.background='#7E9AA3';
         return mainFunction(value);
     }
 
@@ -132,15 +129,14 @@
         } else if (e==105 || e==57) {
             value = "9";
         }else if (e==16) {
-            value="shift";
         } else if (e ==187 ) {
-            if (keyboardInput[keyboardInput.length-1] == "shift") {                 
+            if (keyboardInput[keyboardInput.length-2] == "shift") {                 
                 value = "+";
             } else {
                 value = "=";
             }
         } else if (e ==56 ) {
-            if (keyboardInput[keyboardInput.length-1] == "shift") {                 
+            if (keyboardInput[keyboardInput.length-2] == "shift") {                 
                 value = "X";
             } else {
                 value = "8";
@@ -167,17 +163,15 @@
             value="C";
         }
 
-        document.getElementById(value).style.background='';
-
+            document.getElementById(value).style.background='';
     }
 
 
 
     function operation(value) {                                                     //The operations take place here 
-        var x = parseInt(numArr.join(""));                                          //The operands are the integer we get from numArr 
-        var y = resArr[resArr.length-1];                                            //and the final element of resArr
+        var x = parseInt(numArr.join(""));                                          
+        var y = resArr[resArr.length-1];                                            
                                     
-
                 if (value == "+") {
                         if (resArr.length == 0){
                             result = x;
@@ -193,7 +187,7 @@
                             resArr.push(result);
                         } 
                 } else if (value =="-") {
-                        if (result == 0 && resArr.length == 0) { 
+                        if (resArr.length == 0) { 
                             result = x;  
                             document.getElementById("display").innerHTML = result;  
                             resArr.push(result);
@@ -207,7 +201,7 @@
                             resArr.push(result);
                         }
                 } else if (value == "X") {
-                        if (result == 0 && resArr.length == 0) {
+                        if (resArr.length == 0) {
                             result = x;
                             document.getElementById("display").innerHTML = result;
                             resArr.push(result);
@@ -221,7 +215,7 @@
                             resArr.push(result);
                         }
                 } else if (value == "/") {
-                        if (result == 0 && resArr.length == 0) {
+                        if (resArr.length == 0) {
                             result = x;
                             document.getElementById("display").innerHTML = result;
                             resArr.push(result);
@@ -236,7 +230,7 @@
                             resArr.push(result);
                         }
                 } else if (value == "sq") {
-                        if (result == 0 && resArr.length == 0) {
+                        if (resArr.length == 0) {
                             result = x * x;
                             document.getElementById("display").innerHTML = result;
                             resArr.push(result);
@@ -250,7 +244,7 @@
                             resArr.push(result);
                         }
                 } else if (value == "√") {
-                        if (result == 0 && resArr.length == 0) {
+                        if (resArr.length == 0) {
                             result = Math.sqrt(x);
                             document.getElementById("display").innerHTML = result;
                             resArr.push(result);
@@ -264,7 +258,7 @@
                             resArr.push(result);
                         }
                 } else if (value == "<") {
-                        if (result == 0 && resArr.length == 0) {
+                        if (resArr.length == 0) {
                             result = (x - (x % 10)) /10;
                             document.getElementById("display").innerHTML = result;
                             resArr.push(result);
@@ -274,7 +268,7 @@
                             resArr.push(result);
                         }
                 } else {
-                        if (result == 0 && resArr.length == 0) {
+                        if (resArr.length == 0) {
                             result = x * -1;
                             document.getElementById("display").innerHTML = result;
                             resArr.push(result);
@@ -289,7 +283,7 @@
 
     function mainFunction (value) {                                                  //Handles user input
 
-        if(!(isNaN(parseInt(value))) && numArr.length < 12)   {                      //Numbers get stored in numArray. There's 12 digit limit
+        if(!(isNaN(parseInt(value))) && numArr.length < 12)   {                      //If number, it's stored in numArray. There's 12 digit limit
                  if ( typeOfPrevKey(keyArr) == "num" || keyArr.length == 0) {
                     numArr.push(value);
                     document.getElementById("display").innerHTML = numArr.join("");
@@ -301,7 +295,7 @@
                     keyArr.push(value);
                 } 
 
-        } else if (value == "=") {                                                   //Calls operation() only is prev key is a number or an "="
+        } else if (value == "=") {                                                   //If "=", calls operation() only is prev key is a number or an "="
                 if (typeOfPrevKey(keyArr) == "oper" || typeOfPrevKey(keyArr) =="advFun") {                       
 
                 } else {    
@@ -319,14 +313,14 @@
                     document.getElementById("display").innerHTML = "";
 
         } else if (value =="sq" || value=="√" || value =="<" || value == "±") {
-                if (typeOfPrevKey(keyArr) !== "oper"){                                //Calls operation() if the previous key wasn't an operator
+                if (typeOfPrevKey(keyArr) !== "oper"){                                //If advFun, calls operation() if the previous key wasn't an operator
                       operation(value);
                 }
                     numArr = [];
                     keyArr.push(value);
 
         } else {
-                if (typeOfPrevKey(keyArr) == "num"){                                  //Calls operation() if the previous key press was a number
+                if (typeOfPrevKey(keyArr) == "num"){                                  //If operator, calls operation() if the previous key press was a number
                         operation(value); 
                 }
                     numArr = [];
