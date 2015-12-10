@@ -1,13 +1,18 @@
-//-----------------------B-----U-----G-----S--------------------------------------
-    //1. If there's 0 on the display and you press any operator, and then any other number 
-    //it displays zero if after that you press any operator except for +, - and =.
-    //---------------FEATURES---YET---TO---BE---ADDED---------------------------------
-    // 1. Keys should change colour when hovered over 
-    // 2. Keys should change colour when pressed or entered on keyboard.
+    //-----------------------B-----U-----G-----S----------------------------------------
+    //2. If there's 0 on the display and you enter any operator, and then any other  
+    //number, and finally an operator again (except for +-=) it displays 0 and 
+    //needs to be reset or reloaded.
+
+    //---------------FEATURES---YET---TO---BE---ADDED-----------------------------------
+    // 4. Keys should change colour when entered on keyboard.
+
+    //-----------------------KEYBOARD---INPUT------------------------------------------- 
+    //Numbers and +-/*=C where expected. Can use shift to distinguish between =+ and 8*.
+    //< at HOME, ± at END, √ at PGUP, sq at PGDN
 
     var numArr = [];                           //All the numeric input is stored here, it gets reset when any non-numeric key gets pressed. 
-    var resultArr = [];                        //The results of all previous operations are stored here.
-    var keyArr = [];                           //All pressed keys, except for C
+    var resArr = [];                           //The results of all previous operations are stored here.
+    var keyArr = [];                           //All pressed keys, except for C.
     var result = 0;
     var lastOper = "";                         //The operator that was used last
     var keyboardInput = [];
@@ -92,121 +97,115 @@
     }
 
 
-    function operation(value) {  //The operations take place here. The operands are the int we get from numArr and the final element of resultArr
+    function operation(value) {                                                     //The operations take place here. 
+        var x = parseInt(numArr.join(""));                                          //The operands are the integer we get from numArr 
+        var y = resArr[resArr.length-1];                                            //and the final element of resArr
 
                 if (value == "+") {
-                        if (resultArr.length == 0){
-                            result = parseInt(numArr.join(""));
+                        if (resArr.length == 0){
+                            result = x;
                             document.getElementById("display").innerHTML = result;
-                            resultArr.push(result);
+                            resArr.push(result);
                         } else {
-                            result = resultArr[resultArr.length-1] + parseInt(numArr.join(""));
+                            result = x + y;
                             document.getElementById("display").innerHTML = result;
-                            resultArr.push(result);
+                            resArr.push(result);
                         } 
                 } else if (value =="-") {
-                        if (result == 0 && resultArr.length == 0) { 
-                            result = parseInt(numArr.join(""));  
+                        if (result == 0 && resArr.length == 0) { 
+                            result = x;  
                             document.getElementById("display").innerHTML = result;  
-                            resultArr.push(result);
+                            resArr.push(result);
                        } else {     
-                            result = resultArr[resultArr.length-1] - (parseInt(numArr.join("")));
+                            result = y - x;
                             document.getElementById("display").innerHTML = result;
-                            resultArr.push(result);
+                            resArr.push(result);
                         }
                 } else if (value == "X") {
-                        if (result == 0 && resultArr.length == 0) {
-                            result = parseInt(numArr.join(""));
+                        if (result == 0 && resArr.length == 0) {
+                            result = x;
                             document.getElementById("display").innerHTML = result;
-                            resultArr.push(result);
+                            resArr.push(result);
                        } else {     
-                            result = resultArr[resultArr.length-1] * (parseInt(numArr.join("")));
+                            result = x * y;
                             document.getElementById("display").innerHTML = result;
-                            resultArr.push(result);
+                            resArr.push(result);
                         }
                 } else if (value == "/") {
-                        if (result == 0 && resultArr.length == 0) {
-                            result = parseInt(numArr.join(""));
+                        if (result == 0 && resArr.length == 0) {
+                            result = x;
                             document.getElementById("display").innerHTML = result;
-                            resultArr.push(result);
+                            resArr.push(result);
                        } else {     
-                            result = resultArr[resultArr.length-1] / (parseInt(numArr.join("")));
-                            //result = parseInt(result);
+                            result = y / x;
+                            result = parseInt(result);
                             document.getElementById("display").innerHTML = result;
-                            resultArr.push(result);
+                            resArr.push(result);
                         }
-
                 } else if (value == "sq") {
-                        if (result == 0 && resultArr.length == 0) {
-                            result = parseInt(numArr.join("")) * parseInt(numArr.join(""));
+                        if (result == 0 && resArr.length == 0) {
+                            result = x * x;
                             document.getElementById("display").innerHTML = result;
-                            resultArr.push(result);
+                            resArr.push(result);
                         } else {     
-                            result = resultArr[resultArr.length-1] * resultArr[resultArr.length-1];
+                            result = y * y;
                             document.getElementById("display").innerHTML = result;
-                            resultArr.push(result);
+                            resArr.push(result);
                         }
                 } else if (value == "√") {
-                        if (result == 0 && resultArr.length == 0) {
-                            result = Math.sqrt(parseInt(numArr.join("")));
+                        if (result == 0 && resArr.length == 0) {
+                            result = Math.sqrt(x);
                             document.getElementById("display").innerHTML = result;
-                            resultArr.push(result);
+                            resArr.push(result);
                         } else {     
-                            result = Math.sqrt(resultArr[resultArr.length-1]);
+                            result = Math.sqrt(y);
                             document.getElementById("display").innerHTML = result;
-                            resultArr.push(result);
+                            resArr.push(result);
                         }
                 } else if (value == "<") {
-                        if (result == 0 && resultArr.length == 0) {
-                            result = (parseInt(numArr.join("")) - (parseInt(numArr.join("")) % 10)) /10;
+                        if (result == 0 && resArr.length == 0) {
+                            result = (x - (x % 10)) /10;
                             document.getElementById("display").innerHTML = result;
-                            resultArr.push(result);
+                            resArr.push(result);
                         } else {     
-                            result = (resultArr[resultArr.length-1] - (resultArr[resultArr.length-1] % 10)) / 10;
+                            result = (y - (y % 10)) / 10;
                             document.getElementById("display").innerHTML = result;
-                            resultArr.push(result);
+                            resArr.push(result);
                         }
-
                 } else {
-                        if (result == 0 && resultArr.length == 0) {
-                            result = parseInt(numArr.join("")) * -1;
+                        if (result == 0 && resArr.length == 0) {
+                            result = x * -1;
                             document.getElementById("display").innerHTML = result;
-                            resultArr.push(result);
+                            resArr.push(result);
                         } else {     
-                            result = resultArr[resultArr.length-1] * -1;
+                            result = y * -1;
                             document.getElementById("display").innerHTML = result;
-                            resultArr.push(result);
+                            resArr.push(result);
                         }
-
                 }
     }        
 
 
     function mainFunction (value) {                                                  //Handles user input
 
-        if(!(isNaN(parseInt(value))) && numArr.length < 13) {                        //Numbers get stored in numArray. There's 12 digit limit
+        if(!(isNaN(parseInt(value)))) {                                              //Numbers get stored in numArray. There's 12 digit limit
+                    if ( numArr.length < 12) {
                     numArr.push(value);
                     document.getElementById("display").innerHTML = numArr.join("");
                     keyArr.push(value);
+                    }  
 
-        } else if (value == "=") {
-                if (typeOfPrevKey(keyArr) == "oper" ) {                               //Doesn't call operation if previous key is an operator                      
+        } else if (value == "=") {                                                   //Calls operation() only is prev key is a number or an "="
+                if (typeOfPrevKey(keyArr) == "oper" || typeOfPrevKey(keyArr) =="advFun") {                       
 
-                } else if (typeOfPrevKey(keyArr) == "num" && keyArr.length !==0 ){
-                    if (lastOper == ""){
-                    } else {
-                        operation(lastOper);
-                        keyArr.push(value);
-
-                    }
-                } else {
-                        operation(lastOper);
-                        keyArr.push(value);
+                } else {    
+                    operation(lastOper);
+                    keyArr.push(value);
                 }
 
         } else if (value == "C") {                                                    //Resets everything
                     numArr = []; 
-                    resultArr = [];
+                    resArr = [];
                     keyboardInput = []; 
                     lastOper = ""; 
                     keyArr = [];
@@ -214,19 +213,18 @@
                     document.getElementById("display").innerHTML = "";
 
         } else if (value =="sq" || value=="√" || value =="<" || value == "±") {
-              if (typeOfPrevKey(keyArr) !== "oper"){                                //Calls operation() if the previous key wasn't an operator
+                if (typeOfPrevKey(keyArr) !== "oper"){                                //Calls operation() if the previous key wasn't an operator
                       operation(value);
-              }
-                       numArr = [];
-                keyArr.push(value);
+                }
+                    numArr = [];
+                    keyArr.push(value);
 
         } else {
-                if (typeOfPrevKey(keyArr) == "num"){                                //Calls operation() if the previous key press was a number
+                if (typeOfPrevKey(keyArr) == "num"){                                  //Calls operation() if the previous key press was a number
                         operation(value); 
                 } 
-
-                numArr = [];
-                lastOper = value;                   
-                keyArr.push(value);
+                    numArr = [];
+                    lastOper = value;                   
+                    keyArr.push(value);
         }
 }
