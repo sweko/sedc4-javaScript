@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html> 
+
+<head> 
+	<link rel="stylesheet" type="text/css" href="calculator.css">
+
+</head>
+
+<body> 
+
+	<table cellspacing="2" border="0">
+
+	    <thead>
+	    		<tr>
+	    			<th id="display" colspan="4"></th>
+	    		</tr>
+	    </thead>
+		<tbody>
+			<tr>
+				<td><input type="button" value="<" class="operator" id="back" onclick="mainFunction(value)"></td>
+				<td><input type="button" value="√" class="operator" id="squareRoot" onclick="mainFunction(value)"></td>
+				<td><input type="button" value="sq" class="operator" id="square" onclick="mainFunction(value)"></td>
+				<td><input type="button" value="/" class="operator" id="divide" onclick="mainFunction(value)"></td> 
+			</tr>
+			<tr>
+				<td><input type="button" value="7" class="number" id="7" onclick="mainFunction(value)"></td>
+				<td><input type="button" value="8" class="number" id="8" onclick="mainFunction(value)"></td>
+				<td><input type="button" value="9" class="number" id="9" onclick="mainFunction(value)"></td>
+				<td><input type="button" value="X" class="operator" id="multiply" onclick="mainFunction(value)"></td>
+			</tr>
+			<tr>
+				<td><input type="button" value="4" class="number" id="4" onclick="mainFunction(value)"></td>
+				<td><input type="button" value="5" class="number" id="5" onclick="mainFunction(value)"></td>
+				<td><input type="button" value="6" class="number" id="6" onclick="mainFunction(value)"></td>
+				<td><input type="button" value="-" class="operator" id="substract" onclick="mainFunction(value)"></td>
+			</tr>
+			<tr>
+				<td><input type="button" value="1" class="number" id="1" onclick="mainFunction(value)"></td>
+				<td><input type="button" value="2" class="number" id="2" onclick="mainFunction(value)"></td>
+				<td><input type="button" value="3" class="number" id="3" onclick="mainFunction(value)"></td>
+				<td><input type="button" value="+" class="operator" id="add" onclick="mainFunction(value)"></td>
+			</tr>
+			<tr>
+				<td><input type="button" value="±" class="operator" id="plusMinus" onclick="mainFunction(value)"></td>
+				<td><input type="button" value="0" class="number" id="0" onclick="mainFunction(value)"></td>
+				<td><input type="button" value="C" class="operator" id="clear" onclick="mainFunction(value)"></td>
+				<td><input type="button" value="=" class="operator" id="equals" onclick="mainFunction(value)"></td>
+			</tr>
+		</tbody>
+		
+
+	</table>
+
+	<script src="calculator.js"></script>
+
+</body>
+
+</html>
