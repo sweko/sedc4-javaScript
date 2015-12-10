@@ -35,7 +35,7 @@
         } else if  (lastOper == "X") {
             return x*y;
         } else {
-            return y / x;
+            return parseInt(y / x);
         }
     }
 
