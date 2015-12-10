@@ -1,9 +1,10 @@
-    //---------------FEATURES---YET---TO---BE---ADDED-----------------------------------
-    // Keys should change colour when entered on keyboard.
+    //----------------------B---U---G---S-----------------------------------------------
+    //1. For some reason, the 8/* button has stopped working and only the = function works for +=.
 
     //-----------------------KEYBOARD---INPUT------------------------------------------- 
-    //Numbers and +-/*=C where expected. Can use shift to distinguish between =+ and 8*.
+    //Numbers and +-/*=C where expected.
     //< at HOME, ± at END, √ at PGUP, sq at PGDN
+
 
     var numArr = [];                           //All the numeric input is stored here, it gets reset when any non-numeric key gets pressed. 
     var resArr = [];                           //The results of all previous operations are stored here.
@@ -40,7 +41,7 @@
     }
 
 
-    document.onkeydown = function(event) {                                          //Manages the keyboard input
+    document.onkeydown = function(event) {                                          //Manages the keyboard input and changes button color on key down
         event = event || window.event;
         var value = "";
         var e = event.keyCode;
@@ -100,9 +101,76 @@
             value="C";
         }
 
+        document.getElementById(value).style.background='#7E9AA3';
         keyboardInput.push(value);
         return mainFunction(value);
     }
+
+
+    document.onkeyup = function(event) {                                          //Changes button color back to default on keyup
+        event = event || window.event;
+        var value = "";
+        var e = event.keyCode;
+        if (e==96 || e == 48){
+            value="0";
+        } else if (e==97 || e == 49){
+            value = "1";
+        } else if (e==98 || e==50) {
+            value = "2";
+        } else if (e==99 || e==51) {
+            value = "3";
+        } else if (e==100 || e==52) {
+            value = "4";
+        } else if (e==101 || e==53) {
+            value = "5";
+        } else if (e==102 || e==54) {
+            value = "6";
+        } else if (e==103 || e==55) {
+            value = "7";
+        } else if (e==104) {
+            value = "8";
+        } else if (e==105 || e==57) {
+            value = "9";
+        }else if (e==16) {
+            value="shift";
+        } else if (e ==187 ) {
+            if (keyboardInput[keyboardInput.length-1] == "shift") {                 
+                value = "+";
+            } else {
+                value = "=";
+            }
+        } else if (e ==56 ) {
+            if (keyboardInput[keyboardInput.length-1] == "shift") {                 
+                value = "X";
+            } else {
+                value = "8";
+            }
+        } else if (e==107){
+            value = "+";
+        } else if (e==106) {
+            value = "X";
+        } else if (e==13){
+            value = "=";
+        } else if (e==109 || e==189){
+            value="-";
+        } else if (e==111 || e==191){
+            value="/";
+        } else if (e==36) {
+            value="<";
+        } else if (e==35) {
+            value="±";
+        } else if (e==33) {
+            value="√";
+        } else if (e==34) {
+            value="sq";
+        } else if (e==27){
+            value="C";
+        }
+
+        document.getElementById(value).style.background='';
+
+    }
+
 
 
     function operation(value) {                                                     //The operations take place here 
@@ -219,9 +287,9 @@
     }        
 
 
-    function mainFunction (value) {                                                         //Handles user input
+    function mainFunction (value) {                                                  //Handles user input
 
-        if(!(isNaN(parseInt(value))) && numArr.length < 12)   {                                              //Numbers get stored in numArray. There's 12 digit limit
+        if(!(isNaN(parseInt(value))) && numArr.length < 12)   {                      //Numbers get stored in numArray. There's 12 digit limit
                  if ( typeOfPrevKey(keyArr) == "num" || keyArr.length == 0) {
                     numArr.push(value);
                     document.getElementById("display").innerHTML = numArr.join("");
