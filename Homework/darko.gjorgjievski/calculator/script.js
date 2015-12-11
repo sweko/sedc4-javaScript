@@ -35,7 +35,7 @@ var digitsByHTMLid = {
 // define event handlers for the digits
 $.each(digitsByHTMLid, function(htmlID, digit) {
     $(htmlID).click(function() {
-        result = addToOverallNumber(digit);
+        var result = addToOverallNumber(digit);
         updateOperationAndResultDisplays(digit, result);
     }); // end click
 });
@@ -52,7 +52,7 @@ var operatorsByHtmlid = {
 // define event handlers for the operators
 $.each(operatorsByHtmlid, function(htmlID, operation) {
     $(htmlID).click(function() {
-        result = processOperator(operation);
+        var result = processOperator(operation);
         updateOperationAndResultDisplays(operation,result);
     }); // end click
 });
@@ -67,9 +67,8 @@ $('#reset').click(function() {
     resetStateAndDisplay();
 });
 
-// map keypad buttons to appropriate events
 $(document).keypress(function(evt) {
-    keyPressed = String.fromCharCode(evt.which);
+    var keyPressed = String.fromCharCode(evt.which);
 
     switch (keyPressed) {
         case '1':
@@ -117,12 +116,22 @@ $(document).keypress(function(evt) {
         case '=':
             $('#equal').click();
             break;
-        case '\r':
-            $('#equal').click();
-            break;
     }
 
 }); // end keypress
+
+// map keypad buttons to appropriate events
+$(document).keydown(function(evt) {
+    var keyPressed = evt.keyCode ? evt.keyCode : evt.charCode;
+    switch (keyPressed) {
+		case 27: // esc
+			$('#reset').click();
+			break;
+        case 13: // enter
+			$('#equal').click();
+			break;
+	}
+}); // end keyup
 
 function resetStateAndDisplay() {
     currentOverallNumber = 0;
@@ -138,7 +147,7 @@ function updateOperationAndResultDisplays(currentDigit, overallNumber) {
 }
 
 function copyDataFromResultsToOperationDisplay() {
-    currentResult = $('#result').text();
+    var currentResult = $('#result').text();
     $('#operation').text(currentResult);
 }
 
@@ -149,7 +158,24 @@ function addToOverallNumber(digit) {
 }
 
 function applyPreviousOperator() {
-    return Math.floor(eval(previousResult + previousOperator + currentOverallNumber));
+    var result;
+    switch(previousOperator) {
+        case '+':       
+            result = previousResult + currentOverallNumber;
+            break;
+        case '-':
+            result = previousResult - currentOverallNumber;
+            break;
+        case '*':
+            result = previousResult * currentOverallNumber;
+            break;
+        case '/':
+            result = previousResult / currentOverallNumber;
+            break;
+    }
+    
+    var whole_result = Math.floor(result);
+    return whole_result;
 }
 
 function updatePreviousState(operator, result) {
@@ -167,7 +193,7 @@ function updatePreviousState(operator, result) {
 
 // integration unit
 function processOperator(operator) {
-    result = applyPreviousOperator();
+    var result = applyPreviousOperator();
     updatePreviousState(operator, result);
     return result;
 }

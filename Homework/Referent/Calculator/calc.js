@@ -14,12 +14,12 @@ Calculator.prototype.init = function (){
     this.savedValue = 0;
     this.currentOperation = "";
     this.updateDisplay();
-}
+};
 
 Calculator.prototype.setNumber = function(number){
    this.currentValue = this.currentValue * 10 + number;
    this.updateDisplay();
-}
+};
 
 Calculator.prototype.setOperation = function(operation){
    if (operation === "="){
@@ -32,7 +32,7 @@ Calculator.prototype.setOperation = function(operation){
        this.currentValue = 0;
    }
    this.updateDisplay();
-}
+};
 
 Calculator.prototype.performCalculation = function(){
     switch (this.currentOperation){
@@ -49,13 +49,13 @@ Calculator.prototype.performCalculation = function(){
             this.currentValue = Math.trunc(this.savedValue / this.currentValue);
             break;
     }
-}
+};
 
 Calculator.prototype.updateDisplay = (function(){
     var display = document.getElementById("display");
     return function(){
         display.innerHTML = this.currentValue || this.savedValue;
-    }
+    };
 })();
 
 var handlerGenerator = {
@@ -63,14 +63,14 @@ var handlerGenerator = {
         var number = Number(value);
         return function (){
             calculator.setNumber(number);
-        }
+        };
     },
     operation: function (value){
          return function(){
              calculator.setOperation(value);
-         }
+         };
     }
-} 
+};
 
 function createTable(){
     var body = document.body;
@@ -107,12 +107,12 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
 document.addEventListener('keydown', function(event){
-    if (event.keyCode == 27){
+    if (event.keyCode === 27){
         calculator.init();
         return false;
     }
         
-    if (event.keyCode == 13) {
+    if (event.keyCode === 13) {
         calculator.setOperation("=");
         return false;
     }
@@ -120,11 +120,11 @@ document.addEventListener('keydown', function(event){
 
 document.addEventListener('keypress', function(event){
     var char = String.fromCharCode(event.charCode);
-    if ("0123456789".indexOf(char) != -1){
+    if ("0123456789".indexOf(char) !== -1){
         calculator.setNumber(Number(char));
         return false;
     }
-    if ("+-*/=".indexOf(char) != -1){
+    if ("+-*/=".indexOf(char) !== -1){
         calculator.setOperation(char);
         return false;
     }
