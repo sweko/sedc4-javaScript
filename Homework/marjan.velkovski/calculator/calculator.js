@@ -1,4 +1,4 @@
-    //-----------------------KEYBOARD---INPUT------------------------------------------- 
+   //-----------------------KEYBOARD---INPUT------------------------------------------- 
     //Numbers and +-/*=C where expected.
     //< at HOME, ± at END, √ at PGUP, sq at PGDN
 
@@ -21,10 +21,10 @@
             return "advFun";
         } else {
             return "oper";
-        }
-    }
+        }    }
 
-    function prevOper (lastOper, x, y) {                          //Serves to finish the previous operation before applying square or square root
+
+    function prevOper (lastOper, x, y) {                                          //Serves to finish the previous operation before current
         if (lastOper == "-") {                                                    //e.g. 2 - 6 sq gives the result 16 instead of 4
             return y - x;
         } else if (lastOper == "+") {
@@ -95,10 +95,9 @@
         }
 
         return value;
-
     }
 
-    document.onkeydown = function(event) {                                          //Manages the keyboard input and changes button color on key down
+    document.onkeydown = function(event) {                                         //Manages the keyboard input and changes button color on key down
         event = event || window.event;
         var value = "";
         var e = event.keyCode;
@@ -108,12 +107,12 @@
         return mainFunction(value);
     }
 
-    document.onkeyup = function(event) {                                          //Changes button color back to default on keyup
+    document.onkeyup = function(event) {                                            //Changes button color back to default on keyup
         event = event || window.event;
         var value = "";
         var e = event.keyCode;
         if (e ==187 ) {
-            if (keyboardInput[keyboardInput.length-2] == "shift") {                 //Allows for use of the shift key, so it can tell apart between +/= and 8/*
+            if (keyboardInput[keyboardInput.length-2] == "shift") {                 //Separate because here it's keyboard.length-2
                 value = "+";
             } else {
                 value = "=";
@@ -131,8 +130,7 @@
     }
 
 
-
-    function operation(value) {                                                     //The operations take place here 
+    function operation(value) {                                                       //The operations take place here 
         var x = parseInt(numArr.join(""));                                          
         var y = resArr[resArr.length-1];                                            
                                     
@@ -207,7 +205,7 @@
                     document.getElementById("display").innerHTML = numArr.join("");
                     keyArr.push(value);
         } else if (value == "=") {                                                   //If "=", calls operation() only is prev key is a number or an "="
-                if (typeOfPrevKey(keyArr) == "oper" || typeOfPrevKey(keyArr) =="advFun") {                       
+                if (typeOfPrevKey(keyArr) == "oper" || typeOfPrevKey(keyArr) =="advFun" || lastOper == "") {                       
 
                 } else {    
                     operation(lastOper);
@@ -229,7 +227,7 @@
                 }
                     numArr = [];
                     keyArr.push(value);
-
+                    
         } else {
                 if (typeOfPrevKey(keyArr) == "num"){                                  //If operator, calls operation() if the previous key press was a number
                         operation(value); 
