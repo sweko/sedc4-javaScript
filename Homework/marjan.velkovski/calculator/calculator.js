@@ -33,7 +33,7 @@
         } else if  (lastOper == "X") {
             return x*y;
         } else {
-            return parseInt(y / x);
+            return y / x;
         }
     }
 
@@ -103,7 +103,6 @@
         return mainFunction(value);
     }
 
-
     document.onkeyup = function(event) {                                          //Changes button color back to default on keyup
         event = event || window.event;
         var value = "";
@@ -163,7 +162,7 @@
             value="C";
         }
 
-            document.getElementById(value).style.background='';
+        document.getElementById(value).style.background='';
     }
 
 
@@ -172,129 +171,76 @@
         var x = parseInt(numArr.join(""));                                          
         var y = resArr[resArr.length-1];                                            
                                     
-                if (value == "+") {
+                if (value == "+" || value == "-" || value=="X"|| value=="/") {
                         if (resArr.length == 0){
                             result = x;
-                            document.getElementById("display").innerHTML = result;
-                            resArr.push(result);
                         } else if (numArr.length !== 0) {     
                             result = prevOper(lastOper, x, y);
-                            document.getElementById("display").innerHTML = result;
-                            resArr.push(result);
                         } else {
-                            result = x + y;
-                            document.getElementById("display").innerHTML = result;
-                            resArr.push(result);
+                            switch (value) {
+                                case "+":
+                                    result = x + y;
+                                    break;
+                                case "-":
+                                    result = y - x;
+                                    break;  
+                                case "X":
+                                    result = x * y;
+                                    break;
+                                case "/":
+                                    result = y / x;
+                                    break;                                             
+                                default:
+                                    break;
+                            }
                         } 
-                } else if (value =="-") {
-                        if (resArr.length == 0) { 
-                            result = x;  
-                            document.getElementById("display").innerHTML = result;  
-                            resArr.push(result);
-                        } else if (numArr.length !== 0) {     
-                            result = prevOper(lastOper, x, y);
-                            document.getElementById("display").innerHTML = result;
-                            resArr.push(result);
-                       } else {     
-                            result = y - x;
-                            document.getElementById("display").innerHTML = result;
-                            resArr.push(result);
-                        }
-                } else if (value == "X") {
-                        if (resArr.length == 0) {
-                            result = x;
-                            document.getElementById("display").innerHTML = result;
-                            resArr.push(result);
-                        } else if (numArr.length !== 0) {     
-                            result = prevOper(lastOper, x, y);
-                            document.getElementById("display").innerHTML = result;
-                            resArr.push(result);
-                       } else {     
-                            result = x * y;
-                            document.getElementById("display").innerHTML = result;
-                            resArr.push(result);
-                        }
-                } else if (value == "/") {
-                        if (resArr.length == 0) {
-                            result = x;
-                            document.getElementById("display").innerHTML = result;
-                            resArr.push(result);
-                        } else if (numArr.length !== 0) {     
-                            result = prevOper(lastOper, x, y);
-                            document.getElementById("display").innerHTML = result;
-                            resArr.push(result);
-                       } else {     
-                            result = y / x;
-                            result = parseInt(result);
-                            document.getElementById("display").innerHTML = result;
-                            resArr.push(result);
-                        }
                 } else if (value == "sq") {
                         if (resArr.length == 0) {
-                            result = x * x;
-                            document.getElementById("display").innerHTML = result;
-                            resArr.push(result);
+                            result = x * x;                          
                         } else if (resArr.length == 1 && numArr.length !== 0) {     
-                            result = prevOper(lastOper, x, y) * prevOper(lastOper, x, y) ;
-                            document.getElementById("display").innerHTML = result;
-                            resArr.push(result);
+                            result = prevOper(lastOper, x, y) * prevOper(lastOper, x, y) ;                         
                         } else {
-                            result = y*y;
-                            document.getElementById("display").innerHTML = result;
-                            resArr.push(result);
+                            result = y*y;                         
                         }
                 } else if (value == "√") {
                         if (resArr.length == 0) {
-                            result = Math.sqrt(x);
-                            document.getElementById("display").innerHTML = result;
-                            resArr.push(result);
+                            result = Math.sqrt(x);                           
                         } else if (resArr.length == 1 && numArr.length !== 0) {     
-                            result = Math.sqrt(prevOper(lastOper, x, y));
-                            document.getElementById("display").innerHTML = result;
-                            resArr.push(result);
+                            result = Math.sqrt(prevOper(lastOper, x, y));                            
                         } else {     
-                            result = Math.sqrt(y);
-                            document.getElementById("display").innerHTML = result;
-                            resArr.push(result);
+                            result = Math.sqrt(y);                            
                         }
                 } else if (value == "<") {
                         if (resArr.length == 0) {
-                            result = (x - (x % 10)) /10;
-                            document.getElementById("display").innerHTML = result;
-                            resArr.push(result);
+                            result = (x - (x % 10)) /10;                            
                         } else {     
-                            result = (y - (y % 10)) / 10;
-                            document.getElementById("display").innerHTML = result;
-                            resArr.push(result);
+                            result = (y - (y % 10)) / 10;                       
                         }
                 } else {
                         if (resArr.length == 0) {
                             result = x * -1;
-                            document.getElementById("display").innerHTML = result;
-                            resArr.push(result);
                         } else {     
                             result = y * -1;
-                            document.getElementById("display").innerHTML = result;
-                            resArr.push(result);
                         }
                 }
+                            result = parseInt(result);
+                            document.getElementById("display").innerHTML = result;
+                            resArr.push(result);
+
     }        
 
 
     function mainFunction (value) {                                                  //Handles user input
 
         if(!(isNaN(parseInt(value))) && numArr.length < 12)   {                      //If number, it's stored in numArray. There's 12 digit limit
-                 if ( typeOfPrevKey(keyArr) == "num" || keyArr.length == 0) {
-                    numArr.push(value);
-                    document.getElementById("display").innerHTML = numArr.join("");
-                    keyArr.push(value);
+                if ( typeOfPrevKey(keyArr) == "num" || keyArr.length == 0) {
+                
                 } else {
                     numArr=[];
+                } 
                     numArr.push(value);
                     document.getElementById("display").innerHTML = numArr.join("");
                     keyArr.push(value);
-                } 
-
         } else if (value == "=") {                                                   //If "=", calls operation() only is prev key is a number or an "="
                 if (typeOfPrevKey(keyArr) == "oper" || typeOfPrevKey(keyArr) =="advFun") {                       
 
