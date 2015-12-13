@@ -1,0 +1,36 @@
+html {
+	height:100%;
+	width:100%;
+}
+
+body {
+	height: 100%;
+	width:100%;
+	margin:auto;
+}
+
+table {
+	border:1px solid black;
+	width:300px;
+	height:300px;
+}
+tbody {
+	border:3px solid black;
+}
+
+tr {
+	border:3px solid black;
+}
+td {
+	border:3px solid black;
+	width:30px;
+	height:30px;
+}
+
+.buttons{
+	text-align: center;
+}
+
+#display {
+	text-align: center;
+}
