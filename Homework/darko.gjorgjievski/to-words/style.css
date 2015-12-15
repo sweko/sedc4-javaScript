@@ -1,0 +1,38 @@
+html {
+    background-color: #E3CDA4;
+}
+
+body {
+    max-width: 960px;
+    background-color: #C77966;
+    margin: auto auto;
+    text-align: center;
+    font-family: Verdana;
+    color: #2F343B;
+    margin-top: 350px;
+    overflow: hidden;
+    height: 550px;
+    border: 10px solid black;
+}
+
+h1 {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    font-size: 45px;
+}
+
+input[type='text'] {
+    font-size: 50px;
+    padding: 10px;
+    border: solid 1px #dcdcdc;
+    transition: box-shadow 0.3s, border 0.3s;
+    text-align: center;
+}
+
+.result {
+    margin-top: 50px;
+    width: 960px;
+    text-align: center;
+    font-size: 40px;
+    
+}
