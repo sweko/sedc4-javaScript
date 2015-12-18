@@ -5,13 +5,13 @@ html {
 body {
     max-width: 960px;
     background-color: #C77966;
-    margin: auto auto;
+    margin: 2px auto;
     text-align: center;
     font-family: Verdana;
     color: #2F343B;
-    margin-top: 350px;
+    margin-top: 50px;
     overflow: hidden;
-    height: 550px;
+    height: 1050px;
     border: 10px solid black;
 }
 
@@ -29,10 +29,20 @@ input[type='text'] {
     text-align: center;
 }
 
-.result {
+.resultEn {
     margin-top: 50px;
-    width: 960px;
+    max-width: 960px;
     text-align: center;
     font-size: 40px;
+    height: 300px;
+    
+}
+
+.resultMk {
+    margin-top: 50px;
+    max-width: 960px;
+    text-align: center;
+    font-size: 40px;
+    height: 300px;
     
 }

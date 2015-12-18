@@ -1,55 +1,53 @@
+
 /*
-    Overall flow of the program: http://i.imgur.com/9CjfMEC.jpg
+    Overall flow of the program: http://i.imgur.com/0p4DILW.jpg
 */
 
 function toWords(number) {
+    var words = [];
+    
     if (!checkIfPositiveInteger(number)) return 'Only positive integers are accepted';
     if (checkIfNumberIsZero(number)) return 'Zero';
     
-    var threeDigitGroups =  splitNumberIntoGroupsOfThreeDigits(number); 
-    var words =             convertThreeDigitGroupsToWords(threeDigitGroups);
-    return words;
+    splitNumberIntoGroupsOfThreeDigits(number, function(threeDigitGroup, digitsIndex) {
+        var wordsWithoutSuffix = convertThreeDigitGroupsToWords(threeDigitGroup);
+        var wordsWithSuffix = addTensSuffixToNonEmptyWords(wordsWithoutSuffix, digitsIndex);
+        if (wordsWithSuffix) words.unshift(wordsWithSuffix); // don't accept falsy values into the array
+    }); // end splitNumberIntoGroupsOfThreeDigits
+    
+    
+    return words.join(' ').capitalizeFirstLetter();
 }
 
-// f(1234) => [1, 234]
-function splitNumberIntoGroupsOfThreeDigits(number) {
-    var groupsOfThree = [];
+// f(1234) => [234, 1]
+function splitNumberIntoGroupsOfThreeDigits(number, action) {
+    var threeDigitsIndex = 1; // keep track of the position 
      
     while (number !== 0) {
         var threeSlice = number % 1000;
-        groupsOfThree.unshift(threeSlice);
+        action(threeSlice, threeDigitsIndex);
+        threeDigitsIndex += 1;
         number = Math.floor(number / 1000, 10);
     }
     
-    return groupsOfThree;
+ 
 }
 
 // f([1,234]) => 'one thousand two hundred thirty four'
 function convertThreeDigitGroupsToWords(threeDigitsGroups) {
-    var overallWord = '';
+    var tensUnits = splitNumberIntoConvertableTensUnits(threeDigitsGroups);
+    if (checkIfTensUnitsIsEmpty(tensUnits)) return '';
+    var tensWords = convertTensUnitsToWords(tensUnits);
     
-    addTensSuffixesToDigitGroups(threeDigitsGroups, function(digitsGroup, suffix) {
-        var tensUnits = getNumberReadyForWordConversion(digitsGroup);
-        var tensWords = convertTensToWordsWithSuffix(tensUnits, suffix);
-        overallWord = overallWord.replace (/^/, tensWords + ' '); // add at the beginning of the string
-    });
-    
-    return overallWord.trim().capitalizeFirstLetter(); // we use trim() coz of the empty space the code adding to beginning of the word creates
+    return tensWords;
 }
 
 // f(324) => [300, 20,4], f(215) => [200, 15]
-function getNumberReadyForWordConversion(number) {
+function splitNumberIntoConvertableTensUnits(number) {
     var tens = splitNumberIntoTens(number);
     var mergedTens = mergeTensAndOnesIfTheirSumIs11To19(tens);
     var nonZeroTens = removeZeroesFromCollection(mergedTens);
     return nonZeroTens;
-}
-
-// f([20,4], 'thousand') => 'twenty four thousand' 
-function convertTensToWordsWithSuffix(tensUnits, suffix) {
-    var words = convertTensToWords(tensUnits);
-    var wordsWithSuffix = words + ' ' + suffix;
-    return wordsWithSuffix;
 }
 
 // f(1) => true, f('3') => false
@@ -105,27 +103,49 @@ function removeZeroesFromCollection(collection) {
 }
 
 // f([12, 0, 3]) => {million: 12, '': 3}
-function addTensSuffixesToDigitGroups(digitGroups, action) {
+function addTensSuffixToWords(words, digitsIndex) {
     
-    var suffixes = [
-        '', // the last 3-unit part doesn't get any suffix
-        'thousand',
-        'million',
-        'billion'
-    ];
+    var suffixes = {
+        1: '', // the last 3-unit part doesn't get any suffix
+        2: 'thousand',
+        3: 'million',
+        4: 'billion'
+    };
     
-    var reversedThreeDigitWords = Array.prototype.slice.call(digitGroups).reverse(); // reverse modifies in place, we need to clone the array first to avoid this
+    if (digitsIndex === 1) return words;
+    return words + ' ' + suffixes[digitsIndex];
+}
 
-    for (var i = 0; i < reversedThreeDigitWords.length; i++) {
-        if (reversedThreeDigitWords[i] !== 0) action(reversedThreeDigitWords[i], suffixes[i]);
+function checkIfTensUnitsIsEmpty(tensUnits) {
+  if (tensUnits.length === 0) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function addTensSuffixToNonEmptyWords(words, digitsIndex) {
+    if (checkIfWordsAreEmptyString(words)) return '';
+    var wordsWithSuffix = addTensSuffixToWords(words, digitsIndex);
+    
+    return wordsWithSuffix;
+    
+}
+
+function checkIfWordsAreEmptyString(words) {
+    if (words === '') {
+        return true;
+    } else {
+        return false;
     }
 }
 
 // f(100,20,3) => 'one hundred twenty three'
-function convertTensToWords(tensUnits) {
+function convertTensUnitsToWords(tensUnits) {
     var unitWords = [];
     
     var wordsByNumber = {
+        0: '',
         1: 'one',
         2: 'two',
         3: 'three',
