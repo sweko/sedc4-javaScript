@@ -17,7 +17,7 @@ var mk = new function() {
         });
         
         overallWord = overallWord.trim();
-        overallWordWithoutPrefix = removeBeginningOnePrefixIfExists(overallWord);
+        var overallWordWithoutPrefix = removeBeginningOnePrefixIfExists(overallWord);
         return overallWordWithoutPrefix.capitalizeFirstLetter();
 };
     
