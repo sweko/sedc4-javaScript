@@ -8,7 +8,7 @@ td {
     height: 59px;
     border-radius: 15px;
     text-align: center;
-    font-size: 33px;
+    font-size: 53px;
     background-color: cornsilk;
 }
 
@@ -24,4 +24,8 @@ td:hover {
 
 .invisible {
     border-width: 0px;
+}
+
+body {
+    margin-top: 70px;
 }
