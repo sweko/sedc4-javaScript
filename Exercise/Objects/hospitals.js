@@ -7,6 +7,8 @@ neuromedika["totalDoctors"] = 25;
 var remedika = new Firm("remedika", "zelezara");
 remedika.totalDoctors = 40;
 
-
 allFirms.hospitals = [sistina, neuromedika, remedika];
+allFirms.hospitals.toString = function(){
+	return "Hospitals";
+};
 
