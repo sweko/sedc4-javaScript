@@ -98,7 +98,7 @@ function createTable(){
     body.appendChild(table);
 }
 
-var calculator;
+var calculator; 
 
 document.addEventListener('DOMContentLoaded', function(){
 	createTable();
