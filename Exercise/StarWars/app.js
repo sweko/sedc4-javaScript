@@ -34,6 +34,8 @@ simulator.init = function(){
 		document.getElementById("jediArmor").value = 3;
 		document.getElementById("jediForce").value = 3;
 		document.getElementById("jediColor").value = '';
+		
+		simulator.displayJedi();
 	});
 	
 	var createSith = document.getElementById("createSith");
@@ -56,7 +58,17 @@ simulator.init = function(){
 		document.getElementById("sithArmor").value = 3;
 		document.getElementById("sithForce").value = 3;
 		document.getElementById("sithAnger").value = 5;
+		
+		simulator.displaySith();
 	});
+};
+
+simulator.displayJedi = function(){
+		
+};
+
+simulator.displaySith = function(){
+	
 };
 
 
