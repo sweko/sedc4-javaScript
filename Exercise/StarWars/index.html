@@ -15,6 +15,18 @@
 							<td><input type="text" id="jediName" /></td>
 						</tr>
 						<tr>
+							<td>Power</td>
+							<td><input type="number" id="jediPower" min="0" max="10" value="5"></td>
+						</tr>
+						<tr>
+							<td>Armor</td>
+							<td><input type="number" id="jediArmor" min="1" max="5" value="3"></td>
+						</tr>
+						<tr>
+							<td>Force Level</td>
+							<td><input type="number" id="jediForce" min="1" max="5" value="3"></td>
+						</tr>
+						<tr>
 							<td>Lightsabre color:</td>
 							<td><select id="jediColor" ></select></td>
 						</tr>
@@ -26,7 +38,38 @@
 					</table>
 				</td>
 				<td></td>
-				<td>sith entry</td>
+				<td><table>
+						<tr>
+							<td>Name</td>
+							<td>Darth <input type="text" id="sithName" /></td>
+						</tr>
+						<tr>
+							<td>Power</td>
+							<td><input type="number" id="sithPower" min="0" max="10" value="5"></td>
+						</tr>
+						<tr>
+							<td>Armor</td>
+							<td><input type="number" id="sithArmor" min="1" max="5" value="3"></td>
+						</tr>
+						<tr>
+							<td>Force Level</td>
+							<td><input type="number" id="sithForce" min="1" max="5" value="3"></td>
+						</tr>
+						<tr>
+							<td>Lightsabre color:</td>
+							<td><b>red</b></td>
+						</tr>
+						<tr>
+							<td>Anger:</td>
+							<td><input type="number" id="sithAnger" min="1" max="10" value="5"></td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<button id="createSith">Create New Sith Lord</button>
+							</td>
+						</tr>
+					</table>
+				</td>
 			</tr>
 		</table>
 	</div>

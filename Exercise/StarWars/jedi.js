@@ -1,5 +1,8 @@
 var simulator = simulator || {};
 simulator.Jedi = function(name, power, armor, forceLevel, color){
+	if (!name)
+		throw new Error("Invalid Jedi name");
+		
 	this.name = name;
 	if (power > 10) 
 		this.power=10;
