@@ -33,6 +33,13 @@ simulator.Jedi = function(name, power, armor, forceLevel, color){
 	this.getHealth = function(){
 		return health;
 	};
+	
+	this.attack = function(target){
+		var attackPower = this.forceLevel + Math.floor(Math.random() * (this.power+1));
+		target.attackFor(attackPower);
+		
+		return attackPower;
+	};
 };
 
 simulator.jediColors = ['blue', 'green', 'purple', 'yellow']; 

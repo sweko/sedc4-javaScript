@@ -12,14 +12,14 @@ simulator.init = function(){
 		option.innerHTML = color;
 		jediColor.appendChild(option);
 	}
-	jediColor.value = '';
+	//jediColor.value = '';
 	
 	var createJedi = document.getElementById("createJedi");
 	createJedi.addEventListener("click", function(){
 		var name = document.getElementById("jediName").value;
-		var power = document.getElementById("jediPower").value;
-		var armor = document.getElementById("jediArmor").value;
-		var force = document.getElementById("jediForce").value;
+		var power = document.getElementById("jediPower").valueAsNumber;
+		var armor = document.getElementById("jediArmor").valueAsNumber;
+		var force = document.getElementById("jediForce").valueAsNumber;
 		var color = document.getElementById("jediColor").value;
 		
 		try {
@@ -33,7 +33,7 @@ simulator.init = function(){
 		document.getElementById("jediPower").value = 5;
 		document.getElementById("jediArmor").value = 3;
 		document.getElementById("jediForce").value = 3;
-		document.getElementById("jediColor").value = '';
+		//document.getElementById("jediColor").value = '';
 		
 		simulator.displayJedi();
 	});
@@ -41,10 +41,10 @@ simulator.init = function(){
 	var createSith = document.getElementById("createSith");
 	createSith.addEventListener("click", function(){
 		var name = document.getElementById("sithName").value;
-		var power = document.getElementById("sithPower").value;
-		var armor = document.getElementById("sithArmor").value;
-		var force = document.getElementById("sithForce").value;
-		var anger = document.getElementById("sithAnger").value;
+		var power = document.getElementById("sithPower").valueAsNumber;
+		var armor = document.getElementById("sithArmor").valueAsNumber;
+		var force = document.getElementById("sithForce").valueAsNumber;
+		var anger = document.getElementById("sithAnger").valueAsNumber;
 		
 		try {
 			var sith = new simulator.Sith(name, power, armor, force, anger);
@@ -61,6 +61,9 @@ simulator.init = function(){
 		
 		simulator.displaySith();
 	});
+	
+	var jediAttack = document.getElementById("jediAttack");
+	jediAttack.addEventListener("click", simulator.handlers.jediAttack);
 };
 
 simulator.displayJedi = function(){
@@ -83,13 +86,27 @@ simulator.displaySith = function(){
 		var sith = simulator.activeSith[i];
 		var tr = sithList.insertRow();
 		var td = tr.insertCell();
-		td.innerHTML = sith.name;
+		td.innerHTML = (sith.isAlive()) ? sith.name : "&capdot;<del>" + sith.name+"</del>";
 		td = tr.insertCell();
 		td.innerHTML = sith.getHealth();
 	}
 };
 
-
 document.addEventListener('DOMContentLoaded', function(){
 	simulator.init();
 });
+
+simulator.handlers = {};
+
+simulator.handlers.jediAttack = function(){
+	var jediIndex = Math.floor(Math.random() * simulator.activeJedi.length);
+	var sithIndex = Math.floor(Math.random() * simulator.activeSith.length);
+	
+	var jedi = simulator.activeJedi[jediIndex];
+	var sith = simulator.activeSith[sithIndex];
+	
+	var power = jedi.attack(sith);
+	simulator.displaySith();
+	var simConsole = document.getElementById("simconsole");
+	simConsole.innerHTML += jedi.name + " hit " + sith.name + " for "+power +" damage <br/>"; 
+};

@@ -13,4 +13,15 @@ simulator.Sith = function(name, power, armor, forceLevel, angerLevel){
 	this.getHealth = function(){
 		return health;
 	};
+	
+	this.isAlive = function(){
+		return (health !== 0);
+	};
+	
+	this.attackFor = function(attackPower){
+		health -= attackPower - armor;
+		if (health <0){
+			health = 0;
+		}
+	};
 };
