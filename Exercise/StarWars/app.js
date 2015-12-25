@@ -64,11 +64,29 @@ simulator.init = function(){
 };
 
 simulator.displayJedi = function(){
-		
+	var jediList = document.getElementById("jediList");
+	jediList.innerHTML = '';
+	for (var i = 0; i < simulator.activeJedi.length; i++) {
+		var jedi = simulator.activeJedi[i];
+		var tr = jediList.insertRow();
+		var td = tr.insertCell();
+		td.innerHTML = jedi.name;
+		td = tr.insertCell();
+		td.innerHTML = jedi.getHealth();
+	}
 };
 
 simulator.displaySith = function(){
-	
+	var sithList = document.getElementById("sithList");
+	sithList.innerHTML = '';
+	for (var i = 0; i < simulator.activeSith.length; i++) {
+		var sith = simulator.activeSith[i];
+		var tr = sithList.insertRow();
+		var td = tr.insertCell();
+		td.innerHTML = sith.name;
+		td = tr.insertCell();
+		td.innerHTML = sith.getHealth();
+	}
 };
 
 
