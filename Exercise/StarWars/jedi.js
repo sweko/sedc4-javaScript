@@ -1,15 +1,10 @@
 var simulator = simulator || {};
+
 simulator.Jedi = function(name, power, armor, forceLevel, color){
 	this.name = name;
-	if (power > 10) 
-		this.power=10;
-	else if (power < 0) 
-		this.power = 0;
-	else 
-		this.power = power;
-		
-	this.armor = Math.max(1, Math.min(5, armor));
 	
+	this.power = Math.max(1, Math.min(10, power));	
+	this.armor = Math.max(1, Math.min(5, armor));
 	this.forceLevel = Math.max(1, Math.min(5, forceLevel));
 	
 	var isValidColor = false;
@@ -33,3 +28,35 @@ simulator.Jedi = function(name, power, armor, forceLevel, color){
 };
 
 simulator.jediColors = ['blue', 'green', 'purple', 'yellow']; 
+
+
+simulator.createSelect = function (){
+
+	var inputColor = document.getElementById("selectColor");
+	for(var i=0; i <simulator.jediColors.length; i++){
+			var option = document.createElement("option");
+			
+			option.value = simulator.jediColors[i];
+			option.innerHTML = simulator.jediColors[i];
+			inputColor.appendChild(option);
+			
+		}
+}
+var createJediButton = document.getElementById("createJedi");
+createJediButton.addEventListener("click", function(){
+	var inputName = document.getElementById("inName").value;
+	var inputArmor = document.getElementById("inArmor").value;
+	var inputPower = document.getElementById("inPower").value;
+	var inputForceLevel = document.getElementById("inForceLevel").value;
+	var inputColor = document.getElementById("selectColor").value;
+	
+	
+	var jedaj4e = new simulator.Jedi(inputName,inputPower,inputArmor,inputForceLevel,inputColor);
+	jediArmy.push(jedaj4e);
+	console.log(jediArmy);
+	
+	});
+	
+
+
+simulator.createSelect();
