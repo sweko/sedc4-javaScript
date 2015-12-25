@@ -40,6 +40,17 @@ simulator.Jedi = function(name, power, armor, forceLevel, color){
 		
 		return attackPower;
 	};
+	
+	this.attackFor = function(attackPower){
+		health -= attackPower - armor;
+		if (health <0){
+			health = 0;
+		}
+	};
+	
+	this.isAlive = function(){
+		return (health !== 0);
+	};
 };
 
 simulator.jediColors = ['blue', 'green', 'purple', 'yellow']; 

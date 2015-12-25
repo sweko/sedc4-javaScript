@@ -24,4 +24,11 @@ simulator.Sith = function(name, power, armor, forceLevel, angerLevel){
 			health = 0;
 		}
 	};
+	
+	this.attack = function(target){
+		var attackPower = Math.floor(this.forceLevel * (0.8 + this.angerLevel/10) + Math.random() * (this.power+1));
+		target.attackFor(attackPower);
+		
+		return attackPower;
+	};
 };

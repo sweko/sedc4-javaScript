@@ -64,6 +64,13 @@ simulator.init = function(){
 	
 	var jediAttack = document.getElementById("jediAttack");
 	jediAttack.addEventListener("click", simulator.handlers.jediAttack);
+
+	var sithAttack = document.getElementById("sithAttack");
+	sithAttack.addEventListener("click", simulator.handlers.sithAttack);
+	
+	var battle = document.getElementById("battle");
+	battle.addEventListener("click", simulator.handlers.battle);
+
 };
 
 simulator.displayJedi = function(){
@@ -99,14 +106,71 @@ document.addEventListener('DOMContentLoaded', function(){
 simulator.handlers = {};
 
 simulator.handlers.jediAttack = function(){
-	var jediIndex = Math.floor(Math.random() * simulator.activeJedi.length);
-	var sithIndex = Math.floor(Math.random() * simulator.activeSith.length);
+	var fighters = simulator.getJediAndSith();
 	
-	var jedi = simulator.activeJedi[jediIndex];
-	var sith = simulator.activeSith[sithIndex];
-	
-	var power = jedi.attack(sith);
+	var power = fighters.jedi.attack(fighters.sith);
 	simulator.displaySith();
 	var simConsole = document.getElementById("simconsole");
-	simConsole.innerHTML += jedi.name + " hit " + sith.name + " for "+power +" damage <br/>"; 
+	simConsole.innerHTML += fighters.jedi.name + " hit " + fighters.sith.name + " for "+power +" damage <br/>"; 
+};
+
+simulator.handlers.sithAttack = function(){
+	var fighters = simulator.getJediAndSith();
+	
+	var power = fighters.sith.attack(fighters.jedi);
+	simulator.displayJedi();
+	var simConsole = document.getElementById("simconsole");
+	simConsole.innerHTML += fighters.sith.name + " hit " + fighters.jedi.name + " for "+power +" damage <br/>"; 
+};
+
+simulator.handlers.battle = function(){
+	simulator.handlers.jediAttack();
+	simulator.handlers.sithAttack();
+	
+	if (simulator.getJediAndSith())
+		setTimeout(simulator.handlers.battle, 400);
+	else	
+	{
+		var simConsole = document.getElementById("simconsole");
+
+		var aliveJedi = simulator.activeJedi.filter(function(jedi){
+			return jedi.isAlive();
+		});
+	
+		if (aliveJedi.length === 0){
+			simConsole.innerHTML += "<b>THE SITH WON. THE EMPIRE RULES THE GALAXY WITH AN IRON FIST</b>";
+		} else {
+			simConsole.innerHTML += "<b>THE JEDI WON. ORDER IS RESTORED TO THE REPUBLIC</b>";
+		}
+	}
+};
+
+simulator.getJediAndSith = function(){
+	var aliveJedi = simulator.activeJedi.filter(function(jedi){
+		return jedi.isAlive();
+	});
+	
+	if (aliveJedi.length === 0){
+		console.log("The jedi are all dead");
+		return null;
+	}
+	
+	var jediIndex = Math.floor(Math.random() * aliveJedi.length);
+	var jedi = aliveJedi[jediIndex];
+
+	var aliveSith = simulator.activeSith.filter(function(sith){
+		return sith.isAlive();
+	});
+	
+	if (aliveSith.length === 0){
+		console.log("The sith are all dead");
+		return null;
+	}
+	
+	var sithIndex = Math.floor(Math.random() * aliveSith.length);
+	var sith = aliveSith[sithIndex];	
+	return {
+		jedi: jedi,
+		sith: sith
+	};
 };
