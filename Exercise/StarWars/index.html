@@ -8,7 +8,23 @@
 	<div id="entry">
 		<table style="border: 1px solid black; width:100%">
 			<tr>
-				<td>jedi entry</td>
+				<td>
+					<table>
+						<tr>
+							<td>Name</td>
+							<td><input type="text" id="jediName" /></td>
+						</tr>
+						<tr>
+							<td>Lightsabre color:</td>
+							<td><select id="jediColor" ></select></td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<button id="createJedi">Create New Jedi</button>
+							</td>
+						</tr>
+					</table>
+				</td>
 				<td></td>
 				<td>sith entry</td>
 			</tr>
@@ -24,5 +40,7 @@
 		</table>
 	</div>
 	<script src="app.js"></script>
+	<script src="jedi.js"></script>
+	<script src="sith.js"></script>
 </body>
 </html>
