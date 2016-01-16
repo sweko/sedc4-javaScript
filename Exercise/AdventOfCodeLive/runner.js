@@ -6,8 +6,9 @@ document.addEventListener("DOMContentLoaded", function () {
     var tempResult = document.getElementById("tempResult");
     document.getElementById("start").addEventListener("click", function () {
         result.innerHTML="";
-        loadScript("day6.js", function(){
-            loadInputFile("day6.input", function(data){
+        var dayNumber = document.getElementById("dayNumber").value;
+        loadScript("day"+dayNumber+".js", function(){
+            loadInputFile("day"+dayNumber+".input", function(data){
                 processor.process(data, tempResult, function(out){
                     result.innerHTML +="<b>"+out+"</b>";
                 });
@@ -29,7 +30,7 @@ loadScript = function(scriptName, callback){
 
 loadInputFile = function(fileName, callback){
     var client = new XMLHttpRequest();
-    client.open('GET', 'day6.input');
+    client.open('GET', fileName);
     client.onreadystatechange = function () {
         if (client.readyState === 4 && client.status === 200) {
             console.log("input loaded, calling callback");
