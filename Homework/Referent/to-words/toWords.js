@@ -4,7 +4,6 @@ var tens = ['ten', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'ei
 var thousands = ['', 'thousand', 'million', 'billion'];
 
 var toWords = function (number) {
-    
     if (Number(number) !== number)
         throw new Error("number is not actually a number");
 
@@ -14,9 +13,11 @@ var toWords = function (number) {
     var result = capitaliseFirstLetter(numberToWordsImpl(number).trim() || singles[0]);
     return result;
 };
+
 function capitaliseFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
 var numberToWordsImpl = function (number) {
     if (number === 0)
         return "";

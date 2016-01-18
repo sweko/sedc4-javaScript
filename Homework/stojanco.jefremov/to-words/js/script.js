@@ -1,3 +1,9 @@
+(function(){
+	String.prototype.capitalizeFirstLetter = function() {
+    	return this.charAt(0).toUpperCase() + this.slice(1);
+	};
+})();
+
 (function () {
 	var convertButton = document.querySelector("#convertButton");
 	convertButton.onclick = function() {
@@ -186,8 +192,4 @@ function toMacedonianWords(number) {
 		return result;	
 	}
 	
-}
-
-String.prototype.capitalizeFirstLetter = function() {
-    return this.charAt(0).toUpperCase() + this.slice(1);
 }

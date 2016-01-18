@@ -1,0 +1,22 @@
+table {
+
+	border:4px;
+	background-color: #669973;
+	box-shadow: 2px 1px 5px ;
+	padding: 20px;	
+	margin: 10% 10%;
+}
+
+#screen {
+	width: 200px;
+	height: 50px;
+	font-size: 30px;
+	background-color:#e0ebeb;
+}
+
+input {
+	width: 48px;
+	height: 30px;
+	font-size: 20px;
+	margin-top: 5px;
+}
