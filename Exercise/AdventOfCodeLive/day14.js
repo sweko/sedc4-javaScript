@@ -37,8 +37,29 @@ processor.process = function (data, container, callback) {
     }
     container.innerHTML = JSON.stringify(reindeers);
     
-    var distances = reindeers.map(function(rd){return rd.totalDistance;});
-    var maxDistance = Math.max.apply(null, distances);
+    //var distances2 = reindeers.map(function(rd){return rd.totalDistance;});
+    
+    var distances2 = reindeers.map(rd => rd.totalDistance);
+    
+    var distances = [];
+    for (var index = 0; index < reindeers.length; index++) {
+        var reindeer = reindeers[index];
+        distances.push(reindeer.totalDistance);
+    }
+    container.innerHTML += JSON.stringify(distances);
+    container.innerHTML += JSON.stringify(distances2);
+    
+    var maxDistance2 = Math.max.apply(null, distances);
+    
+    var maxDistance = 0;
+    for (var index = 0; index < reindeers.length; index++) {
+        var reindeer = reindeers[index];
+        if (reindeer.totalDistance > maxDistance)
+            maxDistance = reindeer.totalDistance; 
+    }
+    
+    container.innerHTML += JSON.stringify(maxDistance);
+    container.innerHTML += JSON.stringify(maxDistance2);
     
     callback(maxDistance);
 };
