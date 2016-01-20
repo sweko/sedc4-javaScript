@@ -19,6 +19,11 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 var loadScript = function(scriptName, callback){
+    if ((loadScript.scripts) && (loadScript.scripts[scriptName])){
+        console.log("script pre-loaded, calling callback");
+        callback();
+    }
+    
     var script = document.createElement("script");
     script.src = scriptName;
     document.body.appendChild(script);
@@ -27,6 +32,9 @@ var loadScript = function(scriptName, callback){
         callback();
     };
 };
+
+//property on a function - you can do this in javascript as well
+loadScript.scripts = {};
 
 var loadInputFile = function(fileName, callback){
     var client = new XMLHttpRequest();
@@ -39,15 +47,3 @@ var loadInputFile = function(fileName, callback){
     };
     client.send();
 };
-
-/*
-    var client = new XMLHttpRequest();
-    client.open('GET', 'day06.input');
-    client.onreadystatechange = function () {
-        if (client.readyState === 4 && client.status === 200) {
-            console.log("input file loaded, calling callback");
-            callback(client.responseText);
-        }
-    };
-    client.send();
- */
