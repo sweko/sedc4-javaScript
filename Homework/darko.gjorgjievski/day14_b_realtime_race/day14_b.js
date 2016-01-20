@@ -100,7 +100,7 @@ function addToDistanceTraveledIfReindeersAreActive(reindeers, second) {
     }
 }
 
-function getReindeersInTheLead(reindeers) {
+function getReindeersWithMostDistanceTraveled(reindeers) {
     var maximumDistance = Math.max.apply(null, reindeers.map(function(o) { return o.distanceTraveled; }));
     
     // find reindeers with this maximum distance
@@ -128,6 +128,7 @@ function getReindeerWithMostPoints(reindeers) {
 
 function renderReindeersToTable(reindeers, table) {
     var reindeerWithMostPoints = getReindeerWithMostPoints(reindeers);
+    var reindeerWithMostDistance = getReindeersWithMostDistanceTraveled(reindeers);
     
     for (var i = 0; i < reindeers.length; i++) {
         var r = reindeers[i];
@@ -136,6 +137,10 @@ function renderReindeersToTable(reindeers, table) {
         
         if (r === reindeerWithMostPoints) {
             row.style.fontWeight = 'bold';
+        }
+        
+        if (reindeerWithMostDistance.indexOf(r) > -1) {
+            row.style.backgroundColor = '#2ea879';
         }
         
         var cellName = row.insertCell(0);
@@ -160,7 +165,7 @@ function processEachSecond(totalSeconds, reindeers) {
             var second = s;
             setTimeout(function() {
             addToDistanceTraveledIfReindeersAreActive(reindeers, second);
-            var reindeersInLead = getReindeersInTheLead(reindeers);
+            var reindeersInLead = getReindeersWithMostDistanceTraveled(reindeers);
             giveOnePointToReindeersInTheLead(reindeersInLead);
             reRenderReinddersToTable(reindeers);
                 
