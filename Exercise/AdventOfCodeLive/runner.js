@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-loadScript = function(scriptName, callback){
+var loadScript = function(scriptName, callback){
     var script = document.createElement("script");
     script.src = scriptName;
     document.body.appendChild(script);
@@ -28,7 +28,7 @@ loadScript = function(scriptName, callback){
     };
 };
 
-loadInputFile = function(fileName, callback){
+var loadInputFile = function(fileName, callback){
     var client = new XMLHttpRequest();
     client.open('GET', fileName);
     client.onreadystatechange = function () {
@@ -39,9 +39,6 @@ loadInputFile = function(fileName, callback){
     };
     client.send();
 };
-
-
-
 
 /*
     var client = new XMLHttpRequest();
