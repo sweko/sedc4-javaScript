@@ -63,12 +63,6 @@ function createRangeOfNumbers(low, high) {
     return list;
 }
 
-function pushArrayItemsIntoArray(arrayToBePushed, intoArray) {
-    for (var i = 0; i < arrayToBePushed.length; i++) {
-        intoArray.push(arrayToBePushed[i]);
-    }
-}
-
 
 function calculateFlyingSeconds(cycleRangesList, secondsFlying) {
     var flyingSeconds = [];
@@ -78,8 +72,8 @@ function calculateFlyingSeconds(cycleRangesList, secondsFlying) {
         var cycleRange = createRangeOfNumbers(cycleRangesList[i][0], cycleRangesList[i][1]);
         
         // since slice() is so flexible, I can use it on both whole and incomplete cycle ranges
-        pushArrayItemsIntoArray(cycleRange.slice(0, secondsFlying), flyingSeconds);
-        //pushArrayItemsIntoArray(cycleRange.slice(secondsFlying, cycleRange.length), restingSeconds);
+        flyingSeconds = flyingSeconds.concat(cycleRange.slice(0, secondsFlying));
+
     }
     
     return flyingSeconds;

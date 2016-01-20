@@ -1,4 +1,4 @@
-var raceSpeed = 1; // how many ms will pass between each race update
+var raceSpeed = 20; // how many ms will pass between each race update
 var secondsToRace = 2503;
 
 loadInputFile = function(fileName, callback){
