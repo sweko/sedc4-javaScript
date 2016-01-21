@@ -3,15 +3,15 @@ function sym() {
   for (var index = 0; index < arguments.length; index++) {
       var locals = [];
       var element = arguments[index];
-      
-      for (var i = 0; i < element.length; i++) {
-          var number = element[i];
+      var i, number;
+      for (i = 0; i < element.length; i++) {
+          number = element[i];
           if (locals.indexOf(number)===-1)
             locals.push(number);
       }
       
-      for (var i = 0; i < locals.length; i++) {
-          var number = locals[i];
+      for (i = 0; i < locals.length; i++) {
+          number = locals[i];
           var rindex = result.indexOf(number);
           if (rindex===-1)
             result.push(number);
@@ -22,8 +22,8 @@ function sym() {
   return result;
 }
 
-test("one", sym([1, 2, 3], [5, 2, 1, 4]), [3, 5, 4]);
-test("two", sym([1, 2, 5], [2, 3, 5], [3, 4, 5]), [1, 4, 5]);
-test("three", sym([1, 1, 2, 5], [2, 2, 3, 5], [3, 4, 5, 5]) , [1, 4, 5]);
-test("four", sym([3, 3, 3, 2, 5], [2, 1, 5, 7], [3, 4, 6, 6], [1, 2, 3]) , [7, 4, 6, 2, 3]);
-test("five", sym([3, 3, 3, 2, 5], [2, 1, 5, 7], [3, 4, 6, 6], [1, 2, 3], [5, 3, 9, 8], [1]) , [1, 2, 4, 5, 6, 7, 8, 9]);
+test("one", sym([1, 2, 3], [5, 2, 1, 4]), [3, 5, 4], comparers.array);
+test("two", sym([1, 2, 5], [2, 3, 5], [3, 4, 5]), [1, 4, 5], comparers.array);
+test("three", sym([1, 1, 2, 5], [2, 2, 3, 5], [3, 4, 5, 5]) , [1, 4, 5], comparers.array);
+test("four", sym([3, 3, 3, 2, 5], [2, 1, 5, 7], [3, 4, 6, 6], [1, 2, 3]) , [7, 4, 6, 2, 3], comparers.array);
+test("five", sym([3, 3, 3, 2, 5], [2, 1, 5, 7], [3, 4, 6, 6], [1, 2, 3], [5, 3, 9, 8], [1]) , [1, 2, 4, 5, 6, 7, 8, 9], comparers.array);
