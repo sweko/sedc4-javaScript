@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Registration form</title>
+	<meta charset="UTF-8">
+	
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+	<!-- Custom CSS -->
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+<body>
+	<section id="regForm" class="container">
+		<h1>Sign Up</h1>
+		<h2>It’s free and always will be.</h2>
+		<form>
+		  <div class="form-group row">
+		    <label for="firstName" class="col-sm-2 col-sm-offset-2 col-lg-offset-3 form-control-label">First name</label>
+		    <div class="col-sm-6 col-lg-4">
+		      <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First name">
+		    </div>
+		    <div class="col-sm-2 col-lg-3">
+		    	<span id="errorFirstName" class="errors">Error</span>
+	    	</div>
+		  </div>
+		  <div class="form-group row">
+		    <label for="lastName" class="col-sm-2 col-sm-offset-2 col-lg-offset-3 form-control-label">Last name</label>
+		    <div class="col-sm-6 col-lg-4">
+		      <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last name">
+		    </div>
+		    <div class="col-sm-2 col-lg-3">
+		    	<span id="errorLastName" class="errors">Error</span>
+	    	</div>
+		  </div>
+		  <div class="form-group row">
+		    <label for="emailOrPhone" class="col-sm-2 col-sm-offset-2 col-lg-offset-3 form-control-label">Email/Phone</label>
+		    <div class="col-sm-6 col-lg-4">
+		      <input type="text" class="form-control" id="emailOrPhone" name="emailOrPhone" placeholder="Email/Phone">
+		    </div>
+		    <div class="col-sm-2 col-lg-3">
+		    	<span id="errorEmailOrPhone" class="errors">Error</span>
+	    	</div>
+		  </div>
+		  <div class="form-group row">
+		    <label for="password" class="col-sm-2 col-sm-offset-2 col-lg-offset-3 form-control-label">Password</label>
+		    <div class="col-sm-6 col-lg-4">
+		      <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+		    </div>
+		    <div class="col-sm-2 col-lg-3">
+		    	<span id="errorPassword" class="errors">Error</span>
+	    	</div>
+		  </div>
+		  <div class="form-group row">
+		    <label for="birthYear" class="col-sm-2 col-sm-offset-2 col-lg-offset-3 form-control-label">Birthday</label>
+		    <div class="col-sm-6 col-lg-3">
+		      <select id="birthYear" name="birthYear">
+		      		<option value="default">Year</option>
+		      </select>
+              <select id="birthMonth" name="birthMonth">
+		      		<option value="default">Month</option>
+		      </select>
+		      <select id="birthDay" name="birthDay">
+		      		<option value="default">Day</option>
+		      </select>
+		    </div>
+		    <div class="col-sm-2 col-lg-3">
+		    	<span id="errorBirthday" class="errors">Error</span>
+	    	</div>
+		  </div>
+		  <div class="form-group row">
+		    <label class="col-sm-2 col-sm-offset-2 col-lg-offset-3">Sex</label>
+		    <div class="col-sm-4 col-lg-2">
+		      <div class="radio">
+		        <label>
+		          <input type="radio" name="sex" id="maleRadio" value="male">
+		          Male
+		        </label>
+		      </div>
+		      <div class="radio">
+		        <label>
+		          <input type="radio" name="sex" id="femaleRadio" value="female">
+		          Female
+		        </label>
+		      </div>
+		    </div>
+		    <div class="col-sm-2 col-lg-3">
+		    	<span id="errorSex" class="errors">Error</span>
+	    	</div>
+		  </div>
+		  <div class="form-group row">
+		    <div class="col-sm-offset-4 col-sm-8 col-lg-7 col-lg-offset-5">
+		      <button id="signUp" type="submit" class="btn btn-secondary">Sign up</button>
+		    </div>
+		  </div>
+		</form>
+	</section>
+	<!-- jQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<!-- Bootsrtap js -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
+    <!-- Custom script -->
+    <script src="js/myScript.js"></script>
+</body>
+</html>
