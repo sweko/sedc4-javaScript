@@ -11,3 +11,7 @@ button {
 .editInput {
 	display: none;
 }
+
+.blueBg {
+	background-color: #cce2ff !important;
+}

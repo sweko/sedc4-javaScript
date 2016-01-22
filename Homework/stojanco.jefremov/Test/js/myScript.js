@@ -4,10 +4,57 @@ $(function() {
         var nameInput = $('#nameInput');
         var emailInput = $('#emailInput');
         var mobileInput = $('#mobileInput');
+        if (invalidInputs(emailInput, mobileInput)) {
+            return;
+        }
         var currentPerson = new Person(nameInput.val(), emailInput.val(), mobileInput.val());
         personContainer.add(currentPerson);
         $('tbody').append('<tr>');
         var $lastRow = $('tbody tr:last-child');
+        $lastRow.click(function() {
+            $('tr').removeClass('blueBg');
+            $(this).addClass('blueBg');
+        });
+        
+        $('#closeDetails').click(function() {
+            $('#details').hide();
+        });
+        
+        function invalidInputs($email, $mobile) {
+            var result = false;
+            
+            
+            result = !isValidEmail($email) || !isValidNumber($mobile);
+            
+            return result;
+            
+            function isValidEmail($input) {
+                var $errorElement = getErrorElementFor($input);
+                $errorElement.text('');
+                var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+                var result = emailReg.test($input.val());
+                if (!result) {
+                    $errorElement.text('Enter correct email or macedonian phone number in 07*-***-*** format');
+                }
+                return result;
+            }
+            
+            function isValidNumber($input) {
+                var $errorElement = getErrorElementFor($input);
+                $errorElement.text('');
+                var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+                var result = emailReg.test($input.val());
+                if (!result) {
+                    var phoneReg = /^07\d[- ]?\d{3}[- ]?\d{3}$/;
+                    result = phoneReg.test($input.val());
+                }
+                if (!result) {
+                    $errorElement.text('Enter correct email or macedonian phone number in 07*-***-*** format');
+                }
+                return result;
+            }
+        }
+        
         $lastRow.append('<td id="name-' + currentPerson.getId() + '" class="name"><span class="inputData">' + currentPerson.name + '</span><input type="text" class="form-control editInput" /></td>');
         $lastRow.append('<td id="email-' + currentPerson.getId() + '" class="email"><span class="inputData">' + currentPerson.email + '</span><input type="text" class="form-control editInput" /></td>');
         $lastRow.append('<td id="mobile-' + currentPerson.getId() + '" class="mobile"><span class="inputData">' + currentPerson.mobile + '</span><input type="text" class="form-control editInput" /></td>');
