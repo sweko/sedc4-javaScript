@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Test</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="css/myStyle.css">
+</head>
+<body>
+	<div class="container">
+		<div class="col-sm-6 col-md-4">
+			<form>
+			  <fieldset class="form-group">
+			    <label for="nameInput">Name</label>
+			    <input type="text" class="form-control" id="nameInput" name="nameInput" placeholder="Name">
+			  </fieldset>
+			  <fieldset class="form-group">
+			    <label for="emailInput">Email</label>
+			    <input type="text" class="form-control" id="emailInput" name="emailInput" placeholder="Email">
+			  </fieldset>
+			  <fieldset class="form-group">
+			    <label for="mobileInput">Mobile</label>
+			    <input type="text" class="form-control" id="mobileInput" name="mobileInput" placeholder="Mobile">
+			  </fieldset>
+			  <div class="form-group row">
+			    <div class=" col-sm-10">
+			      <button type="submit" id="submit" class="btn btn-secondary">Submit</button>
+			    </div>
+			  </div>
+			</form>
+		</div>
+
+		<table class="table table-striped">
+		  <thead>
+		    <tr>
+		      	<th>Name</th>
+				<th>Email Address</th>
+				<th>Mobile Number</th>
+				<th>Action</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    
+		  </tbody>
+		</table>
+	
+    <div id="details" class="col-sm-6 col-md-4">
+        <h6>Details</h6>
+        <p><span class="bold">Name</span><span id="nameRead"></span></p>
+        <p><span class="bold">Email</span><span id="emailRead"></span></p>
+        <p><span class="bold">Mobile</span><span id="mobileRead"></span></p>
+        <button id="closeDetails" type="button" class="btn btn-danger">X</button>
+    </div>
+    
+    </div>	
+    
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
+	<script src="js/myScript.js"></script>
+</body>
+</html>
