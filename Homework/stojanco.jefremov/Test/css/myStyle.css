@@ -1,0 +1,13 @@
+button {
+	margin-right: 0.5rem;
+}
+
+.bold {
+	font-weight: bold;
+	margin-right: 0.3rem;
+}
+
+#details,
+.editInput {
+	display: none;
+}
