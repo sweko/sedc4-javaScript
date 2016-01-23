@@ -15,3 +15,6 @@ button {
 .blueBg {
 	background-color: #cce2ff !important;
 }
+.errors {
+ 	color: red;
+ }

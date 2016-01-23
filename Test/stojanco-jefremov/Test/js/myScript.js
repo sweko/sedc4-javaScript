@@ -1,13 +1,13 @@
 $(function() {
     $('#submit').click(function(e) {
         e.preventDefault();
-        var nameInput = $('#nameInput');
-        var emailInput = $('#emailInput');
-        var mobileInput = $('#mobileInput');
-        if (invalidInputs(emailInput, mobileInput)) {
+        var $nameInput = $('#nameInput');
+        var $emailInput = $('#emailInput');
+        var $mobileInput = $('#mobileInput');
+        if (invalidInputs($emailInput, $mobileInput)) {
             return;
         }
-        var currentPerson = new Person(nameInput.val(), emailInput.val(), mobileInput.val());
+        var currentPerson = new Person($nameInput.val(), $emailInput.val(), $mobileInput.val());
         personContainer.add(currentPerson);
         $('tbody').append('<tr>');
         var $lastRow = $('tbody tr:last-child');
@@ -21,20 +21,17 @@ $(function() {
         });
         
         function invalidInputs($email, $mobile) {
-            var result = false;
-            
-            
-            result = !isValidEmail($email) || !isValidNumber($mobile);
-            
+            var result = false; 
+            result = !isValidEmail($email) || !isValidNumber($mobile);           
             return result;
             
             function isValidEmail($input) {
                 var $errorElement = getErrorElementFor($input);
                 $errorElement.text('');
-                var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+                var emailReg = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
                 var result = emailReg.test($input.val());
                 if (!result) {
-                    $errorElement.text('Enter correct email or macedonian phone number in 07*-***-*** format');
+                    $errorElement.text('Enter correct email address');
                 }
                 return result;
             }
@@ -42,17 +39,22 @@ $(function() {
             function isValidNumber($input) {
                 var $errorElement = getErrorElementFor($input);
                 $errorElement.text('');
-                var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-                var result = emailReg.test($input.val());
+                var phoneReg = /^\d{9,}$/;
+                result = phoneReg.test($input.val());
                 if (!result) {
-                    var phoneReg = /^07\d[- ]?\d{3}[- ]?\d{3}$/;
-                    result = phoneReg.test($input.val());
-                }
-                if (!result) {
-                    $errorElement.text('Enter correct email or macedonian phone number in 07*-***-*** format');
+                    $errorElement.text('Enter the value only with numbers (without white spaces)');
                 }
                 return result;
             }
+            
+            function getErrorElementFor($input) {
+                return $('#error' + capitalizeFirst($input.attr('id')));
+            }
+            
+            function capitalizeFirst(text) {
+                return text.charAt(0).toUpperCase() + text.slice(1);
+            }
+            
         }
         
         $lastRow.append('<td id="name-' + currentPerson.getId() + '" class="name"><span class="inputData">' + currentPerson.name + '</span><input type="text" class="form-control editInput" /></td>');
