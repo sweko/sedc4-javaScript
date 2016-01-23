@@ -12,9 +12,15 @@ button {
 	display: none;
 }
 
+#details {
+    border: 1px solid grey;
+    padding: 1rem;
+}
+
 .blueBg {
 	background-color: #cce2ff !important;
 }
 .errors {
  	color: red;
+    display: none;
  }

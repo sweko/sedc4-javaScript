@@ -17,54 +17,24 @@ $(function() {
         });
         
         $('#closeDetails').click(function() {
-            $('#details').hide();
+            $('#details').fadeOut();
         });
         
-        function invalidInputs($email, $mobile) {
-            var result = false; 
-            result = !isValidEmail($email) || !isValidNumber($mobile);           
-            return result;
-            
-            function isValidEmail($input) {
-                var $errorElement = getErrorElementFor($input);
-                $errorElement.text('');
-                var emailReg = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-                var result = emailReg.test($input.val());
-                if (!result) {
-                    $errorElement.text('Enter correct email address');
-                }
-                return result;
-            }
-            
-            function isValidNumber($input) {
-                var $errorElement = getErrorElementFor($input);
-                $errorElement.text('');
-                var phoneReg = /^\d{9,}$/;
-                result = phoneReg.test($input.val());
-                if (!result) {
-                    $errorElement.text('Enter the value only with numbers (without white spaces)');
-                }
-                return result;
-            }
-            
-            function getErrorElementFor($input) {
-                return $('#error' + capitalizeFirst($input.attr('id')));
-            }
-            
-            function capitalizeFirst(text) {
-                return text.charAt(0).toUpperCase() + text.slice(1);
-            }
-            
-        }
+        var currentPersonId = currentPerson.getId();
         
-        $lastRow.append('<td id="name-' + currentPerson.getId() + '" class="name"><span class="inputData">' + currentPerson.name + '</span><input type="text" class="form-control editInput" /></td>');
-        $lastRow.append('<td id="email-' + currentPerson.getId() + '" class="email"><span class="inputData">' + currentPerson.email + '</span><input type="text" class="form-control editInput" /></td>');
-        $lastRow.append('<td id="mobile-' + currentPerson.getId() + '" class="mobile"><span class="inputData">' + currentPerson.mobile + '</span><input type="text" class="form-control editInput" /></td>');
+        $lastRow.append('<td id="name-' + currentPersonId + '" class="name"><span class="inputData">' + currentPerson.name 
+            + '</span><input type="text" class="form-control editInput" /></td>');
+        $lastRow.append('<td id="email-' + currentPersonId + '" class="email"><span class="inputData">' + currentPerson.email
+             + '</span><input id="inputEmail-' + currentPersonId + '" type="text" class="form-control editInput" /><span id="errorInputEmail-' 
+             + currentPersonId + '" class="errors">Error</span></td>');
+        $lastRow.append('<td id="mobile-' + currentPersonId + '" class="mobile"><span class="inputData">' + currentPerson.mobile 
+            + '</span><input id="inputMobile-' + currentPersonId + '" type="text" class="form-control editInput" /><span id="errorInputMobile-' 
+             + currentPersonId + '" class="errors">Error</span></td>');
         var buttonsHtml = '<button type="button" class="btn btn-info-outline read">Read</button>'
             + '<button type="button" class="btn btn-warning-outline update">Update</button>'
             + '<button type="button" class="btn btn-danger-outline delete">Delete</button>';
-        var hiddenInput = '<input type="hidden" name="country" value="' + currentPerson.getId() + '">';
-        $lastRow.append('<td id="action-' + currentPerson.getId() + '">' + (buttonsHtml + hiddenInput) + '</td>');
+        var hiddenInput = '<input type="hidden" name="country" value="' + currentPersonId + '">';
+        $lastRow.append('<td id="action-' + currentPersonId + '">' + (buttonsHtml + hiddenInput) + '</td>');
         
         $lastRow.children('td:last-child').children('.read').click(function() {
             var personId = $(this).closest('td').find('[type=hidden]').val();
@@ -80,9 +50,8 @@ $(function() {
              $(this).closest('tr').fadeOut();
              personContainer.remove(personId);
         });
-        var saving = true;
+        var saving = false;
         $lastRow.children('td:last-child').children('.update').click(function() {
-            saving = !saving;
             var personId = $(this).closest('td').find('[type=hidden]').val();
             var person = personContainer.getPerson(personId);
              if (!saving) {
@@ -90,9 +59,13 @@ $(function() {
                 $(this).closest('tr').children('td.name').children('.editInput').val(person.name);
                 $(this).closest('tr').children('td.email').children('.editInput').val(person.email);
                 $(this).closest('tr').children('td.mobile').children('.editInput').val(person.mobile);
-                $(this).closest('tr').children('td').children('.editInput').show();
+                $(this).closest('tr').children('td').children('.editInput').show().css('display', 'block');
                 $(this).closest('tr').children('td').children('.inputData').hide();
+                saving = !saving;
              } else {
+                if (invalidInputs($('#inputEmail-' + personId), $('#inputMobile-' + personId))) {
+                    return;
+                }
                 $(this).text('Update');
                 person.name = $(this).closest('tr').children('td.name').children('.editInput').val();
                 person.email = $(this).closest('tr').children('td.email').children('.editInput').val();
@@ -100,11 +73,52 @@ $(function() {
                 $(this).closest('tr').children('td.name').children('.inputData').text(person.name);
                 $(this).closest('tr').children('td.email').children('.inputData').text(person.email);
                 $(this).closest('tr').children('td.mobile').children('.inputData').text(person.mobile);
-                $(this).closest('tr').children('td').children('.editInput').hide();
+                $(this).closest('tr').children('td').children('.editInput, .errors').hide();
                 $(this).closest('tr').children('td').children('.inputData').show();
+                saving = !saving;
              }
              
         });
+        
+        function invalidInputs($email, $mobile) {
+            var result = false;
+            $('.errors').text(''); 
+            result = !isValidEmail($email) || !isValidNumber($mobile);           
+            return result;
+            
+            function isValidEmail($input) {
+                var $errorElement = getErrorElementFor($input);
+                $errorElement.text('');
+                var emailReg = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+                var result = emailReg.test($input.val());
+                if (!result) {
+                    $errorElement.show();
+                    $errorElement.text('Enter valid email address');
+                }
+                return result;
+            }
+            
+            function isValidNumber($input) {
+                var $errorElement = getErrorElementFor($input);
+                $errorElement.text('');
+                var phoneReg = /^\d{9,}$/;
+                result = phoneReg.test($input.val());
+                if (!result) {
+                    $errorElement.show();
+                    $errorElement.text('Enter valid number only with digits');
+                }
+                return result;
+            }
+            
+            function getErrorElementFor($input) {
+                return $('#error' + capitalizeFirst($input.attr('id')));
+            }
+            
+            function capitalizeFirst(text) {
+                return text.charAt(0).toUpperCase() + text.slice(1);
+            }
+            
+        }
         
     });
     
