@@ -1,0 +1,33 @@
+<html>
+	<head>
+		<title> JavaScript Demo </title>
+	</head>
+	<body>
+		<h1>Welcome to JavaScript</h1>
+		
+		<div>
+			First Number: 
+			<input type="number" id="firstNumber" />
+		</div>
+		<div>
+			Second Number:
+			<input type="number" id="secondNumber" />
+		</div>
+		<div>
+			Operation:
+			<select id="operation">
+				<option value="+">Addition</option>
+				<option value="-">Subtraction</option>
+				<option value="*">Multiplication</option>
+				<option value="/">Division</option>
+			</select>
+		</div>
+		<div>
+			<input type="button" id="performButton" value="Perform Calculation" onclick="performCalculation()"/>
+		</div>
+		
+		<div id="result"></div>
+		
+		<script src="dom.js"></script>
+	</body>
+</html>

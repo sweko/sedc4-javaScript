@@ -1,0 +1,48 @@
+.number {
+	background-color: #e0e0d1;
+	width: 70px;
+	height: 70px;
+	border-radius: 2px;
+    	border: 1px solid black;
+    	font-size: 25px;
+    	font-weight: bold;
+    	color: #3D3D3D;
+}
+
+.operator {
+	background-color: #f4f4f0;
+	width: 70px;
+	height: 70px;
+	border-radius: 2px;
+    	border: 1px solid black;
+    	font-size: 24px;
+    	color: #5C5C5C;
+}
+
+#display {
+	background-color: #ffffff;
+	height: 70px;
+	border-radius: 2px;
+    	border: 1px solid black;
+    	text-align: right;
+    	padding-right: 10px;
+    	font-size: 24px;
+    	font-weight: bold;
+    	color: #282929;
+}
+
+.number:hover { 
+        background-color: #B6CAD1;
+}
+
+.number:active { 
+        background-color: #7E9AA3;
+}
+
+.operator:hover { 
+        background-color: #B6CAD1;
+}
+
+.operator:active { 
+        background-color: #7E9AA3;
+}
