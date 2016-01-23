@@ -8,9 +8,11 @@ $(function() {
             return;
         }
         var currentPerson = new Person($nameInput.val(), $emailInput.val(), $mobileInput.val());
+        var currentPersonId = currentPerson.getId();
         personContainer.add(currentPerson);
-        $('tbody').append('<tr>');
-        var $lastRow = $('tbody tr:last-child');
+        var $lastRow = $('<tr>');
+        $lastRow.data('personId', currentPersonId);
+        $lastRow.appendTo('tbody');
         $lastRow.click(function() {
             $('tr').removeClass('blueBg');
             $(this).addClass('blueBg');
@@ -20,24 +22,74 @@ $(function() {
             $('#details').fadeOut();
         });
         
-        var currentPersonId = currentPerson.getId();
         
-        $lastRow.append('<td id="name-' + currentPersonId + '" class="name"><span class="inputData">' + currentPerson.name 
-            + '</span><input type="text" class="form-control editInput" /></td>');
-        $lastRow.append('<td id="email-' + currentPersonId + '" class="email"><span class="inputData">' + currentPerson.email
-             + '</span><input id="inputEmail-' + currentPersonId + '" type="text" class="form-control editInput" /><span id="errorInputEmail-' 
-             + currentPersonId + '" class="errors">Error</span></td>');
-        $lastRow.append('<td id="mobile-' + currentPersonId + '" class="mobile"><span class="inputData">' + currentPerson.mobile 
-            + '</span><input id="inputMobile-' + currentPersonId + '" type="text" class="form-control editInput" /><span id="errorInputMobile-' 
-             + currentPersonId + '" class="errors">Error</span></td>');
-        var buttonsHtml = '<button type="button" class="btn btn-info-outline read">Read</button>'
-            + '<button type="button" class="btn btn-warning-outline update">Update</button>'
-            + '<button type="button" class="btn btn-danger-outline delete">Delete</button>';
-        var hiddenInput = '<input type="hidden" name="country" value="' + currentPersonId + '">';
-        $lastRow.append('<td id="action-' + currentPersonId + '">' + (buttonsHtml + hiddenInput) + '</td>');
         
-        $lastRow.children('td:last-child').children('.read').click(function() {
-            var personId = $(this).closest('td').find('[type=hidden]').val();
+        var $tdName = $('<td>')
+                .appendTo($lastRow)
+                .attr('id', 'tdName-' + currentPersonId)
+                .attr('class', 'name');
+        $('<span>').attr('class', 'inputData')
+                    .text(currentPerson.name)
+                    .appendTo($tdName);
+        $('<input>').attr('class', 'form-control editInput')
+                    .attr('type', 'text')
+                    .attr('id', 'inputName-' + currentPersonId)
+                    .val(currentPerson.name)
+                    .appendTo($tdName);
+        
+        var $tdEmail = $('<td>')
+                .appendTo($lastRow)
+                .attr('id', 'tdEmail-' + currentPersonId)
+                .attr('class', 'email');
+        $('<span>').attr('class', 'inputData')
+                    .text(currentPerson.email)
+                    .appendTo($tdEmail);
+        $('<input>').attr('class', 'form-control editInput')
+                    .attr('type', 'text')
+                    .attr('id', 'inputEmail-' + currentPersonId)
+                    .val(currentPerson.email)
+                    .appendTo($tdEmail);
+         $('<span>').attr('class', 'errors')
+                    .attr('id', 'errorInputEmail-' + currentPersonId)
+                    .appendTo($tdEmail);
+         
+         var $tdMobile = $('<td>')
+                .appendTo($lastRow)
+                .attr('id', 'tdMobile-' + currentPersonId)
+                .attr('class', 'mobile');
+        $('<span>').attr('class', 'inputData')
+                    .text(currentPerson.mobile)
+                    .appendTo($tdMobile);
+        $('<input>').attr('class', 'form-control editInput')
+                    .attr('type', 'text')
+                    .attr('id', 'inputMobile-' + currentPersonId)
+                    .val(currentPerson.mobile)
+                    .appendTo($tdMobile);
+         $('<span>').attr('class', 'errors')
+                    .attr('id', 'errorInputMobile-' + currentPersonId)
+                    .appendTo($tdMobile);
+        
+        var $tdAction = $('<td>')
+                        .appendTo($lastRow)
+                        .attr('id', 'tdAction-' + currentPersonId);
+        var $readButton = $('<button>')
+                            .attr('type', 'button')
+                            .attr('class', 'btn btn-info-outline read')
+                            .text('Read');
+        var $updateButton = $('<button>')
+                            .attr('type', 'button')
+                            .attr('class', 'btn btn-warning-outline update')
+                            .text('Update');
+        var $deleteButton = $('<button>')
+                            .attr('type', 'button')
+                            .attr('class', 'btn btn-danger-outline delete')
+                            .text('Delete');
+        $tdAction.append($readButton)
+                 .append($updateButton)
+                 .append($deleteButton);
+        
+        $readButton.click(function() {
+            var personId = $(this).closest('tr').data('personId');
             var person = personContainer.getPerson(personId);
             $('#nameRead').text(person.name);
             $('#emailRead').text(person.email);
@@ -45,20 +97,20 @@ $(function() {
             $('#details').fadeIn();
         });
         
-        $lastRow.children('td:last-child').children('.delete').click(function() {
-             var personId = $(this).closest('td').find('[type=hidden]').val();
+        $deleteButton.click(function() {
+             var personId = $(this).closest('tr').data('personId');
              $(this).closest('tr').fadeOut();
              personContainer.remove(personId);
         });
         var saving = false;
-        $lastRow.children('td:last-child').children('.update').click(function() {
-            var personId = $(this).closest('td').find('[type=hidden]').val();
+        $updateButton.click(function() {
+            var personId = $(this).closest('tr').data('personId');
             var person = personContainer.getPerson(personId);
              if (!saving) {
-                $(this).text('Save');   
-                $(this).closest('tr').children('td.name').children('.editInput').val(person.name);
-                $(this).closest('tr').children('td.email').children('.editInput').val(person.email);
-                $(this).closest('tr').children('td.mobile').children('.editInput').val(person.mobile);
+                $(this).text('Save');
+                $('#inputName-' + personId).val(person.name);
+                $('#inputEmail-' + personId).val(person.email);
+                $('#inputMobile-' + personId).val(person.mobile);
                 $(this).closest('tr').children('td').children('.editInput').show().css('display', 'block');
                 $(this).closest('tr').children('td').children('.inputData').hide();
                 saving = !saving;
@@ -67,12 +119,12 @@ $(function() {
                     return;
                 }
                 $(this).text('Update');
-                person.name = $(this).closest('tr').children('td.name').children('.editInput').val();
-                person.email = $(this).closest('tr').children('td.email').children('.editInput').val();
-                person.mobile = $(this).closest('tr').children('td.mobile').children('.editInput').val();
-                $(this).closest('tr').children('td.name').children('.inputData').text(person.name);
-                $(this).closest('tr').children('td.email').children('.inputData').text(person.email);
-                $(this).closest('tr').children('td.mobile').children('.inputData').text(person.mobile);
+                person.name = $('#inputName-' + personId).val();
+                person.email = $('#inputEmail-' + personId).val();
+                person.mobile = $('#inputMobile-' + personId).val();
+                $('#tdName-' + personId + ' span.inputData').text(person.name);
+                $('#tdEmail-' + personId + ' span.inputData').text(person.email);
+                $('#tdMobile-' + personId + ' span.inputData').text(person.mobile);
                 $(this).closest('tr').children('td').children('.editInput, .errors').hide();
                 $(this).closest('tr').children('td').children('.inputData').show();
                 saving = !saving;
@@ -127,13 +179,9 @@ $(function() {
     var personContainer = {
         content: [],
         getPerson: function(personId) {
-            for (var i = 0; i < this.content.length; i++) {
-                var element = this.content[i];
-                var currentId = element.getId();
-                if (currentId == personId) {
-                    return element;
-                }
-            }
+            var id = Number(personId);
+            var index = this.content.findIndex(function(p) { return p.getId() === id; });
+            return this.content[index];
         } ,
         add: function(person) {
             this.content.push(person);
