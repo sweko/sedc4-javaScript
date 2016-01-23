@@ -67,6 +67,8 @@ $(function() {
     $('#signUp').click(function(e) {             
         if (empties() || invalidInputs()) {
             e.preventDefault();
+        } else {
+            alert('You have successfuly signed up.');
         }
         
         function empties() {
@@ -134,7 +136,8 @@ $(function() {
             
             
             result = !isValidName($firstNameInput) || !isValidName($lastNameInput)
-            || !isValidEmailOrPhone($emailOrPhoneInput);
+                || !isValidEmailOrPhone($emailOrPhoneInput) 
+                || !isValidPassword($passwordInput);
             
             return result;
             
@@ -160,6 +163,17 @@ $(function() {
                 }
                 if (!result) {
                     $errorElement.text('Enter correct email or macedonian phone number in 07*-***-*** format');
+                }
+                return result;
+            }
+            
+            function isValidPassword($input) {
+                var passReg = /^(?=.*\d)(?=.*[!@#$%^&*\-_,\.\/\?<>;:'"\[\]\+=\(\)`~\\\|])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*\-_,\.\/\?<>;:'"\[\]\+=\(\)`~\\\|]{6,16}$/;
+                var $errorElement = getErrorElementFor($input);
+                $errorElement.text('');
+                var result = passReg.test($input.val());
+                if (!result) {
+                    $errorElement.text('Enter password that contains at least 1 lowercase character, 1 uppercase character, 1 number, 1 special character and has length between 6 and 16 characters.');
                 }
                 return result;
             }
