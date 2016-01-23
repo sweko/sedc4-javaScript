@@ -16,18 +16,29 @@ $("#submit").click(function() {
 						"<button class='delete'>Delete </button>"+
 						"</td></tr>");
 
-	$(".delete").bind("click", Delete);
+	$(".read").bind("click", Read);
 	$(".update").bind("click", Update);
-	// $(".read").bind("click", Read);
+	$(".delete").bind("click", Delete).bla
+
+});
 
 
+$(document).on("click", "#myTable tr", function(e) {
+
+		$(".test").css("background-color", "");
+
+
+
+		$(this).css("background-color", "#e5faff");
+		$(this).attr('class', 'test');
+		
 });
 
 
 
 function Delete(){ 
 	var par = $(this).parent().parent(); 
-	par.remove();
+	par.hide();
 }; 
 
  function Update(){ 
@@ -68,6 +79,40 @@ function Save(){
 
 	$(".delete").bind("click", Delete);
 	$(".update").bind("click", Update);
-	// $(".read").bind("click", Read);
+	$(".read").bind("click", Read);
+
+}
+
+
+function Close () {
+	$("#details").remove();
+}
+
+function Read(){
+
+	var par = $(this).parent().parent(); 
+
+	var tdName = par.children("td:nth-child(1)");
+	var tdEmail = par.children("td:nth-child(2)");
+	var tdNumber =  par.children("td:nth-child(3)");
+	var tdAction = par.children("td:nth-child(4)");
+
+	$("#details").remove();
+
+	$('body').append("<div id='details'> "
+					+ "<b>Details:</b>"
+					+"<button class='close'>Close </button>" 
+					+"<br/>"
+					+ "Name: "
+					+ tdName.html()
+					+"<br/>"
+					+ "Email: "
+					+ tdEmail.html()
+					+"<br/>"
+					+ "Number: "
+					+ tdNumber.html()
+						+"</div>");
+
+	$(".close").bind("click", Close);
 
 }

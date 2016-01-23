@@ -1,9 +1,26 @@
-#table {
-	
-	border-top: 1px solid black;
-	border-bottom: 1px solid black;
+#tableDiv {
+	margin-bottom: 30px;
 }
 
-td, th {
-	border: 1px solid black;
+table {
+
+	table-layout: fixed;
+	width: 800px;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+	text-align: left;
+
+}
+
+#details {
+	width: 350px;
+	height: 150px;
+	border: 2px solid black;
+	margin-left: 30px;
+	padding: 10px;
+}
+
+
+th{
+	width: 25%;
 }
