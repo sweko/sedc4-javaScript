@@ -1,0 +1,57 @@
+body {
+	background-color: whitesmoke;
+}
+
+
+
+.col-sm-6 .form-control {
+	padding: 5px;
+	margin-bottom: 10px;
+}
+
+#add{
+	margin: 5px;
+	
+}
+
+#display{
+	width: 200px;
+	padding: 5px;
+}
+	
+
+thead {
+	background-color: #333;
+	color: white;
+	text-align: center;
+	width:100%;
+	vertical-align: middle;
+	padding-left: 500px;
+}
+
+.display {
+	font-family: verdana;
+	font-size: 15px;
+	color:  #ff3300;
+	padding: 5px;
+	background-color: #f2f2f2;
+	padding: 5px;
+
+}
+.display h6 {
+	text-align: center;
+	vertical-align: middle;
+}
+
+.save, .cancel {
+display:none;
+}​
+
+
+.table {
+	border: 1px solid white;
+}
+
+.selected {
+	background-color: red;
+}
