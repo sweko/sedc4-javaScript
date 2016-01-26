@@ -1,28 +1,88 @@
 $(function() {
+    
+    var saving = false;
+    
+    $('tbody').click(function(e) {
+        
+        var $target = $(e.target);
+        $('tr').removeClass('blueBg');
+        var $row = $($target.closest('tr'));
+        $row.addClass('blueBg');
+        
+        if ($target.attr('type') === 'button') {
+            
+            if ($target.hasClass('read')) {//readButton
+            
+                var personId = $row.data('personId');
+                var person = personContainer.getPerson(personId);
+                $('#nameRead').text(person.name);
+                $('#emailRead').text(person.email);
+                $('#mobileRead').text(person.mobile);
+                $('#details').fadeIn();
+                
+            } else if ($target.hasClass('delete')) {//deleteButton
+            
+                var personId = $row.data('personId');
+                $row.fadeOut();
+                personContainer.remove(personId);
+                
+            } else if ($target.hasClass('update')) {//updateButton
+            
+                var personId = $row.data('personId');
+                var person = personContainer.getPerson(personId);
+                if (!saving) {
+                    $target.text('Save');
+                    $('#inputName-' + personId).val(person.name);
+                    $('#inputEmail-' + personId).val(person.email);
+                    $('#inputMobile-' + personId).val(person.mobile);
+                    $row.children('td').children('.editInput').show().css('display', 'block');
+                    $row.children('td').children('.inputData').hide();
+                    saving = !saving;
+                    
+                } else {
+                    
+                    if (invalidInputs($('#inputEmail-' + personId), $('#inputMobile-' + personId))) {
+                        return;
+                    }
+                    
+                    $target.text('Update');
+                    person.name = $('#inputName-' + personId).val();
+                    person.email = $('#inputEmail-' + personId).val();
+                    person.mobile = $('#inputMobile-' + personId).val();
+                    $('#tdName-' + personId + ' span.inputData').text(person.name);
+                    $('#tdEmail-' + personId + ' span.inputData').text(person.email);
+                    $('#tdMobile-' + personId + ' span.inputData').text(person.mobile);
+                    $row.children('td').children('.editInput, .errors').hide();
+                    $row.children('td').children('.inputData').show();
+                    saving = !saving;
+                    
+                }
+            }
+        }
+    });
+    
+    $('#closeDetails').click(function() {
+        $('#details').fadeOut();
+    });
+    
     $('#submit').click(function(e) {
+        
         e.preventDefault();
+        
         var $nameInput = $('#nameInput');
         var $emailInput = $('#emailInput');
         var $mobileInput = $('#mobileInput');
         if (invalidInputs($emailInput, $mobileInput)) {
             return;
         }
+        
         var currentPerson = new Person($nameInput.val(), $emailInput.val(), $mobileInput.val());
         var currentPersonId = currentPerson.getId();
         personContainer.add(currentPerson);
+        
         var $lastRow = $('<tr>');
         $lastRow.data('personId', currentPersonId);
         $lastRow.appendTo('tbody');
-        $lastRow.click(function() {
-            $('tr').removeClass('blueBg');
-            $(this).addClass('blueBg');
-        });
-        
-        $('#closeDetails').click(function() {
-            $('#details').fadeOut();
-        });
-        
-        
         
         var $tdName = $('<td>')
                 .appendTo($lastRow)
@@ -88,51 +148,9 @@ $(function() {
                  .append($updateButton)
                  .append($deleteButton);
         
-        $readButton.click(function() {
-            var personId = $(this).closest('tr').data('personId');
-            var person = personContainer.getPerson(personId);
-            $('#nameRead').text(person.name);
-            $('#emailRead').text(person.email);
-            $('#mobileRead').text(person.mobile);
-            $('#details').fadeIn();
-        });
-        
-        $deleteButton.click(function() {
-             var personId = $(this).closest('tr').data('personId');
-             $(this).closest('tr').fadeOut();
-             personContainer.remove(personId);
-        });
-        var saving = false;
-        $updateButton.click(function() {
-            var personId = $(this).closest('tr').data('personId');
-            var person = personContainer.getPerson(personId);
-             if (!saving) {
-                $(this).text('Save');
-                $('#inputName-' + personId).val(person.name);
-                $('#inputEmail-' + personId).val(person.email);
-                $('#inputMobile-' + personId).val(person.mobile);
-                $(this).closest('tr').children('td').children('.editInput').show().css('display', 'block');
-                $(this).closest('tr').children('td').children('.inputData').hide();
-                saving = !saving;
-             } else {
-                if (invalidInputs($('#inputEmail-' + personId), $('#inputMobile-' + personId))) {
-                    return;
-                }
-                $(this).text('Update');
-                person.name = $('#inputName-' + personId).val();
-                person.email = $('#inputEmail-' + personId).val();
-                person.mobile = $('#inputMobile-' + personId).val();
-                $('#tdName-' + personId + ' span.inputData').text(person.name);
-                $('#tdEmail-' + personId + ' span.inputData').text(person.email);
-                $('#tdMobile-' + personId + ' span.inputData').text(person.mobile);
-                $(this).closest('tr').children('td').children('.editInput, .errors').hide();
-                $(this).closest('tr').children('td').children('.inputData').show();
-                saving = !saving;
-             }
-             
-        });
-        
-        function invalidInputs($email, $mobile) {
+    });
+    
+    function invalidInputs($email, $mobile) {
             var result = false;
             $('.errors').text(''); 
             result = !isValidEmail($email) || !isValidNumber($mobile);           
@@ -171,10 +189,6 @@ $(function() {
             }
             
         }
-        
-    });
-    
-    
     
     var personContainer = {
         content: [],
