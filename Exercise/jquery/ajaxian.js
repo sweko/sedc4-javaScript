@@ -54,20 +54,23 @@ var showArtist = function (artist) {
         if (artist.showSimilar) {
             $("#similar").hide();
             artist.showSimilar = false;
+            $("#toggleSimilar").text("Show Similar");
         } else {
             var similar = $("#similar");
             similar.show().empty();
             $.each(artist.similar.artist, function (i, item) {
-                $("<p>").text(item.name).appendTo(similar);
+                var div = $("<div>").addClass("box").appendTo(similar);
+                $("<p>").text(item.name).appendTo(div);
                 var images = item.image.filter(function (value) {
                     return value.size === "medium";
                 });
                 if (images.length !== 0) {
                     var image = images[0];
-                    $("<img>").prop("src", image["#text"]).appendTo(similar);
+                    $("<img>").prop("src", image["#text"]).appendTo(div);
                 }
             });
             artist.showSimilar = true;
+            $("#toggleSimilar").text("Hide Similar");
         }
     });
 };
