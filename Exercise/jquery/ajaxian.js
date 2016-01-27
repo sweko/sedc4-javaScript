@@ -5,23 +5,10 @@ $(function () {
         type: 'GET',
         crossDomain: true,
         dataType: 'json',
-<<<<<<< HEAD
-        success: function(data) { 
-            $("#artistName").text(data.artist.name);
-            var images = data.artist.image.filter(function(value){
-                return value.size === "extralarge";
-            });
-            if (images.length !== 0){
-                var image = images[0]; 
-                $("#artistImage").prop("src", image["#text"]);
-            }
-            $("#artistBio").html(data.artist.bio.summary);
-=======
         success: function (data) {
             artists.push(data.artist);
             showArtist(data.artist);
             activeArtist = data.artist;
->>>>>>> sweko/master
         },
         error: function () { alert('Failed!'); },
     });
@@ -45,6 +32,21 @@ $(function () {
             $("#artistImage").prop("src", image["#text"]);
         }
     });
+    
+    $('#imageButtons').click(function(e) {
+        var target = e.target;
+        
+        if (target.type === 'submit') {
+            var allImages = activeArtist.image;
+            var wantedImages = allImages.filter(function (value) {
+                return value.size === target.id;
+            });
+            if (wantedImages.length !== 0) {
+                var image = wantedImages[0];
+                $("#artistImage").prop("src", image["#text"]);
+            }
+        }
+    })
 
 });
 
@@ -53,8 +55,14 @@ var activeArtist;
 
 var showArtist = function (artist) {
     $("#artistName").text(artist.name);
-    var images = artist.image.filter(function (value) {
+    var allImages = artist.image;
+    var images = allImages.filter(function (value) {
         return value.size === "extralarge";
+    });
+    allImages.forEach(function(image) {
+        var size = image.size;
+        $('<button>').attr('id', size).text('Show ' + size + ' image')
+                      .appendTo('#imageButtons');
     });
     if (images.length !== 0) {
         var image = images[0];
@@ -62,3 +70,4 @@ var showArtist = function (artist) {
     }
     $("#artistBio").html(artist.bio.summary);
 }
+
