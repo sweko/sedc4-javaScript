@@ -48,4 +48,26 @@ var showArtist = function (artist) {
         $("#artistImage").prop("src", image["#text"]);
     }
     $("#artistBio").html(artist.bio.summary);
-}
+
+    artist.showSimilar = false;
+    $("#toggleSimilar").click(function () {
+        if (artist.showSimilar) {
+            $("#similar").hide();
+            artist.showSimilar = false;
+        } else {
+            var similar = $("#similar");
+            similar.show().empty();
+            $.each(artist.similar.artist, function (i, item) {
+                $("<p>").text(item.name).appendTo(similar);
+                var images = item.image.filter(function (value) {
+                    return value.size === "medium";
+                });
+                if (images.length !== 0) {
+                    var image = images[0];
+                    $("<img>").prop("src", image["#text"]).appendTo(similar);
+                }
+            });
+            artist.showSimilar = true;
+        }
+    });
+};
