@@ -14,6 +14,7 @@ $(function(){
                 var image = images[0]; 
                 $("#artistImage").prop("src", image["#text"]);
             }
+            $("#artistBio").html(data.artist.bio.summary);
         },
         error: function() { alert('Failed!'); },
     });
