@@ -47,6 +47,17 @@ $(function () {
             }
         }
     })
+    var areSimilarShown = false;
+    $('#toggleSimilar').click(function() {
+        $('#similar').toggle();
+        if (areSimilarShown) {
+            $(this).text('Show similar');
+            areSimilarShown = !areSimilarShown;
+        } else {
+            $(this).text('Hide similar');
+            areSimilarShown = !areSimilarShown;
+        }
+    });
 
 });
 
@@ -55,7 +66,9 @@ var activeArtist;
 
 var showArtist = function (artist) {
     $("#artistName").text(artist.name);
-    var allImages = artist.image;
+    var allImages = artist.image.filter(function(value) {
+        return value.size;
+    });
     var images = allImages.filter(function (value) {
         return value.size === "extralarge";
     });
@@ -68,6 +81,14 @@ var showArtist = function (artist) {
         var image = images[0];
         $("#artistImage").prop("src", image["#text"]);
     }
+    $.each(artist.similar.artist, function(index, val) {
+        var $newDiv = $('<div>').appendTo('#similar')
+                                .addClass('similars');
+        $('<h6>').appendTo($newDiv).text(val.name);
+        $('<img>').appendTo($newDiv).prop('src', val.image[0]['#text']);
+        
+    });
+    $('#similar').hide();
     $("#artistBio").html(artist.bio.summary);
 }
 
