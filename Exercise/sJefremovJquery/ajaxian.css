@@ -3,11 +3,10 @@
 }
 
 #similar{
-    position: relative
+    position: relative;
 }
 
 #similar .box{
     float: left;
     padding: 15px;
 }
-
