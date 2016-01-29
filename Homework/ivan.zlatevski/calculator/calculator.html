@@ -2,50 +2,51 @@
 <html>
 <head>
 	<title>Calculator</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-		<table border="1">
+		<table border = 1>
 				<thead>
 						<tr>
-						<th height="100" width="200" colspan="4"><div id="result"></div></th>
+							<th height="80" width="200" colspan="4" id="display"></th>
 						</tr>
 
 				</thead>
 				<tbody>
 						<tr>
-							<td height="30" width="20"><button id="7" value="7" onclick="calculator(value)" >7</button></td>
-							<td height="30" width="20"><button id="8" value="8" onclick="calculator(value)">8</button></td>
-							<td height="30" width="20"><button id="9" value="9" onclick="calculator(value)">9</button></td>
-							<td height="30" width="20"><button id="/" value="/" onclick="calculator(value)">/</button></td>
+							<td height="30" width="20"><button class="calcButton" >7</button></td>
+							<td height="30" width="20"><button class="calcButton">8</button></td>
+							<td height="30" width="20"><button class="calcButton">9</button></td>
+							<td height="30" width="20"><button class="calcButton">/</button></td>
 
 
 						</tr>
 						<tr>
-							<td height="30" width="20"><button id="4" value="4" onclick="calculator(value)">4</button></td>
-							<td height="30" width="20"><button id="5" value="5" onclick="calculator(value)">5</button></td>
-							<td height="30" width="20"><button id="6" value="6" onclick="calculator(value)">6</button></td>
-							<td height="30" width="20"><button id="-" value="-" onclick="calculator(value)">-</button></td>
+							<td height="30" width="20"><button class="calcButton">4</button></td>
+							<td height="30" width="20"><button class="calcButton">5</button></td>
+							<td height="30" width="20"><button class="calcButton">6</button></td>
+							<td height="30" width="20"><button class="calcButton">-</button></td>
 
 
 						</tr>
 						<tr>
-							<td height="30" width="20"><button id="1" value="1" onclick="calculator(value)">1</button></td>
-							<td height="30" width="20"><button id="2" value="2" onclick="calculator(value)">2</button></td>
-							<td height="30" width="20"><button id="3" value="3" onclick="calculator(value)">3</button></td>
-							<td height="30" width="20"><button id="+" value="+" onclick="calculator(value)">+</button></td>
+							<td height="30" width="20"><button class="calcButton">1</button></td>
+							<td height="30" width="20"><button class="calcButton">2</button></td>
+							<td height="30" width="20"><button class="calcButton">3</button></td>
+							<td height="30" width="20"><button class="calcButton">+</button></td>
 
 						</tr>
 						<tr>
-							<td height="30" width="20"><button id="C" value="C" onclick="clearCalculator()">C</button></td>
-							<td height="30" width="20"><button id="0" value="0" onclick="calculator(value)">0</button></td>
-							<td height="30" width="20"><button id="*" value="*" onclick="calculator(value)">*</button></td>
-							<td height="30" width="20"><button id="=" value="=" onclick="calculator(value)">=</button></td>
+							<td height="30" width="20"><button class="calcButton">C</button></td>
+							<td height="30" width="20"><button class="calcButton">0</button></td>
+							<td height="30" width="20"><button class="calcButton">*</button></td>
+							<td height="30" width="20"><button class="calcButton">=</button></td>
 
 						</tr>
 
 
 				</tbody>		
 		</table>
-		<script src="calc.js"> </script>
+		<script src="calculator.js"> </script>
 </body>
 </html>
