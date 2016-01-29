@@ -82,6 +82,10 @@ var toggleAlbumsHandler = function (artist) {
             // }
         });
         artist.showAlbums = true;
+        $("#albums").accordion({
+                            collapsible: true,
+                            heightStyle: "auto"
+                        });
         $("#toggleAlbums").text("Hide Albums");
     }
 };
@@ -95,36 +99,43 @@ var toggleSimilarHandler = function (artist) {
     } else {
         var similar = $("#similar");
         similar.show().empty();
+        $('<ul>').appendTo(similar);
         var executionCount = 1;
         $.each(artist.similar.artist, function (index, item) {
-            $("<a>")
-                .text(item.name)
-                .prop('href', "javascript:void(0)")
-                .appendTo($("<h3>").appendTo(similar))
-                .click(function () {
-                    showArtistByName(item.name);
-                });
+            var artistName = item.name;
+            $('<a>').prop('href', '#' + artistName)
+                    .appendTo($('<li>').appendTo($('#similar ul')))
+                    .append($('<span>').text(artistName));
+            var $div = $("<div>").appendTo(similar)
+                                .prop('id', artistName);
+            
+            // $("<a>")
+            //     .text(item.name)
+            //     .prop('href', "javascript:void(0)")
+            //     .appendTo($("<h3>").appendTo(similar))
+            //     .click(function () {
+            //         showArtistByName(item.name);
+            //     });
             var images = item.image.filter(function (value) {
                 return value.size === "medium";
             });
             if (images.length !== 0) {
                 var image = images[0];
-                $("<img>").prop("src", image["#text"]).appendTo(similar).on("load", function () {
+                 $div.append($("<img>").prop("src", image["#text"]).on("load", function () {
                     if (executionCount === artist.similar.artist.length) {
-                        $("#similar").accordion({
-                            collapsible: true,
-                            heightStyle: "auto"
-                        });
+                        $("#similar").tabs('refresh');
                     } else {
                         executionCount += 1;
                     }
-                });
+                }));
             }
-;
         });
         artist.showSimilar = true;
         $("#toggleSimilar").text("Hide Similar");
-        
+        similar.tabs({
+                    collapsible: true,
+                    heightStyle: "auto"
+                });
 
     }
 };
