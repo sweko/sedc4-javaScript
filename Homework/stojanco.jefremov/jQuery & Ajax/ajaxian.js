@@ -12,26 +12,6 @@ $(function () {
         },
         error: function () { alert('Failed!'); },
     });
-
-    $("#large").click(function () {
-        var images = activeArtist.image.filter(function (value) {
-            return value.size === "large";
-        });
-        if (images.length !== 0) {
-            var image = images[0];
-            $("#artistImage").prop("src", image["#text"]);
-        }
-    });
-
-    $("#mega").click(function () {
-        var images = activeArtist.image.filter(function (value) {
-            return value.size === "mega";
-        });
-        if (images.length !== 0) {
-            var image = images[0];
-            $("#artistImage").prop("src", image["#text"]);
-        }
-    });
     
     $('#imageButtons').click(function(e) {
         var target = e.target;
@@ -92,3 +72,114 @@ var showArtist = function (artist) {
     $("#artistBio").html(artist.bio.summary);
 }
 
+var toggleAlbumsHandler = function (artist) {
+    if (artist.showAlbums) {
+        $("#albums").hide();
+        artist.showAlbums = false;
+        $("#toggleAlbums").text("Show Albums");
+    } else {
+        $("#albums").show();
+        artist.showAlbums = true;
+        $("#toggleAlbums").text("Hide Albums");
+    }
+};
+
+var refreshAlbumsHandler = function(artist) {
+    if (!artist.albums) {
+            loadAlbumData(artist, refreshAlbumsHandler);
+            return;
+        }
+        var albums = $("#albums");
+        albums.empty();
+        $.each(artist.albums, function (index, item) {
+            var div = $("<div>").addClass("box").appendTo(albums);
+            $("<a>")
+                .text(item.name)
+                .prop('href', "javascript:void(0)")
+                .appendTo($("<p>").appendTo(div))
+                .click(function () {
+                    //showArtistByName(item.name);
+                });
+            //  var images = item.image.filter(function (value) {
+            //     return value.size === "medium";
+            // });
+            // if (images.length !== 0) {
+            //     var image = images[0];
+            //     $("<img>").prop("src", image["#text"]).appendTo(div);
+            // }
+        });
+};
+
+
+var toggleSimilarHandler = function (artist) {
+    if (artist.showSimilar) {
+        $("#similar").hide();
+        artist.showSimilar = false;
+        $("#toggleSimilar").text("Show Similar");
+    } else {
+        var similar = $("#similar");
+        similar.show().empty();
+        $.each(artist.similar.artist, function (index, item) {
+            var div = $("<div>").addClass("box").appendTo(similar);
+            $("<a>")
+                .text(item.name)
+                .prop('href', "javascript:void(0)")
+                .appendTo($("<p>").appendTo(div))
+                .click(function () {
+                    showArtistByName(item.name);
+                });
+            var images = item.image.filter(function (value) {
+                return value.size === "medium";
+            });
+            if (images.length !== 0) {
+                var image = images[0];
+                $("<img>").prop("src", image["#text"]).appendTo(div);
+            }
+        });
+        artist.showSimilar = true;
+        $("#toggleSimilar").text("Hide Similar");
+    }
+};
+
+var showArtistByName = function (artistName) {
+    loadArtistData(artistName);
+};
+
+
+var loadArtistData = function (artistName) {
+    $.ajax({
+        url: 'http://ws.audioscrobbler.com/2.0/?method=artist.getInfo&api_key=91dcbbe75821abf1c3c43e4120573e99&format=json&artist=' + artistName,
+        data: null,
+        type: 'GET',
+        crossDomain: true,
+        dataType: 'json',
+        success: function (data) {
+            artists.push(data.artist);
+            showArtist(data.artist);
+        },
+        error: function () { alert('Failed!'); },
+    });
+};
+
+var loadAlbumData = function (artist, callback) {
+    $.ajax({
+        url: 'http://ws.audioscrobbler.com/2.0/?method=artist.getTopAlbums&api_key=91dcbbe75821abf1c3c43e4120573e99&format=json&limit=10&artist=' + artist.name,
+        data: null,
+        type: 'GET',
+        crossDomain: true,
+        dataType: 'json',
+        success: function (data) {
+            artist.albums = data.topalbums.album;
+            callback(artist);
+        },
+        error: function () { alert('Failed!'); },
+    });
+};
+
+$lastfm.get({
+     method:"artist.getTopAlbums",
+     artist: "Metallica",
+     success : function(data){
+         console.log(data);
+     }
+});
