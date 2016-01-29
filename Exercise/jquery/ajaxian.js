@@ -1,6 +1,6 @@
 $(function () {
     $.ajax({
-        url: 'http://ws.audioscrobbler.com/2.0/?method=artist.getInfo&api_key=91dcbbe75821abf1c3c43e4120573e99&artist=Ceca&format=json',
+        url: 'http://ws.audioscrobbler.com/2.0/?method=artist.getInfo&api_key=91dcbbe75821abf1c3c43e4120573e99&artist=Muse&format=json',
         data: null,
         type: 'GET',
         crossDomain: true,
@@ -95,12 +95,12 @@ var toggleSimilarHandler = function (artist) {
     } else {
         var similar = $("#similar");
         similar.show().empty();
+        var executionCount = 1;
         $.each(artist.similar.artist, function (index, item) {
-            var div = $("<div>").addClass("box").appendTo(similar);
             $("<a>")
                 .text(item.name)
                 .prop('href', "javascript:void(0)")
-                .appendTo($("<p>").appendTo(div))
+                .appendTo($("<h3>").appendTo(similar))
                 .click(function () {
                     showArtistByName(item.name);
                 });
@@ -109,11 +109,23 @@ var toggleSimilarHandler = function (artist) {
             });
             if (images.length !== 0) {
                 var image = images[0];
-                $("<img>").prop("src", image["#text"]).appendTo(div);
+                $("<img>").prop("src", image["#text"]).appendTo(similar).on("load", function () {
+                    if (executionCount === artist.similar.artist.length) {
+                        $("#similar").accordion({
+                            collapsible: true,
+                            heightStyle: "auto"
+                        });
+                    } else {
+                        executionCount += 1;
+                    }
+                });
             }
+;
         });
         artist.showSimilar = true;
         $("#toggleSimilar").text("Hide Similar");
+        
+
     }
 };
 
@@ -152,10 +164,10 @@ var loadAlbumData = function (artist, callback) {
     });
 };
 
-$lastfm.get({
-     method:"artist.getTopAlbums",
-     artist: "Metallica",
-     success : function(data){
-         console.log(data);
-     }
-});
+// $lastfm.get({
+//     method: "artist.getTopAlbums",
+//     artist: "Metallica",
+//     success: function (data) {
+//         console.log(data);
+//     }
+// });
