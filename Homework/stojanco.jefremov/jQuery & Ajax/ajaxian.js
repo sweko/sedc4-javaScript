@@ -1,17 +1,5 @@
 $(function () {
-    $.ajax({
-        url: 'http://ws.audioscrobbler.com/2.0/?method=artist.getInfo&api_key=91dcbbe75821abf1c3c43e4120573e99&artist=Metallica&format=json',
-        data: null,
-        type: 'GET',
-        crossDomain: true,
-        dataType: 'json',
-        success: function (data) {
-            artists.push(data.artist);
-            showArtist(data.artist);
-            activeArtist = data.artist;
-        },
-        error: function () { alert('Failed!'); },
-    });
+    loadArtistData('Ceca');
     
     $('#imageButtons').click(function(e) {
         var target = e.target;
@@ -26,17 +14,14 @@ $(function () {
                 $("#artistImage").prop("src", image["#text"]);
             }
         }
-    })
-    var areSimilarShown = false;
+    });
+    
     $('#toggleSimilar').click(function() {
-        $('#similar').toggle();
-        if (areSimilarShown) {
-            $(this).text('Show similar');
-            areSimilarShown = !areSimilarShown;
-        } else {
-            $(this).text('Hide similar');
-            areSimilarShown = !areSimilarShown;
-        }
+        toggleSimilarHandler(activeArtist);
+    });
+    
+    $('#toggleAlbums').click(function() {
+        toggleAlbumsHandler(activeArtist);
     });
 
 });
@@ -45,6 +30,7 @@ var artists = [];
 var activeArtist;
 
 var showArtist = function (artist) {
+    activeArtist = artist;
     $("#artistName").text(artist.name);
     var allImages = artist.image.filter(function(value) {
         return value.size;
@@ -52,24 +38,26 @@ var showArtist = function (artist) {
     var images = allImages.filter(function (value) {
         return value.size === "extralarge";
     });
+    var $imageButtons = $('#imageButtons').empty();
     allImages.forEach(function(image) {
         var size = image.size;
-        $('<button>').attr('id', size).text('Show ' + size + ' image')
-                      .appendTo('#imageButtons');
+        $('<button>').prop('id', size)
+                     .text('Show ' + size + ' image')
+                     .appendTo($imageButtons)
+                     .prop('class', 'btn btn-link');
     });
     if (images.length !== 0) {
         var image = images[0];
         $("#artistImage").prop("src", image["#text"]);
     }
-    $.each(artist.similar.artist, function(index, val) {
-        var $newDiv = $('<div>').appendTo('#similar')
-                                .addClass('similars');
-        $('<h6>').appendTo($newDiv).text(val.name);
-        $('<img>').appendTo($newDiv).prop('src', val.image[0]['#text']);
-        
-    });
-    $('#similar').hide();
     $("#artistBio").html(artist.bio.summary);
+    
+    refreshSimilarHandler(artist);
+    refreshAlbumsHandler(artist);
+    artist.showSimilar = true;
+    artist.showAlbums = true;
+    toggleAlbumsHandler(artist);
+    toggleSimilarHandler(artist);
 }
 
 var toggleAlbumsHandler = function (artist) {
@@ -100,13 +88,13 @@ var refreshAlbumsHandler = function(artist) {
                 .click(function () {
                     //showArtistByName(item.name);
                 });
-            //  var images = item.image.filter(function (value) {
-            //     return value.size === "medium";
-            // });
-            // if (images.length !== 0) {
-            //     var image = images[0];
-            //     $("<img>").prop("src", image["#text"]).appendTo(div);
-            // }
+             var images = item.image.filter(function (value) {
+                return value.size === "medium";
+            });
+            if (images.length !== 0) {
+                var image = images[0];
+                $("<img>").prop("src", image["#text"]).appendTo(div);
+            }
         });
 };
 
@@ -117,32 +105,43 @@ var toggleSimilarHandler = function (artist) {
         artist.showSimilar = false;
         $("#toggleSimilar").text("Show Similar");
     } else {
-        var similar = $("#similar");
-        similar.show().empty();
-        $.each(artist.similar.artist, function (index, item) {
-            var div = $("<div>").addClass("box").appendTo(similar);
-            $("<a>")
-                .text(item.name)
-                .prop('href', "javascript:void(0)")
-                .appendTo($("<p>").appendTo(div))
-                .click(function () {
-                    showArtistByName(item.name);
-                });
-            var images = item.image.filter(function (value) {
-                return value.size === "medium";
-            });
-            if (images.length !== 0) {
-                var image = images[0];
-                $("<img>").prop("src", image["#text"]).appendTo(div);
-            }
-        });
+        $("#similar").show();
         artist.showSimilar = true;
         $("#toggleSimilar").text("Hide Similar");
     }
 };
 
+var refreshSimilarHandler = function (artist) {
+    var similar = $("#similar");
+    similar.empty();
+    $.each(artist.similar.artist, function (index, item) {
+        var div = $("<div>").addClass("box").appendTo(similar);
+        $("<a>")
+            .text(item.name)
+            .prop('href', "javascript:void(0)")
+            .appendTo($("<p>").appendTo(div))
+            .click(function () {
+                showArtistByName(item.name);
+            });
+        var images = item.image.filter(function (value) {
+            return value.size === "medium";
+        });
+        if (images.length !== 0) {
+            var image = images[0];
+            $("<img>").prop("src", image["#text"]).appendTo(div);
+        }
+    });
+}
+
 var showArtistByName = function (artistName) {
-    loadArtistData(artistName);
+    var artist = artists.filter(function(artist) {
+        return artist.name === artistName;
+    });
+    if (artist.length > 0) {
+        showArtist(artist[0]);
+    } else {
+        loadArtistData(artistName);   
+    }
 };
 
 
@@ -163,7 +162,23 @@ var loadArtistData = function (artistName) {
 
 var loadAlbumData = function (artist, callback) {
     $.ajax({
-        url: 'http://ws.audioscrobbler.com/2.0/?method=artist.getTopAlbums&api_key=91dcbbe75821abf1c3c43e4120573e99&format=json&limit=10&artist=' + artist.name,
+        url: 'http://ws.audioscrobbler.com/2.0/?method=artist.getTopAlbums&api_key=91dcbbe75821abf1c3c43e4120573e99&format=json&limit=5&artist=' + artist.name,
+        data: null,
+        type: 'GET',
+        crossDomain: true,
+        dataType: 'json',
+        success: function (data) {
+            artist.albums = data.topalbums.album;
+            callback(artist);
+        },
+        error: function () { alert('Failed!'); },
+    });
+};
+
+var loadSongsData = function (album) {
+    $.ajax({
+        url: 'http://ws.audioscrobbler.com/2.0/?method=album.getInfo&api_key=91dcbbe75821abf1c3c43e4120573e99&format=json&artist=' + album.artist.name
+        + '&album=' + album.name,
         data: null,
         type: 'GET',
         crossDomain: true,
