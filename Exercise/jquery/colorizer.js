@@ -2,16 +2,27 @@
 $(function () {
     //$("#second").extract();
     
-    $.fn.helloWorld = function () {
-        for (var index = 0; index < this.length; index++) {
-            var element = this[index];
-            console.log(element.innerHTML);
-        }
-        return this;
-    };
 
     $("#hello").click(function () {
-        $("#second").countIds();
+        //$("#second").countIds();//1
+
+        //$("div").countIds();//4
+        
+//         var second = $("#second");
+//         var secondId = second.prop("id");
+//         console.log(secondId);
+// 
+//         second.prop("id","third");
+//         secondId = second.prop("id");
+//         console.log(secondId);
+        
+        var second = $("#second");
+        var secondId = second.id();
+        console.log(secondId);
+
+        second.id("third");
+        secondId = second.id();
+        console.log(secondId);
     });
 
 });
