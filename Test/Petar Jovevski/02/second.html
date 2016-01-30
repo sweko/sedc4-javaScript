@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+	  <meta charset="utf-8">
+	  <title></title>
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	  
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	
+	  <link href="style.css" rel="stylesheet" type="text/css">
+  </head> 
+	<body>
+		<table id="contacts-table">
+			<tr>
+				<th>Name</th>
+				<th>Email Address</th>
+				<th>Mobile Number</th>
+				<th>Action</th>
+			</tr>
+		<!--	<tr id="test">
+				<td>Lisa</td>
+				<td>lisa@gmail.com</td>
+				<td>98763123</td>
+				<td>
+				<button type="button" form="form1" id="read" value="Read" class="btn btn-default">Read</button>
+				<button type="button" form="form1" value="Update" class="btn btn-success">Update</button>
+				<button type="button" form="form1" id="delete" value="Delete" class="btn btn-danger">Delete</button>
+				</td>
+			</tr>
+			<tr>
+				<td>Tom</td>
+				<td>tom@gmail.com</td>
+				<td>93813412</td>
+				<td>
+				<button type="submit" form="form1" id="read" value="Read" class="btn btn-default">Read</button>
+				<button type="submit" form="form1" value="Update" class="btn btn-success">Update</button>
+				<button type="submit" form="form1" id="delete" value="Delete" class="btn btn-danger">Delete</button>
+				</td>
+				
+			</tr>  -->
+		</table>
+		<br><br>
+		<div id="details" class="center"></div>
+		<br><br>
+		
+		<form id="contacts-form" class="big">
+		  <div class="form-group">
+		  <label for="first_name">Name</label>
+			<input type="text" class="form-control" id="first_name" name="first_name"  placeholder="Name">
+			
+		  </div>
+		  <div class="form-group">
+			<label for="email">Email address</label>
+			<input type="email" class="form-control" id="email" name="email" placeholder="Email">
+		  </div>
+		  <div class="form-group">
+			<label for="mobile">Mobile Number</label>
+			<input type="text" class="form-control" id="mobile" name="mobile" placeholder="Number">
+		  </div>
+		  <input type="submit" class="btn btn-default" name="submit" id="contacts-op-save" value="Submit"/>
+		</form>
+		
+		
+		
+		<script type="text/javascript" src="jquery1.js"></script>
+	</body>
+</html>
