@@ -11,6 +11,30 @@ $(function () {
         },
         error: function () { alert('Failed!'); },
     });
+
+    $("#my-dialog").dialog({
+        title: "My Dialog",
+        closeOnEscape: true,
+        modal: true,
+        draggable: true,
+        autoOpen: false,
+        beforeClose: function (e) {
+            $("<div>")
+                .html("Are you sure?")
+                .appendTo($("body"))
+                .dialog({modal: true});
+            
+            return confirm("Are you sure?");
+        }
+    });
+
+    $("#show-dialog").click(function () {
+        $("#my-dialog").dialog("open");
+    });
+
+    $("#close-dialog").click(function () {
+        $("#my-dialog").dialog("close");
+    });
 });
 
 var artists = [];
@@ -48,8 +72,6 @@ var showArtist = function (artist) {
     artist.showAlbums = false;
     toggleAlbumsHandler(artist);
     $("#toggleAlbums").click(function () { toggleAlbumsHandler(artist); });
-
-
 };
 
 var toggleAlbumsHandler = function (artist) {
@@ -64,22 +86,31 @@ var toggleAlbumsHandler = function (artist) {
         }
         var albums = $("#albums");
         albums.show().empty();
+        var executionCount = 1;
         $.each(artist.albums, function (index, item) {
-            var div = $("<div>").addClass("box").appendTo(albums);
             $("<a>")
                 .text(item.name)
                 .prop('href', "javascript:void(0)")
-                .appendTo($("<p>").appendTo(div))
+                .appendTo($("<h3>").appendTo(albums))
                 .click(function () {
                     //showArtistByName(item.name);
                 });
-            // var images = item.image.filter(function (value) {
-            //     return value.size === "medium";
-            // });
-            // if (images.length !== 0) {
-            //     var image = images[0];
-            //     $("<img>").prop("src", image["#text"]).appendTo(div);
-            // }
+            var images = item.image.filter(function (value) {
+                return value.size === "medium";
+            });
+            if (images.length !== 0) {
+                var image = images[0];
+                $("<img>").prop("src", image["#text"]).appendTo(albums).on("load", function () {
+                    if (executionCount === artist.similar.artist.length) {
+                        albums.accordion({
+                            collapsible: true,
+                            heightStyle: "auto"
+                        });
+                    } else {
+                        executionCount += 1;
+                    }
+                });
+            }
         });
         artist.showAlbums = true;
         $("#toggleAlbums").text("Hide Albums");
@@ -95,37 +126,41 @@ var toggleSimilarHandler = function (artist) {
     } else {
         var similar = $("#similar");
         similar.show().empty();
-        var executionCount = 1;
+        var ul = $("<ul>").appendTo(similar);
         $.each(artist.similar.artist, function (index, item) {
             $("<a>")
                 .text(item.name)
-                .prop('href', "javascript:void(0)")
-                .appendTo($("<h3>").appendTo(similar))
-                .click(function () {
-                    showArtistByName(item.name);
-                });
+                .prop('href', "#tab-" + index)
+                .appendTo($("<li>").appendTo(ul));
+
             var images = item.image.filter(function (value) {
                 return value.size === "medium";
             });
+
+            var div = $("<div id='tab-" + index + "'>").appendTo(similar);
+
+            $("<a>")
+                .text(item.name)
+                .prop('href', "javascript:void(0)")
+                .appendTo($("<li>").appendTo(div))
+                .click(function () {
+                    showArtistByName(item.name);
+                });
+
+
             if (images.length !== 0) {
                 var image = images[0];
-                $("<img>").prop("src", image["#text"]).appendTo(similar).on("load", function () {
-                    if (executionCount === artist.similar.artist.length) {
-                        $("#similar").accordion({
-                            collapsible: true,
-                            heightStyle: "auto"
-                        });
-                    } else {
-                        executionCount += 1;
-                    }
+                $("<img>").prop("src", image["#text"]).appendTo(div).on("load", function () {
+                    $("#similar").tabs("refresh");
                 });
             }
-;
         });
         artist.showSimilar = true;
         $("#toggleSimilar").text("Hide Similar");
-        
-
+        $("#similar").tabs({
+            collapsible: true,
+            heightStyle: "auto"
+        });
     }
 };
 
