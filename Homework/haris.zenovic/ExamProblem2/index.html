@@ -1,0 +1,64 @@
+<html>
+<head>
+	<title>Form</title>
+	<!-- Bootstrap CSS-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<!-- jQuery library-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<!-- Custom CSS-->
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+	<script type="text/javascript" src="js/script.js"></script>
+	<div class="container ">
+		<div class="row">
+			<div class="col-lg-12" >
+				<table id="dataStored" class="table-hover ">
+					
+					<tr>
+						<th>Name</th>
+						<th>E-Mail</th>
+						<th>Phone Number</th>
+						<th>Action</th>
+					</tr>
+				
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="container form">
+		<div class="row">
+			<div class="col-sm-8">
+				<table id="inputData">
+				<tr>
+					<td class="col-sm-2"><label>Name</label></td>
+					<td class="col-sm-2"><input type="text" placeholder="Your Name" id="input1"></td>
+				</tr>
+				<tr>
+					<td class="col-sm-2"><label>E-mail</label></td>
+					<td class="col-sm-2"><input type="text" placeholder="E-mail" id="input2"></td>
+				</tr>
+				<tr>
+					<td class="col-sm-2"><label>Phone Number</label></td>
+					<td class="col-sm-2"><input type="text" placeholder="Phone Number" id="input3"></td>
+				</tr>
+				<tr>
+					<td colspan="2" class="col-sm-6">
+						<label>Details</label>
+						<textarea rows="5" cols="60" class="textarea" id="textarea"></textarea>
+					</td>
+				</tr>
+				</table>
+				<div class="col-sm-2">
+					<button class="btn btn-primary butt" id="submit" type="button">Submit</button>
+				</div>
+				<div class="col-sm-2">
+					<button class="btn btn-default butt" id="cancel" type="button">Cancel</button>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>
