@@ -1,5 +1,4 @@
-var number = 0;
-
+var number = prompt ("Enter a number");
 
 	function count3DigitBlocks(number) {   //It counts the number of three digit blocks in a number (the final block may be less than 3 digits).
 	    var count = 0;
@@ -39,8 +38,6 @@ var number = 0;
 		return toWords3DigitNumber;
 	}
 
-
-
 	function toWords2DigitNumber (remainder) {    //Converts 2 digit integers to their written form. 
 
 			var remainder1 = remainder % 10;
@@ -54,9 +51,6 @@ var number = 0;
 			 }
 		return toWords2DigitNumber;
 	}
-
-
-
 
 	function toWordsUniqueNumbers (number) { //Returns words for *unique numbers up to 100. 
 		switch(number) {                     //*(numbers that can't be written as a combination of other numbers)
@@ -171,9 +165,7 @@ function toWords(number){//Main function that transforms numbers into words
 		number = parseInt(number);
 	}
 
-	
 	var number3DigitBlocks = count3DigitBlocks(number);
-
 
 	for (var i=1; i<=number3DigitBlocks; i++) { //Separates number in 3 digit blocks and pushes them to 
 		remainder = number % 1000;			   //an array (the final block may be less than 3 digits)
@@ -181,23 +173,19 @@ function toWords(number){//Main function that transforms numbers into words
 		numArray.push(remainder);
 	} 	
 
-
-
 	for (var i= 0; i < number3DigitBlocks; i++){  //Takes array from loop above and transforms 3 digit elements into words
 	       if (numArray[i] === 0 && numArray.length === 1) {
 	       		wordArray.push("zero");
 	       } else if (numArray[i] === 000) {
 	       		wordArray.push("");
 	       } else if (numArray[i] > 99) {
-	       		wordArray.push(toWords3DigitNumber(numArray[i], toWordsUniqueNumbers));
+	       		wordArray.push(toWords3DigitNumber(numArray[i]));
 	       } else if (numArray[i] > 9 && numArray[i]< 100) {
-	       		wordArray.push(toWords2DigitNumber(numArray[i], toWordsUniqueNumbers));
+	       		wordArray.push(toWords2DigitNumber(numArray[i]));
 	       } else {
 	       		wordArray.push(toWordsUniqueNumbers(numArray[i]));
 	       }
 	}
-
-
 		
 	for (var i = (number3DigitBlocks -1); i >= 0; i-- ) { //Takes elements from previous array and adds qualifiers like thousand, million and billion.
 			if (i > 3) {
@@ -205,7 +193,7 @@ function toWords(number){//Main function that transforms numbers into words
 				break;
 			} else {
 				if (wordArray[i] === "") {  //This prevents the qualifiers to be added if the three digit block is 000
-				numberInWords.push(""); 
+				   continue;
 				} else {
 					switch(i) {
 							case 3:
@@ -228,7 +216,6 @@ function toWords(number){//Main function that transforms numbers into words
 				}
 	}
 
-
         numberInWords[0] = numberInWords[0].charAt(0).toUpperCase()+ numberInWords[0].substr(1);
 
 		var result = numberInWords.join(" ");
@@ -236,3 +223,6 @@ function toWords(number){//Main function that transforms numbers into words
 
 }
 		toWords(number);
+	
+	//	document.writeln(toWords(number));
+	

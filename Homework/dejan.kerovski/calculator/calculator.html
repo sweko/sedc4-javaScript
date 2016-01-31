@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Javascript_Calculator</title>
+        <link rel="stylesheet" type="text/css" href="calculator.css">
+    </head>
+
+
+<body>
+
+<form>
+<table >
+<tr>
+<td colspan="6">
+<div id="display"></div> 
+<input type="text" name="txtvalue"  id="screen" readonly="readonly"></td>
+</tr>
+
+<tr >
+<td><input type="button" name="button7" value="7" onclick="get7()"/></td>
+<td><input type="button" name="button8" value="8" onclick="get8()"/></td>
+<td><input type="button" name="button9" value="9" onclick="get9()"/></td>
+<td><input type="button" name="buttonmultiply" value="*" onclick="multiply()" /></td>
+
+</tr>
+
+<tr >
+
+<td><input type="button" name="button4" value="4" onclick="get4()"/></td>
+<td ><input type="button" name="button5" value="5" onclick="get5()"/></td>
+<td><input type="button" name="button6" value="6" onclick="get6()"/></td>
+<td><input type="button" name="buttonadd" value="+" onclick="add()"/></td>
+
+</tr>
+
+
+<tr>
+
+<td><input type="button" name="button1" value="1" onclick="get1()"/></td>
+<td><input type="button" name="button2" value="2" onclick="get2()"/></td>
+<td><input type="button" name="button3" value="3" onclick="get3()"/></td>
+<td><input type="button" name="buttonsubtract" value="-" onclick="subtract()"/></td>
+
+</tr>
+
+<tr>
+
+<td><input type="button" name="button0" value="0" onclick="get0()"/></td>
+<td ><input type="button" name="buttonclear" value="C" onclick="cleartext()"/></td>
+<td ><input type="button" name="buttonresult" value="=" onclick="performCalculation()"/>
+<td><input type="button" name="buttondivide" value="/" onclick="divide()" /></td>
+
+</tr>
+
+       </table>
+    
+      </form> 
+     <script type="text/javascript" src="calculator.js"></script>
+    </body>
+</html>

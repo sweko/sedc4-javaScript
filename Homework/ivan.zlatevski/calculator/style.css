@@ -1,0 +1,22 @@
+
+table {
+	border-collapse: collapse;
+	border:	 1px solid #9ACD32;
+}
+button {
+	width: 70px;
+	height: 50px;
+	font-size: 20px;
+	border:0px;
+	opacity: 0.8px;
+	background-color: #9ACD32;
+	text-align: right;
+
+}
+th{
+	border: 3px solid #9ACD32;
+	text-align: right;
+	background-color: #2E8B57;
+	color: #2F4F4F;
+	font-size: 150%;
+}
