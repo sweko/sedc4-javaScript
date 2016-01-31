@@ -1,7 +1,8 @@
 function calculator(id){
-			result.innerHTML+=id;
+			document.getElementById("result").innerHTML+=id;
+			
 			if(id=="="){
-			var resultString = result.innerHTML;
+			var resultString = document.getElementById("result").innerHTML;
 			var resultArray = resultString.split("");
 			if(checkOperators(resultArray[0])){
 				result.innerHTML = "Invalid Argument";
@@ -12,7 +13,7 @@ function calculator(id){
 			}
 			var operator = getOperation(resultArray);
 			var operation = performOperation(firstNumber,secondNumber,operator);		
-			result.innerHTML+=operation;
+			document.getElementById("result").innerHTML+=operation;
 			}
 			
 		
@@ -68,10 +69,8 @@ function checkOperators(index){
 			}
 		}
 		
-		if(sign==1)
-		return true;
-		else
-		return false;
+		var result = (sign ===1);
+		return result;
 	}
 	
 function clearCalculator(){
