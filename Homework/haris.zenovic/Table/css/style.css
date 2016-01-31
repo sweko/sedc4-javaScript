@@ -1,0 +1,11 @@
+*{
+	font-family: sans-serif;
+}
+table{
+	margin:10% auto 0 auto;
+}
+.Thead{
+	background-color: gray;
+	font-weight: BOLD;
+	color:white;
+}
