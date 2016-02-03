@@ -4,7 +4,7 @@ downloadedAristAlbums = [];
 var $lastfm = {};
 (function (lfm) {
     lfm.get = function(requestObject, callback) {
-        var initialUrl = 'http://ws.audioscrobbler.com/2.0/';
+        var initialUrl = 'https://ws.audioscrobbler.com/2.0/';
         var query = convertRequestObjectToQueryString(requestObject);
 
         (function () {
