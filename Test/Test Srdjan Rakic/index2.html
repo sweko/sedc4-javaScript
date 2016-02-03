@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+   <head>
+      <title>Test</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"
+         ></script>
+      <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+      <script src="Scripts/script.js"></script>
+      <link rel="stylesheet" type="text/css" href="css/style2.css">
+   </head>
+   <body>
+      <div class="container">
+         <div class="col-md-9">
+            <table class="table table-list-search" class="editableTable">
+               <thead>
+                  <tr>
+                     <th>Name</th>
+                     <th>E-mail Address</th>
+                     <th>Mobile number</th>
+                     <th>Action</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr id="myTableRow">
+                     <td rel='{"id":42,"field":"name"}' class='editable'>Lisa</td>
+                     <td rel='{"id":42,"field":"email"}' class='editable'>lisa@gmail.com</td>
+                     <td rel='{"id":42,"field":"phone"}' class='editable'>98763123</td>
+                     <td>
+                        <button type="button" id="openLisa" class="btn btn-default">Read</button>
+                        <button type="button" id="update" class="btn btn-success">Update</button>
+                        <button type="button" id="deleteLisa" class="btn btn-danger">Delete</button>
+                     </td>
+                  </tr>
+                  <tr id="myTableRow">
+                     <td rel='{"id":43,"field":"name"}' class='editable'>Tom</td>
+                     <td rel='{"id":43,"field":"email"}' class='editable'>tom@gmail.com</td>
+                     <td rel='{"id":43,"field":"phone"}' class='editable'>93813412</td>
+                     <td>
+                        <button type="button" id="openTom" class="btn btn-default">Read</button>
+                        <button type="button" id="update" class="btn btn-success">Update</button>
+                        <button type="button" id="deleteTom" class="btn btn-danger">Delete</button>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+      </div>
+      <div id="displayLisa">
+         <p>Name: Lisa</p>
+         <p>Email Address: lisa@gmail.com</p>
+         <p>Mobile Number: 98763123 </p>
+      </div>
+      <div id="displayTom">
+         <p>Name: Tom</p>
+         <p>Email Address: tom@gmail.com</p>
+         <p>Mobile Number: 93813412 </p>
+      </div>
+   </body>
+</html>
