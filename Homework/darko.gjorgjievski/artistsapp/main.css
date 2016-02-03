@@ -1,0 +1,38 @@
+.similarArtist {
+    display: inline-block;
+    margin-bottom: 20px;
+    width: 190px;
+    padding: 1em;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.artistAlbums, .similarArtists {
+    width: 100%;
+}
+
+.artistDetail {
+    display: inline-block;
+    border: 1px solid black;
+    padding: 1em;
+    margin-bottom: 20px;
+    text-align: center
+}
+
+body {
+    width: 80%;
+    margin: 0 auto;
+    background-color: azure;
+}
+
+html {
+    background-color: bisque;
+}
+
+.artistNameSearch {
+    margin: 0 auto;
+}
+
+.similarArtistsPlaceholder, .artistAlbumsPlaceholder {
+    font-size: 1.5em;
+}
