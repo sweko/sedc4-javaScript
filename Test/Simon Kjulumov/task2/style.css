@@ -1,0 +1,15 @@
+.button-update{
+	background-color: green;
+	color: white;
+	border-radius: 6px;
+}
+.button-delete{
+	background-color: red;
+	color: white;
+	border-radius: 6px;
+}
+.button-read {
+	background-color: grey;
+	color: white;
+	border-radius: 6px;
+}
