@@ -1,16 +1,9 @@
 angular
     .module("my-invoice", [])
-    .controller("InvoiceController", function ($scope, $http) {
+    .controller("InvoiceController", function ($scope, CurrencyService) {
         $scope.quantity;
         $scope.cost;
-        $scope.currencies = [
-            { id:1, name: "USD", rate: 1, symbol: "$"},
-            { id:2, name: "EUR", rate: 0.74, symbol: "$"},
-            { id:3, name: "CNY", rate: 6.09, symbol: "$"},
-            { id:4, name: "MKD", rate: 56.7, symbol: "MKD "},
-            { id:5, name: "AUD", rate: 0.65, symbol: "A$ "},
-            { id:6, name: "GBP", rate: 1.85, symbol: "$"},
-        ];
+        $scope.currencies = CurrencyService.getCurrencies();
         $scope.inCurrency = 2;
 
         $scope.total = function total(outCurrency) {
@@ -23,7 +16,7 @@ angular
         };
         
         $scope.simpleTotal = function(){
-            return $scope.quantity  * $scope.cost;
+            return CurrencyService.getSimpleTotal($scope.quantity, $scope.cost);
         };
         
         $scope.getCurrencyById = function(id){
