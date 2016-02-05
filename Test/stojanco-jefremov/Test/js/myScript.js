@@ -1,13 +1,9 @@
 $(function() {
     
-    var saving = false;
-    
     $('tbody').click(function(e) {
         
         var $target = $(e.target);
-        $('tr').removeClass('blueBg');
         var $row = $($target.closest('tr'));
-        $row.addClass('blueBg');
         
         if ($target.attr('type') === 'button') {
             
@@ -30,14 +26,17 @@ $(function() {
             
                 var personId = $row.data('personId');
                 var person = personContainer.getPerson(personId);
-                if (!saving) {
+                if (person.saving === undefined) {
+                    person.saving = false;
+                }
+                if (!person.saving) {
                     $target.text('Save');
                     $('#inputName-' + personId).val(person.name);
                     $('#inputEmail-' + personId).val(person.email);
                     $('#inputMobile-' + personId).val(person.mobile);
                     $row.children('td').children('.editInput').show().css('display', 'block');
                     $row.children('td').children('.inputData').hide();
-                    saving = !saving;
+                    person.saving = !person.saving;
                     
                 } else {
                     
@@ -54,10 +53,15 @@ $(function() {
                     $('#tdMobile-' + personId + ' span.inputData').text(person.mobile);
                     $row.children('td').children('.editInput, .errors').hide();
                     $row.children('td').children('.inputData').show();
-                    saving = !saving;
+                    person.saving = !person.saving;
                     
                 }
             }
+        } else {//if target is not button
+            //$('tr').removeClass('blueBg');
+            $('tr').css('background-color', '');
+            //$row.addClass('blueBg');
+            $row.css('background-color', '#cce2ff');
         }
     });
     
