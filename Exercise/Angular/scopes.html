@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.2/angular.min.js"></script>
+    <script src="scopes.js"></script>
+    <div ng-app="scopeExample">
+        
+        <div ng-controller="GreetController">
+            Hello {{name}}!
+        </div>
+        
+        <div ng-controller="ListController">
+            <ol>
+                <li ng-repeat="name in names">{{name}} from {{department}}</li>
+            </ol>
+        </div>
+    </div>
+</body>
+
+</html>
