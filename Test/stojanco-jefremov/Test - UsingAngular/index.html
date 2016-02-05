@@ -5,27 +5,27 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="css/myStyle.css">
 </head>
-<body data-ng-app="test">
+<body data-ng-app="test" data-ng-controller="PersonController" >
 	<div class="container">
 		<div class="col-sm-6 col-md-4">
 			<form>
 			  <fieldset class="form-group">
 			    <label for="nameInput">Name</label>
-			    <input type="text" class="form-control" id="nameInput" name="nameInput" placeholder="Name" value="Trajko" />
+			    <input type="text" class="form-control" id="nameInput" name="nameInput" placeholder="Name" data-ng-model='nameInput' />
 			  </fieldset>
 			  <fieldset class="form-group">
 			    <label for="emailInput">Email</label>
                 <span id="errorEmailInput" class="errors"></span>
-			    <input type="text" class="form-control" id="emailInput" name="emailInput" placeholder="Email" value="trajko@gmail.com" />              
+			    <input type="text" class="form-control" id="emailInput" name="emailInput" placeholder="Email" data-ng-model='emailInput' />              
 			  </fieldset>
 			  <fieldset class="form-group">
 			    <label for="mobileInput">Mobile</label>
                 <span id="errorMobileInput" class="errors"></span>
-			    <input type="text" class="form-control" id="mobileInput" name="mobileInput" placeholder="Mobile" value="078123123" />
+			    <input type="text" class="form-control" id="mobileInput" name="mobileInput" placeholder="Mobile" data-ng-model='mobileInput' />
 			  </fieldset>
 			  <div class="form-group row">
 			    <div class=" col-sm-10">
-			      <button type="submit" id="submit" class="btn btn-secondary">Submit</button>
+			      <button type="submit" id="submit" data-ng-click="insert()" class="btn btn-secondary">Submit</button>
 			    </div>
 			  </div>
 			</form>
@@ -41,23 +41,49 @@
 		    </tr>
 		  </thead>
 		  <tbody>
-		    
+		          <tr data-ng-repeat="person in personContainer" ng-class="{clicked: person.id === idClckedRow} ng-click="setSelected(person.id)"">
+                        <td data-ng-if="!person.edit">
+                            {{person.name}}
+                        </td>
+                        <td data-ng-if="person.edit">
+                            <input type="text" class="form-control" data-ng-model="person.name" />
+                        </td>
+                        <td data-ng-if="!person.edit">
+                            {{person.email}}
+                        </td>
+                        <td data-ng-if="person.edit">
+                            <input type="text" class="form-control" data-ng-model="person.email" />
+                        </td>
+                        <td data-ng-if="!person.edit">
+                            {{person.mobile}}
+                        </td>
+                        <td data-ng-if="person.edit">
+                            <input type="text" class="form-control" data-ng-model="person.mobile" />
+                        </td>
+                        <td>
+                            <button  type="button" class="btn btn-info-outline" data-ng-click="read(person); $event.stopPropagation();">Read</button>
+                            <button data-ng-if="!person.edit" type="button" class="btn btn-info-outline" data-ng-click="edit(person); $event.stopPropagation();">Edit</button>
+                            <button data-ng-if="person.edit" type="button" class="btn btn-info-outline" data-ng-click="update(person); $event.stopPropagation();">Update</button>
+                            <button  type="button" class="btn btn-danger-outline" data-ng-click="delete(person); $event.stopPropagation();">Delete</button>
+                        </td>
+                    </tr>
 		  </tbody>
 		</table>
 	
-    <div id="details" class="col-sm-6 col-md-4">
+    <div class="col-sm-6 col-md-4" data-ng-if="showDetails">
         <h4>Details</h4>
-        <p><span class="bold">Name</span><span id="nameRead"></span></p>
-        <p><span class="bold">Email</span><span id="emailRead"></span></p>
-        <p><span class="bold">Mobile</span><span id="mobileRead"></span></p>
-        <button id="closeDetails" type="button" class="btn btn-danger">X</button>
+        <p><span class="bold">Name</span><span id="nameRead">{{active.name}}</span></p>
+        <p><span class="bold">Email</span><span id="emailRead">{{active.email}}</span></p>
+        <p><span class="bold">Mobile</span><span id="mobileRead">{{active.mobile}}</span></p>
+        <button id="closeDetails" type="button" class="btn btn-danger" data-ng-click="closeDetails()">X</button>
     </div>
     
     </div>	
     
-
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.2/angular.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
-	<script src="js/myScript.js"></script>
+	<!--<script src="js/myScript.js"></script>-->
+    <script src="js/myAngular.js"></script>
 </body>
 </html>
