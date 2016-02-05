@@ -58,9 +58,7 @@ $(function() {
                 }
             }
         } else {//if target is not button
-            //$('tr').removeClass('blueBg');
             $('tr').css('background-color', '');
-            //$row.addClass('blueBg');
             $row.css('background-color', '#cce2ff');
         }
     });
