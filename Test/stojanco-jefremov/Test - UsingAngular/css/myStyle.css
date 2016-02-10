@@ -21,3 +21,7 @@ button {
  	color: red;
     display: none;
  }
+ 
+ .clicked {
+     background-color: #cce2ff !important;
+ }

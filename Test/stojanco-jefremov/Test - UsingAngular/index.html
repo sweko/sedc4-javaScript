@@ -41,7 +41,7 @@
 		    </tr>
 		  </thead>
 		  <tbody>
-		          <tr data-ng-repeat="person in personContainer" ng-class="{clicked: person.id === idClckedRow} ng-click="setSelected(person.id)"">
+		          <tr data-ng-repeat="person in personContainer" ng-class="{clicked: person.id === idClickedRow}" ng-click="setSelected(person.id)">
                         <td data-ng-if="!person.edit">
                             {{person.name}}
                         </td>

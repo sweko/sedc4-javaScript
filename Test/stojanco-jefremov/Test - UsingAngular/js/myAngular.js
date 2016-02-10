@@ -6,6 +6,7 @@ angular
         $scope.mobileInput = '078123123';
         $scope.active = undefined;
         $scope.showDetails = false;
+        $scope.idClickedRow = -1;
         var id = 0;
         $scope.personContainer = [];
         $scope.insert = function() {
