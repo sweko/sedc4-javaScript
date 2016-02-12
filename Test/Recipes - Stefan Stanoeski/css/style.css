@@ -1,0 +1,21 @@
+.input-spacing{
+    margin: 5px 0;
+}
+.text-center{
+    text-align: center;
+}
+.ingredientAdder{
+    margin: 20px 0;
+    padding: 20px 10px;
+    border-radius: 10px;
+    background-color: lightgrey;
+}
+#allRecipesView{
+    display: none;
+}
+#showRecipeView{
+    display: none;
+}
+.instructionSpacing{
+    margin-left: 5px;
+}
