@@ -15,6 +15,7 @@ namespace TestAPI
 
             // Web API routes
             config.MapHttpAttributeRoutes();
+            config.EnableCors();
 
             config.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
             var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().First();
