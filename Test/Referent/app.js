@@ -39,14 +39,14 @@ $(function () {
 function displayContacts() {
     var table = $("#contactContainer");
     table.empty();
-    $(contacts).each(function (i, item) {
+    $(contacts).each(function (i, contact) {
         var row = $("<tr>");
-        row.data("id",item.id);
+        row.data("id",contact.id);
         row.appendTo(table);
-        if (item.state === "display") {
-            renderViewContact(row, item);
-        } else if (item.state === "edit") {
-            renderEditContact(row, item);
+        if (contact.state === "display") {
+            renderViewContact(row, contact);
+        } else if (contact.state === "edit") {
+            renderEditContact(row, contact);
         }
     });
 }

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>contact list editor</title>
+    <style>
+        .green {
+            background-color: green;
+        }    
+        
+        .yellow {
+            background-color: yellowgreen;
+        }
+        
+        .red{
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body ng-app="contact-manager" ng-controller="ContactController">
+    <div>
+        <table>
+            <tr>
+                <td>Name:</td>
+                <td>
+                    <input type="text" ng-model="name">
+                </td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td>
+                    <input type="text" ng-model="email">
+                    <div class="red" ng-if="error">{{error}}</div>
+                </td>
+            </tr>
+            <tr>
+                <td>Phone:</td>
+                <td>
+                    <input type="text" ng-model="phone">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button ng-click="save()">Save</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <hr />
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <td>Name</td>
+                    <td>Email address</td>
+                    <td>Mobile Number</td>
+                    <td>Action</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="contact in contacts" ng-class="getClass(contact)" ng-click="setCurrent(contact)">
+                    <td ng-if="contact.view">{{contact.name}}</td>
+                    <td ng-if="contact.edit"><input type="text" ng-model="contact.name"></td>
+                    <td ng-if="contact.view">{{contact.email}}</td>
+                    <td ng-if="contact.edit"><input type="text" ng-model="contact.email"></td>
+                    <td ng-if="contact.view">{{contact.phone}}</td>
+                    <td ng-if="contact.edit"><input type="text" ng-model="contact.phone"></td>
+                    <td>
+                        <button ng-click="read(contact)">Read</button>
+                        <button ng-click="edit(contact)"  ng-if="contact.view">Edit</button>
+                        <button ng-click="update(contact)" ng-if="contact.edit">Update</button>
+                        <button ng-click="delete(contact)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <hr />
+    <div ng-if="display">
+        <div >
+            <strong>Name:</strong> {{display.name}}
+            <br/>
+            <strong>Email:</strong>{{display.email}}
+            <br/>
+            <strong>Phone:</strong>{{display.phone}}
+            <br/>
+            <button ng-click="closeDisplay()" >Close</button>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.2/angular.min.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
