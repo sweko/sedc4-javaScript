@@ -424,7 +424,7 @@ var App = React.createClass({
     },
 
     componentWillMount: function() {
-        $.get('http://test-api-sedc.azurewebsites.net/api/Recipes/sweko', function (result) {
+        $.get('https://test-api-sedc.azurewebsites.net/api/Recipes/sweko', function (result) {
             recipes = result;
             updateDOM();
         });
