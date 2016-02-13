@@ -1,0 +1,13 @@
+* {
+    font-family: "Verdana";
+}
+
+#similar{
+    position: relative;
+}
+
+#similar .box{
+    float: left;
+    padding: 15px;
+}
+

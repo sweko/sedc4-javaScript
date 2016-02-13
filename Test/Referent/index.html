@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Employee list editor</title>
+</head>
+
+<body>
+    <div id="inputForm">
+        <table>
+            <tr>
+                <td>Name:</td>
+                <td>
+                    <input type="text" id="name">
+                </td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td>
+                    <input type="text" id="email">
+                </td>
+            </tr>
+            <tr>
+                <td>Phone:</td>
+                <td>
+                    <input type="text" id="phone">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button id="saveContact">Save</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <hr />
+    <div id="displayForm">
+        <table>
+            <thead>
+                <tr>
+                    <td>Name</td>
+                    <td>Email address</td>
+                    <td>Mobile Number</td>
+                    <td>Action</td>
+                </tr>
+            </thead>
+            <tbody id="contactContainer">
+            </tbody>
+        </table>
+    </div>
+    <hr />
+    <div id="viewForm">
+        <div id="viewer">
+            <strong>Name:</strong> <span id="name"></span>
+            <br/>
+            <strong>Email:</strong><span id="email"></span>
+            <br/>
+            <strong>Phone:</strong><span id="phone"></span>
+            <br/>
+            <button id="closeContact">Close</button>
+        </div>
+    </div>
+    <script src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
