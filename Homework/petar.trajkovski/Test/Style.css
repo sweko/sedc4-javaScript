@@ -1,0 +1,65 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+
+form, table {
+	width: 80%;
+	margin-left: 10%;
+}
+
+td, th {
+	width: 25%;
+}
+
+.txtbox {
+ border: none;
+ width: 100%;
+}
+input {
+ font-size: 17px;
+ height: 30px;
+}
+table {
+ background: none repeat scroll 0 0 #abcdef;
+ border: 1px solid #000;
+}
+td {
+	height: 30px;
+}
+
+h4 {
+	margin-left: 10%;
+}
+
+.d {
+	margin-top: 5%;
+	width: 300px;
+	height: 175px;	
+	position: relative;
+	margin-left: 10%;
+	text-align: left;
+}
+
+.disc {
+	width: 300px;
+	height: 100px;
+	background-color: white;
+	border:1px solid;
+	border-color: black;
+	
+	position: relative;
+}
+
+
+#close {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
+
+.selected { 
+	background-color: blue; 
+}
+
