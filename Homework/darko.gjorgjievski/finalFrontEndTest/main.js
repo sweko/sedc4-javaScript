@@ -264,7 +264,7 @@ var InputForm = React.createClass({
                         /><br />
                         {this.renderAddedIngredients()}
                         <label>Минути за подготовка: </label><input type="text" onChange={this.handlePreparationMinsChange}/><br />
-                        <label>Инструкции: </label><input type="text" onChange={this.handleInstructionsChange}/><br />
+                        <label>Инструкции: </label><textarea onChange={this.handleInstructionsChange}></textarea><br /><br />
                         <button type="submit" onClick={this.handleFormSubmit}>Додади рецепт</button>
                     </form>
                 </ReactBootstrap.Modal>
