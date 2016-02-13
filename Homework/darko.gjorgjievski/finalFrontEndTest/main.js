@@ -110,16 +110,21 @@ var IngredientsInput = React.createClass({
 var InputForm = React.createClass({
     getInitialState: function () {
         return ({
-            name: '', source: '', ingredients: [], preparationMins: undefined, instructions: '',
+            name: '', source: '', ingredients: [], preparationTime: undefined, instructions: '',
             currentlySelectedIngredientName: '', currentSelectedIngredientQuantity: 0, counter: this.determineFromWhereToCount()
         });
+    },
+
+
+    componentWillReceiveProps: function () {
+        this.setState({counter: this.determineFromWhereToCount()});
     },
 
     determineFromWhereToCount: function() {
         if (recipes.length === 0) {
             return 0;
         } else {
-            return recipes[recipes.length -1].id+1
+            return Math.max.apply(null, recipes.map(function(n) { return n.id })) + 1;
         }
     },
 
@@ -134,7 +139,7 @@ var InputForm = React.createClass({
     },
 
     handlePreparationMinsChange: function(e) {
-        this.setState({preparationMins: e.target.value});
+        this.setState({preparationTime: parseInt(e.target.value)});
     },
 
     handleInstructionsChange: function(e) {
@@ -439,9 +444,7 @@ var App = React.createClass({
     },
 
     deleteRecipe: function (index, e) {
-        console.log(index);
         var index = helper.getIndexById(Number(index));
-        console.log(index);
         recipes.splice(index, 1);
         //recipes.splice(index, 1, null);
         this.hideSingleRecipe();
