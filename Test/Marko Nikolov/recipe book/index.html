@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Recipe Book</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <table class="table table-striped" table id="recipeTable">
+            <thead>
+                <tr>
+                    <th>Recipe ID</th>
+                    <th>Recipe name</th>
+                    <th>Recipe source</th>
+                    <th>Preparation time</th>
+                    <th>Way of preparation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Demo ID</td>
+                    <td>Demo text 1</td>
+                    <td>Demo text 2</td>
+                    <td>Demo text 3</td>
+                    <td>Demo text 4</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <form>
+        <div>
+            <div class="container">
+                <div class="form-group">
+                    <label for="recipeName">Recipe name:</label>
+                    <input type="text" class="form-control" id="recipeName">
+                </div>
+
+                <div class="form-group">
+                    <label for="recipeSource">Recipe source:</label>
+                    <input type="text" class="form-control" id="recipeSource">
+                </div>
+
+
+                <div style="background: lightgreen;width: 100%;padding: 5px;">
+                    <div>
+                        <label for="select">List of Ingredients:</label>
+                        <select class="form-control" id="listOfIngredients">
+                            <option></option>
+                            <option id="1">Flour</option>
+                            <option>Milk</option>
+                            <option>Oil</option>
+                            <option>Sugar</option>
+                            <option>Eggs</option>
+                            <option>Tomatoes</option>
+                            <option>Peppers</option>
+                            <option>Cottage cheese</option>
+                            <option>Cheese</option>
+                            <option>Potatoes</option>
+                            <option>Meat</option>
+                        </select>
+                    </div>
+
+                    <div class="numberOfIngredients">
+                        <label for="numberOfIngredients">Number of Ingredients:</label>
+                        <input type="text" class="form-control" id="numberOfIngredients">
+                    </div>
+
+                    <div class="totalIngredients">
+                        <label for="totalIngredients">Total Ingredients:</label>
+
+                    </div>
+                    <br>
+                    <button id="submitIngredient" style="display:block;width:100%;" type="button" class="btn btn-default">Submit Ingredient</button>
+                </div>
+
+                <div class="form-group">
+                    <label for="preparationTime">Preparation Time:</label>
+                    <input type="text" class="form-control" id="preparationTime">
+                </div>
+
+                <div class="form-group">
+                    <label for="wayOfPreparation">Way of Preparation:</label>
+                    <input type="text" class="form-control" id="wayOfPreparation">
+                </div>
+                <div class="container">
+        <table class="table table-striped" table id="ingredientsTable">
+            
+            <button id="submitRecipe" style="display:block;width:100%;" type="submit" class="btn btn-success ">Submit Recipe</button>
+            <br>
+            <h1>Ingredients</h1>
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Quantity</th> 
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Demo Type</td>
+                    <td>Demo quantity</td>
+                </tr>
+    </form>
+
+    
+    </div>
+
+    <script src="js/script.js "></script>
+
+</body>
+
+</html>
