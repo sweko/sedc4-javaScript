@@ -1,0 +1,17 @@
+body {
+    background-image: url("../images/cooking.jpg");
+}
+
+.container {
+    background-color: white;
+    margin-top: 5%;
+    opacity: 0.9;
+}
+
+.input-spacing {
+    margin-bottom: 5px;
+}
+
+#mainTable {
+    margin-top: 2%;
+}

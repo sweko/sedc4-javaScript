@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Srdjan Rakic</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="container">
+    <div id="accordion">
+        <h3>Внесете рецепт</h3>
+        <div>
+            <div class="row">
+                <div class="col-md-12">
+                    <form>
+                        <input type="text" class="form-control input-spacing" name="validate-text"  placeholder="Име на рецептот" id="recept">
+                        <input type="text" class="form-control input-spacing" name="validate-text"  placeholder="Извор на рецептот" id="izvor">
+                        <input type="text" class="form-control input-spacing" name="validate-text"  placeholder="Состојки" id="dodadiSostojki">
+                        <input type="text" class="form-control input-spacing" name="validate-text"  placeholder="Време на подготовка" id="vreme">
+                        <input type="text" class="form-control input-spacing" name="validate-text"  placeholder="Начин на подготовка" id="nacin">
+                        <br>
+                        <button type="button" class="btn btn-warning btn-block" id="submitForm">Внеси</button>
+                        <br>
+                        <label for="select">Листа на состојки :</label>
+                        <select id="sostojki">
+                            <span>Состојки</span>
+                            <div>
+                                <option selected>Брашно</option>
+                                <option>Млеко</option>
+                                <option>Масло</option>
+                                <option>Сол</option>
+                                <option>Шекер</option>
+                                <option>Јајца</option>
+                                <option>Патлиџани</option>
+                                <option>Пиперки</option>
+                                <option>Сирење</option>
+                        </select>
+                        <input type="number" id="kolicina" min="1" value="1"/>
+                        <button type="submit" class="btn btn-warning" id="submitSostojka">Додади состојка</button>
+                </div>
+                <div class="col-xs-6">
+                    <table id="sostojkiTable" class="table table-striped">
+                        <tr>
+                            <td>Состојка</td>
+                            <td>Количина</td>
+                        </tr>
+                    </table>
+                </div>
+
+                </form>
+            </div>
+        </div>
+        <h3>Преглед</h3>
+        <div>
+            <div class="col-md-12">
+                <table class="table table-list-search" id="mainTable">
+                    <thead>
+                    <tr>
+                        <th>Реден број</th>
+                        <th>Име на рецептот</th>
+                        <th>Извор на рецептот</th>
+                        <th>Листа на состојки</th>
+                        <th>Време на подготовка</th>
+                        <th>Начин на подготовка</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+        <h3>Вашиот рецепт</h3>
+        <div id="iscitaj">
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script src="scripts/script.js"></script>
+</body>
+</html>
