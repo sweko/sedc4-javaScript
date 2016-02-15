@@ -1,0 +1,38 @@
+.success{
+	box-shadow: 0 0 5px lightgreen;
+	border: 1px solid lightgreen;
+}
+.failed{
+	box-shadow: 0 0 5px red;
+	border: 1px solid red;
+}
+.icoS{
+	color:lightgreen;
+	display:none;
+}
+.icoF{
+	color:red;
+	display:none;
+}
+.icoES{
+	color:lightgreen;
+	display:none;
+}
+.icoEF{
+	color:red;
+	display:none;
+}
+.exp{
+	background-color:red;
+	height:3%;
+	margin-left: 5%;
+	font-size: 8pt;
+	display:none;
+}
+#input1[type='text']{
+	background-image: url('images.jpg');
+    background-position: 2px 2px;
+    background-repeat: no-repeat;
+
+}
+.right-addon .glyphicon { right: 0px;}
