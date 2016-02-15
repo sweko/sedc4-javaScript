@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Recept Reader</title>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	 <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+ 
+</head>
+<body>
+	<div id="accordion">
+		
+			<h3>Recipts</h3>
+			<div>
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="table-responsive">
+			  				<table class="table" id="stored">
+			  					<tr>
+									<td>ID</td>
+									<td>Name of Recept</td>
+									<td>Origin of Recept</td>
+									<td>ingredients</td>
+									<td>Making Order</td>
+									<td>Required Time</td>
+									<td>Action</td>
+								</tr>
+						 </table>
+						</div>
+					</div>
+				</div>
+				</div>
+			</div>
+		
+		
+			<h3>Add recipet</h3>
+			<div>
+			<form id="form">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12">
+					<!--text Inputs name and origin :D -->
+						<div class="form-group">
+							<label for="receptName">Name of Recipe</label>
+							<input type="text" class="form-control" id="nameR">
+						</div>
+						<div class="form-group">
+							<label for="receptSurce">Origin of Recipe</label>
+							<input type="text" class="form-control" id="originR">
+						</div>
+						<!-- ingridijens -->
+							<label class="checkbox-inline"><input class="box" type="checkbox" value="">Flour</label>
+							<label class="checkbox-inline"><input  class="box" type="checkbox" value="">Milk</label>
+							<label class="checkbox-inline"><input  class="box" type="checkbox" value="">Butter</label>
+							<label class="checkbox-inline"><input  class="box" type="checkbox" value="">Salt</label>
+							<label class="checkbox-inline"><input  class="box" type="checkbox" value="">Sugar</label>
+							<label class="checkbox-inline"><input class="box" type="checkbox" value="">Eggs</label>
+							<label class="checkbox-inline"><input  class="box" type="checkbox" value="">Tomato</label>
+							<label class="checkbox-inline"><input  class="box" type="checkbox" value="">Pepers</label>
+							<label class="checkbox-inline"><input  class="box" type="checkbox" value="">Cheese</label>
+							<label class="checkbox-inline"><input  class="box" type="checkbox" value="">Chedar</label>
+							<label class="checkbox-inline"><input  class="box" type="checkbox" value="">Patato</label>
+			  				<label class="checkbox-inline"><input  class="box" type="checkbox" value="">Meat</label>
+							<div id="quantity" class="col-sm-12">
+								
+							</div>
+
+							<div class="form-group " >
+								<label>Please enter the order of making recept</label>
+								<textarea class="form-control" rows="5" id="area"></textarea>
+								<label>Number of characters to use </label>
+								<span id="num">500</span>
+							</div>
+							<form class="form-inline" role="form">
+								<div class="form-group">
+							    	<label>Time for Making</label>
+							    	<input type="text" class="form-control" id="hours" width="20px">
+							    	<label>Hours</label>
+								</div>
+								<div class="form-group">
+							    	
+							    	<input type="text" class="form-control" id="min">
+							    	<label for="min">Minutes</label>
+							    	
+							    </div>
+							</form>
+							<button type="submit" class="btn btn-default" id="submit">Submit</button>
+			  </div>
+					</div>
+				</div>
+			</div>
+			<h3>Displayed Receipts</h3>
+			<div>
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12" id="displayIt">
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+			</div>
+			</form>
+			</div>
+
+		
+
+			<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.0.min.js"></script>
+			 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+  	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+			<script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>
