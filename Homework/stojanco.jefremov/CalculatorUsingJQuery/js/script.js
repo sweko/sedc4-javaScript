@@ -1,28 +1,53 @@
-(function () {
-	var keys = document.querySelectorAll("#calculator button");
+$(function () {  
+    
+    (function renderCalculator() {
+        $('body').append('<table id="calculator"></table>');
+                $('table#calculator').append('<tbody>');
+                $('#calculator tbody').append('<tr>');
+                $('#calculator tr').append('<td colspan="4"></td>');
+                $('#calculator td').append('<div id="display">0</div>');
+                var buttonValues = ['7', '8', '9', 'C', '4', '5', '6', '/', '1', '2', '3', '*', '0', '=', '+', '-'];
+                var buttonIndex = 0;
+                for (var i = 0; i < 4; i++) {
+                     $('#calculator tbody').append('<tr>');
+                     var $currentRow = $('#calculator tr:eq(' + (i + 1) + ')');
+                     for (var j = 0; j < 4; j++) {              
+                        $currentRow.append('<td>');
+                        var $currentColumn = $currentRow.children('td:eq(' + j + ')');
+                        $currentColumn.append('<button>');
+                        var $currentButton = $currentColumn.children();
+                        $currentButton.addClass('calculatorButton');
+                        $currentButton.text(buttonValues[buttonIndex]);
+                        buttonIndex++;
+                     }       
+                }
+    })();
+    
+	var $keys = $("#calculator button");
 	var OPERATORS = ['*','/','+','-'];//OPERATORS in the order in which they should be evaluated
-	var display = document.getElementById("display");
-	for (var index = 0; index < keys.length; index++) {		
-		var element = keys[index];
-		element.onclick = function() {
-			display.textContent = processInput(this.textContent, display.textContent, OPERATORS);
-		};
-	}
-	
-	document.addEventListener("keydown", function(event) {
+	var $display = $("#display");
+    
+    $keys.click(function() {
+            var result = processInput($(this).text(), $display.text(), OPERATORS);
+			$display.text(result);
+	});
+        
+	$(document).keydown(function(event) {
 		var keyCode = event.keyCode;
 		var keyValue = fromKeyCode(keyCode);
 		if (keyValue) {
-			display.textContent = processInput(keyValue, display.textContent, OPERATORS);	
+            var result = processInput(keyValue, $display.text(), OPERATORS);
+            $display.text(result);	
 		}
 	});
-	
-	document.addEventListener("keypress", function(event) {
+    
+	$(document).keypress(function(event) {
 		if (event.shiftKey && event.keyCode == 43) {
 			var keyValue = '+';
 		}
 		if (keyValue) {
-			display.textContent = processInput(keyValue, display.textContent, OPERATORS);	
+			var result = processInput(keyValue, $display.text(), OPERATORS);
+            $display.text(result);	
 		}
 	});
 	
@@ -162,4 +187,4 @@ function processInput(input, output, OPERATORS) {
 		}
 		return result;
 	}
-})();
+});

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Jedi Battle Simulator</title>
+</head>
+<body>
+	<div id="entry">
+		<table style="border: 1px solid black; width:100%">
+			<tr>
+				<td>
+					<table>
+						<tr>
+							<td>Name</td>
+							<td><input type="text" id="jediName" /></td>
+						</tr>
+						<tr>
+							<td>Power</td>
+							<td><input type="number" id="jediPower" min="0" max="10" value="5"></td>
+						</tr>
+						<tr>
+							<td>Armor</td>
+							<td><input type="number" id="jediArmor" min="1" max="5" value="3"></td>
+						</tr>
+						<tr>
+							<td>Force Level</td>
+							<td><input type="number" id="jediForce" min="1" max="5" value="3"></td>
+						</tr>
+						<tr>
+							<td>Lightsabre color:</td>
+							<td><select id="jediColor" ></select></td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<button id="createJedi">Create New Jedi</button>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td></td>
+				<td><table>
+						<tr>
+							<td>Name</td>
+							<td>Darth <input type="text" id="sithName" /></td>
+						</tr>
+						<tr>
+							<td>Power</td>
+							<td><input type="number" id="sithPower" min="0" max="10" value="5"></td>
+						</tr>
+						<tr>
+							<td>Armor</td>
+							<td><input type="number" id="sithArmor" min="1" max="5" value="3"></td>
+						</tr>
+						<tr>
+							<td>Force Level</td>
+							<td><input type="number" id="sithForce" min="1" max="5" value="3"></td>
+						</tr>
+						<tr>
+							<td>Lightsabre color:</td>
+							<td><b>red</b></td>
+						</tr>
+						<tr>
+							<td>Anger:</td>
+							<td><input type="number" id="sithAnger" min="1" max="10" value="5"></td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<button id="createSith">Create New Sith Lord</button>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div id="display">
+		<table style="border: 1px solid green; width:100%">
+			<tr>
+				<td>
+					<table>
+						<thead>
+							<tr>
+								<td>Name</td>
+								<td>Health</td>
+							</tr>
+						</thead>
+						<tbody id="jediList"></tbody>
+					</table>
+				</td>
+				<td><button id="jediAttack">Jedi Attack</button>
+					<button id="sithAttack">Sith Attack</button>
+					<button id="battle">Battle</button>
+					<div id="simconsole" style="height:300px; overflow-y:auto"></div>
+				</td>
+				<td>
+					<table>
+						<thead>
+							<tr>
+								<td>Name</td>
+								<td>Health</td>
+							</tr>
+						</thead>
+						<tbody id="sithList"></tbody>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<script src="script/app.js"></script>
+	<script src="script/jedi.js"></script>
+	<script src="script/sith.js"></script>
+</body>
+</html>

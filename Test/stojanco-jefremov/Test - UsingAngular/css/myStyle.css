@@ -1,0 +1,27 @@
+button {
+	margin-right: 0.5rem;
+}
+
+.bold {
+	font-weight: bold;
+	margin-right: 0.3rem;
+}
+
+#details,
+.editInput {
+	display: none;
+}
+
+#details {
+    border: 1px solid grey;
+    padding: 1rem;
+}
+
+.errors {
+ 	color: red;
+    display: none;
+ }
+ 
+ .clicked {
+     background-color: #cce2ff !important;
+ }

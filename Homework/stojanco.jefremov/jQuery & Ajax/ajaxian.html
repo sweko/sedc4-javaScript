@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax Demos</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" 
+        integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+    <link rel="stylesheet" href="ajaxian.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Using Ajax & API's with jQuery</h1>
+        <div class="row">
+            <h2 id="artistName"></h2>
+            <div id="imageButtons"></div>
+        </div>
+        <div class="row">
+            <section class="col-sm-3 col-md-1">
+                <button id='toggleSimilar' class="btn btn-link">Show similar</button>
+                <div id="similar"></div>
+            </section>
+            <section class="col-md-offset-1 col-md-8">
+                <img id="artistImage" alt="">
+                <p id="artistBio"></p>
+            </section>
+            <section class="col-md-offset-1 col-md-1">
+                <button id="toggleAlbums" class="btn btn-link">Show Albums</button>
+                <div id="albums"></div>
+            </section>
+        </div>
+    </div>
+    
+    <!-- jQuery -->
+    <script src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
+    
+    <!-- Bootstrap JS !-->
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" 
+        integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
+    
+    <!-- Custom JS !-->
+    <script src="ajaxian.js"></script>
+
+</body>
+</html>

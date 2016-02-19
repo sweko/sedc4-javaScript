@@ -1,0 +1,17 @@
+#regForm h1,
+#regForm h2 {
+	text-align: center;
+}
+
+#regForm label {
+	padding-right: 0;
+}
+ .radio {
+ 	display: inline;
+ }
+ #femaleRadio {
+ 	margin-left: .5rem;
+ }
+ .errors {
+ 	color: red;
+ }

@@ -1,0 +1,20 @@
+* {
+    font-family: "Verdana";
+}
+
+.similars {
+    display: inline-block;
+    padding: .5rem;
+}
+
+.box {
+    float: left;
+}
+
+#similar {
+    clear: left;
+}
+
+#toggleSimilar {
+    float: left;
+}
