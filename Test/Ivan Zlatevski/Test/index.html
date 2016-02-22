@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Test</title>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<!-- Local CSS -->
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+	<form class="form-inline" id="inputForm" onsubmit="return false">
+	<div class="form-group">
+		<label>Name:</label>
+		<input type="text" class="form-control form-control-md" id="name" placeholder="Enter name: "/>
+		</div>
+		<div class="form-group">
+		<label>E-Mail:</label>
+		<input type="email" class="form-control form-control-md" id="email" placeholder="Enter e-mail address: "/>
+		</div>
+		<div class="form-group">
+		<label>Mobile Number:</label>
+		<input type="text" class="form-control form-control-md " id='mobileNumber' placeholder="Enter mobile number: "/>
+		</div>
+		<button type="buton" class="btn btn-success" id="submitButton">Submit</button>
+		</form>
+        <br/>
+	<table class=" table ">
+			<thead>
+			<tr class="table">
+				<th>Name</th>
+				<th>E-Mail Address</th>
+				<th>Mobile Number</th>
+				<th>Action</th>
+			</tr>
+            </thead>
+			<tbody id="tableList">
+				
+			</tbody>
+			
+	</table>
+    <div class="container" id="display">
+        <div class="row">
+            
+        </div>
+    </div>
+    <!--<button class='btn btn-secondary' id="closeBtn">Close</button>-->
+    
+    
+	
+	
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>
