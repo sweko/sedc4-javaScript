@@ -1,0 +1,17 @@
+#personTable{
+	width:50%;
+}
+
+#personForm{
+	width:50%;
+	margin-bottom: 5%;
+}
+#divDetails{
+    border:1px solid black;
+    width:20%;
+   
+}
+#divRead{
+    display: none;
+    margin-left: 2%;
+}
