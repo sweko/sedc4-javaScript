@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+cd
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.2/angular.min.js"></script>
+    <script src="app.js"></script>
+    <script src="service.js"></script>
+    <h1>Angular Demo</h1>
+    <div ng-app="my-invoice" ng-controller="InvoiceController">
+        <b>Invoice:</b>
+        <div>
+            Quantity:
+            <input type="number" min="0" ng-model="quantity">
+        </div>
+        <div>
+            Costs:
+            <input type="number" min="0" ng-model="cost">
+            <select ng-model="inCurrency">
+                <option ng-repeat="currency in currencies" ng-value="currency.id">{{currency.name}}</option> 
+            </select>
+        </div>
+        <div>
+            <b>Total:</b>
+            {{simpleTotal()}} {{getCurrencyById(inCurrency).name}}
+            <br/>
+            <h4>Conversion table</h4>
+            <table ng-if="inCurrency==4">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Currency</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="currency in currencies">
+                        <td>
+                            {{$index+1}}
+                        </td>
+                        <td>
+                            {{currency.name}}
+                        </td>
+                        <td>
+                            {{total(currency) | currency:currency.symbol}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button class="btn">Pay</button>
+        </div>
+    </div>
+
+</body>
+
+</html>
