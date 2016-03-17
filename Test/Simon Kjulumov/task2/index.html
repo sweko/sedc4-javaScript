@@ -1,0 +1,42 @@
+<! doctype html>
+
+<html>
+	<head>
+		<title>Exam</title>
+		<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+		
+		<link href="style.css" rel="stylesheet">
+	</head>
+	<body>
+		<table id="table">
+				<tr>
+					<th>Name</th>
+					<th>Email Address</th>
+					<th>Mobile phone</th>
+					<th>Action</th>
+				</tr>
+			</table>
+			<form id="form">
+				<div>
+					<label>Name: </label>
+						<input type="text" name="name" placeholder="ex: Simon">
+				</div>
+				<div>
+					<label>Email: </label>
+						<input type="email" name="email" placeholder="ex: john@yahoo.com">
+				</div>
+				<div>
+					<label>Mobile:</label>
+						<input type="text" name="mobile" placeholder="ex:899898989">
+				</div>
+				<div>
+					<button type="submit" value="submit">Submit</button> 
+				</div>
+				<input type="hidden" name="id" value="0">				
+			</form>
+     
+                <label>Details:<br>
+                <textarea rows = "5" cols="60"id="details" placeholder="Upon clicking 'Read' details will be shown here."></textarea>   
+                <script src="script.js"></script>          
+	</body>
+</html>
