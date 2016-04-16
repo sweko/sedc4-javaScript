@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head> <title> Calculator Demo </title> 
+	   <link href="CalculatorDemoStyle.css" rel="stylesheet" type="text/css">
+	   
+</head>
+
+<body> 
+	<table>
+	<tbody>
+		<tr><td id="display" colspan="4"></td></tr>
+		<tr class="buttons">
+			<td> <input type="button" id="one" value="1" onclick="one()"> </td>
+			<td id="two"> <input type="button" value="2" onclick="two()"> </td>
+			<td id="three" > <input type="button" value="3" onclick="three()"> </td> 
+			<td id="mul" > <input type="button" value="*" onclick="mult()"> </td> 
+		</tr>
+		<tr class="buttons">
+			<td id="four"> <input type="button" value="4" onclick="four()"> </td>
+			<td id="five"> <input type="button" value="5" onclick="five()"> </td>
+			<td id="six"> <input type="button" value="6" onclick="six()"> </td> 
+			<td id="div"> <input type="button" value="/" onclick="div()"> </td> 
+		</tr>
+		<tr class="buttons">
+			<td id="seven"> <input type="button" value="7" onclick="seven()"> </td>
+			<td id="eight"> <input type="button" value="8" onclick="eight()"> </td>
+			<td id="nine"> <input type="button" value="9" onclick="nine()"> </td>
+			<td id="add"> <input type="button" value="+" onclick="plus()"> </td>
+		</tr>
+		<tr class="buttons">
+			<td id="clear"> <input type="button" value="C" onclick="clearDisplay()"> </td> 
+			<td id="zero" > <input type="button" value="0" onclick="zero()"> </td>
+			<td id="equal"> <input type="button" value="=" onclick="equals()"> </td>
+			<td id="sub"> <input type="button" value="-" onclick="minus()"> </td> 
+		</tr>
+	</tbody>
+	</table>
+<script src="CalculatorDemoJS.js"> </script>
+</body>
+
+</html>
