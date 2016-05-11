@@ -1,22 +1,17 @@
 /*
 I've decided to make this app like a state machine. The 3 global states are currentOverallNumber, previousResult, previousOperator. They keep track of any intermediate results in the operation and are assigned smart defaults so I don't have to do a bunch of ifs for the first/second operation etc.
-
 You have either a digit(number) or an operator(string) flowing in to the calculator engine and they're mapped to corresponding HTML IDs. Then there are event handlers where each digit/operator flows to the corresponding functions and updates the operation/result displays on the HTML page.
-
 The equal sign poses a special case, additional code is added for the purpose of emptying the 'operation' display and filling it with the data of the 'results' display.
-
 Then each appropriate key on the keyboard is mapped to the already defined event handlers so the user can enter a bunch of numbers, press either = or enter and get the result. At the end, there are the functions which names are pretty self-evident I think.
-
 I wanted to make this calculator more like the Windows calculator than the Google calc where you enter an operation and it's evaluated at the same time. Here, like on the Windows calculation, each time you press a particular operation, the previous stuff is being evaluated.
-
 There are some obvious bugs, like the result being messed up if you type * more than once, etc, I've tried to make this work first for a "happy day" scenario before focusing on the edge cases.
-
 */
 
 // Global states
 var currentOverallNumber = 0;
 var previousResult = 0;
 var previousOperator = '+';
+var memoryValue = 0;
 
 // define the digits that will flow into the main functions
 var digitsByHTMLid = {
@@ -36,7 +31,7 @@ var digitsByHTMLid = {
 $.each(digitsByHTMLid, function(htmlID, digit) {
     $(htmlID).click(function() {
         var result = addToOverallNumber(digit);
-        updateOperationAndResultDisplays(digit, result);
+        overwriteResultDisplay(result);
     }); // end click
 });
 
@@ -52,19 +47,41 @@ var operatorsByHtmlid = {
 // define event handlers for the operators
 $.each(operatorsByHtmlid, function(htmlID, operation) {
     $(htmlID).click(function() {
+        appendToOperationDisplay(currentOverallNumber);
+        appendToOperationDisplay(operation);
         var result = processOperator(operation);
-        updateOperationAndResultDisplays(operation,result);
+        overwriteResultDisplay(result);
     }); // end click
 });
 
 // additional event handler for the equals sign
 $('#equal').click(function() {
-    copyDataFromResultsToOperationDisplay();
+    clearOperationDisplay();
+    notie.alert(1, mk.toWords(currentOverallNumber), 1.5);
 });
 
 // event handler for the RESET button
 $('#reset').click(function() {
     resetStateAndDisplay();
+});
+
+// event handlers for the memory buttons
+
+$('#mc').click(function() {
+    memoryValue = 0;
+});
+
+$('#mr').click(function() {
+    currentOverallNumber = memoryValue;
+    $('#result').text(currentOverallNumber);
+});
+
+$('#mplus').click(function() {
+    memoryValue += currentOverallNumber;
+});
+
+$('#mminus').click(function() {
+    memoryValue -= currentOverallNumber;
 });
 
 $(document).keypress(function(evt) {
@@ -141,14 +158,16 @@ function resetStateAndDisplay() {
     $('#result').text('');
 }
 
-function updateOperationAndResultDisplays(currentDigit, overallNumber) {
-    $('#operation').append(currentDigit);
-    $('#result').text(overallNumber);
+function overwriteResultDisplay(data) {
+    $('#result').text(data);
 }
 
-function copyDataFromResultsToOperationDisplay() {
-    var currentResult = $('#result').text();
-    $('#operation').text(currentResult);
+function appendToOperationDisplay(data) {
+    $('#operation').append(data);
+}
+
+function clearOperationDisplay() {
+    $('#operation').empty();
 }
 
 
@@ -197,3 +216,4 @@ function processOperator(operator) {
     updatePreviousState(operator, result);
     return result;
 }
+
