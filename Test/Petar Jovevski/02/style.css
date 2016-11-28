@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+table, th, td{
+	border: 1px solid gray;
+	text-align:left;
+	border-collapse: separate;
+    border-spacing: 0;
+	margin-top:50px;
+    margin-left:50px;
+
+}
+th{
+	height:35px;
+	font-size:1em;
+	min-width:200px;
+}
+td{
+	text-align:left;
+	min-width:180px;
+	height:45px;
+}
+.big{
+	width:20%;
+	margin-left:50px;
+}
+.center {
+    margin: auto;
+    width: 50%;
+   
+    padding: 10px;
+}
