@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Test</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+    <form name="form1" id="form1">
+
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" placeholder="Name">
+
+        <label for="email">Email Address</label>
+        <input type="text" class="form-control" id="email" placeholder="Email Address">
+
+        <label for="number">Mobile Number</label>
+        <input type="text" class="form-control" id="number" placeholder="Mobile Number">
+        </br>
+        <button type="button" class="btn btn-primary">Submit</button>
+        <div id="erorForm" style="color:red; font-size:2rem"></div>
+    </form>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email Address</th>
+                <th>Mobile Number</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="editable">
+        </tbody>
+    </table>
+    <div id="show"></div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

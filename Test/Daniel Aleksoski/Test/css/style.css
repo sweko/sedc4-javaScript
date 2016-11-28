@@ -1,0 +1,20 @@
+*{
+	margin:10px;
+}
+
+#form1{
+    width: 35%;
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 5px;
+    background-color: #CCFFCC;
+}
+#show{
+    display: ;
+}
+
+.table{
+    background-color: #F2F2FF;
+    margin: auto;
+    width: 90%;
+}
